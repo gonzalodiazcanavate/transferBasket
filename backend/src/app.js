@@ -5,7 +5,7 @@ import routes from "./routes/index.js";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
 
 // Log de peticiones HTTP (GET, POST, etc.)

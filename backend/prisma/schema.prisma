@@ -23,8 +23,8 @@ enum positions {
   Base
   Escolta
   Alero
-  Ala_Pivot
-  Pivot
+  Ala_Pivót
+  Pivót
 }
 
 /// --- Tablas
@@ -81,7 +81,7 @@ model players {
   second_name   String  @db.VarChar(255)
   age           Int
   is_captain    Boolean
-  value         BigInt
+  value         Int
   weight        Decimal @db.Decimal(5,2)
   is_international Boolean
   birth_date    DateTime @db.Date
@@ -113,8 +113,8 @@ model clubs_squad {
   id           Int     @id @default(autoincrement())
   signin_date  DateTime @db.Date
   contract_end DateTime @db.Date
-  salary       BigInt
-  value        BigInt
+  salary       Int
+  value        Int
   number       Int
 
   club   clubs   @relation(fields: [club_id], references: [id])
@@ -154,7 +154,7 @@ model player_nationalities {
 
 model salaries {
   id        Int     @id @default(autoincrement())
-  salary    BigInt
+  salary    Int
   date      DateTime @db.Date
 
   player    players @relation(fields: [player_id], references: [id])
@@ -163,7 +163,7 @@ model salaries {
 
 model transfers {
   id       Int     @id @default(autoincrement())
-  value    BigInt
+  value    Int
   date     DateTime @db.Date
   type     transfer_type
 
@@ -177,7 +177,7 @@ model transfers {
 
 model values {
   id        Int     @id @default(autoincrement())
-  value     BigInt
+  value     Int
   date      DateTime @db.Date
 
   player    players @relation(fields: [player_id], references: [id])

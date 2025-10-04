@@ -1,8 +1,8 @@
-import prisma from "../config/db.js";
+import {getAllPlayers} from '../repositories/players.repository.js';
 
 export const getPlayers = async (req, res) => {
   try {
-    const players = await prisma.players.findMany();
+    const players = await getAllPlayers();
     res.json(players);
   } catch (error) {
     console.log(error);

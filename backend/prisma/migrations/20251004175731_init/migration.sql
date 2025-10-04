@@ -2,7 +2,7 @@
 CREATE TYPE "transfer_type" AS ENUM ('traspaso', 'cesion');
 
 -- CreateEnum
-CREATE TYPE "positions" AS ENUM ('Base', 'Escolta', 'Alero', 'Ala_Pivot', 'Pivot');
+CREATE TYPE "positions" AS ENUM ('Base', 'Escolta', 'Alero', 'Ala_Pivót', 'Pivót');
 
 -- CreateTable
 CREATE TABLE "countries" (
@@ -52,7 +52,7 @@ CREATE TABLE "players" (
     "second_name" VARCHAR(255) NOT NULL,
     "age" INTEGER NOT NULL,
     "is_captain" BOOLEAN NOT NULL,
-    "value" BIGINT NOT NULL,
+    "value" INTEGER NOT NULL,
     "weight" DECIMAL(5,2) NOT NULL,
     "is_international" BOOLEAN NOT NULL,
     "birth_date" DATE NOT NULL,
@@ -78,8 +78,8 @@ CREATE TABLE "clubs_squad" (
     "id" SERIAL NOT NULL,
     "signin_date" DATE NOT NULL,
     "contract_end" DATE NOT NULL,
-    "salary" BIGINT NOT NULL,
-    "value" BIGINT NOT NULL,
+    "salary" INTEGER NOT NULL,
+    "value" INTEGER NOT NULL,
     "number" INTEGER NOT NULL,
     "club_id" INTEGER NOT NULL,
     "player_id" INTEGER NOT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE "player_nationalities" (
 -- CreateTable
 CREATE TABLE "salaries" (
     "id" SERIAL NOT NULL,
-    "salary" BIGINT NOT NULL,
+    "salary" INTEGER NOT NULL,
     "date" DATE NOT NULL,
     "player_id" INTEGER NOT NULL,
 
@@ -128,7 +128,7 @@ CREATE TABLE "salaries" (
 -- CreateTable
 CREATE TABLE "transfers" (
     "id" SERIAL NOT NULL,
-    "value" BIGINT NOT NULL,
+    "value" INTEGER NOT NULL,
     "date" DATE NOT NULL,
     "type" "transfer_type" NOT NULL,
     "origin_id" INTEGER,
@@ -141,7 +141,7 @@ CREATE TABLE "transfers" (
 -- CreateTable
 CREATE TABLE "values" (
     "id" SERIAL NOT NULL,
-    "value" BIGINT NOT NULL,
+    "value" INTEGER NOT NULL,
     "date" DATE NOT NULL,
     "player_id" INTEGER NOT NULL,
 
