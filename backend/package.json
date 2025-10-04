@@ -2,13 +2,30 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Lista de dependedencias del backend de transferBasket",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js",
+    "start": "prisma migrate deploy && prisma generate && node src/server.js"
   },
   "author": "Gonzalo Díaz Cañavate",
   "license": "ISC",
   "dependencies": {
-    "express": "5.1.0"
+    "@prisma/client": "^6.16.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "prisma": "^6.16.3"
+  },
+  "devDependencies": {
+    "@eslint/css": "^0.11.1",
+    "@eslint/js": "^9.37.0",
+    "@eslint/json": "^0.13.2",
+    "@eslint/markdown": "^7.3.0",
+    "eslint": "^9.37.0",
+    "globals": "^16.4.0",
+    "morgan": "^1.10.1",
+    "nodemon": "^3.1.10"
   }
 }

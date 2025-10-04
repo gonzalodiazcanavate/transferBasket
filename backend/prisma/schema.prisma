@@ -1,0 +1,192 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// --- Enums (tipos personalizados)
+enum transfer_type {
+  traspaso
+  cesion
+}
+
+enum positions {
+  Base
+  Escolta
+  Alero
+  Ala_Pivot
+  Pivot
+}
+
+/// --- Tablas
+
+model countries {
+  id           Int         @id @default(autoincrement())
+  name         String      @unique @db.VarChar(64)
+  nationality  String      @db.VarChar(64)
+  leagues      leagues[]
+  selections   selections?
+  players_nat  player_nationalities[]
+}
+
+model leagues {
+  id        Int     @id @default(autoincrement())
+  name      String  @db.VarChar(64)
+  country   countries @relation(fields: [country_id], references: [id])
+  country_id Int
+  clubs     clubs[]
+  editions  league_editions[]
+}
+
+model clubs {
+  id          Int     @id @default(autoincrement())
+  name        String  @db.VarChar(64)
+  pitch       String  @db.VarChar(64)
+  city        String  @db.VarChar(32)
+  capacity    Int
+  start_date  DateTime @db.Date
+  titles      Int
+  league      leagues @relation(fields: [league_id], references: [id])
+  league_id   Int
+
+  players     players[]
+  squad       clubs_squad[]
+  won_editions league_editions[] @relation("WinnerClub")
+  leagueClubs league_clubs[]
+  transfers_origin transfers[]   @relation("TransferOrigin")
+  transfers_destiny transfers[]  @relation("TransferDestiny")
+}
+
+model selections {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique @db.VarChar(64)
+  country   countries @relation(fields: [country_id], references: [id])
+  country_id Int     @unique
+
+  players   players[]
+}
+
+model players {
+  id            Int     @id @default(autoincrement())
+  name          String  @db.VarChar(64)
+  second_name   String  @db.VarChar(255)
+  age           Int
+  is_captain    Boolean
+  value         BigInt
+  weight        Decimal @db.Decimal(5,2)
+  is_international Boolean
+  birth_date    DateTime @db.Date
+  position      positions
+  pp            Decimal @db.Decimal(4,2)
+  birth_place   String @db.VarChar(64)
+  health        String @db.VarChar(45)
+  height        Decimal @db.Decimal(4,2)
+  rp            Decimal @db.Decimal(4,2)
+  ap            Decimal @db.Decimal(4,2)
+  sp            Decimal @db.Decimal(4,2)
+  shot_pct      Decimal @db.Decimal(5,2)
+  threes_pct    Decimal @db.Decimal(5,2)
+  fp            Decimal @db.Decimal(4,2)
+
+  club        clubs?     @relation(fields: [club_id], references: [id])
+  club_id     Int?
+  selection   selections? @relation(fields: [selection_id], references: [id])
+  selection_id Int?
+
+  squad       clubs_squad[]
+  nationalities player_nationalities[]
+  salaries    salaries[]
+  transfers   transfers[]
+  values      values[]
+}
+
+model clubs_squad {
+  id           Int     @id @default(autoincrement())
+  signin_date  DateTime @db.Date
+  contract_end DateTime @db.Date
+  salary       BigInt
+  value        BigInt
+  number       Int
+
+  club   clubs   @relation(fields: [club_id], references: [id])
+  club_id Int
+  player players @relation(fields: [player_id], references: [id])
+  player_id Int
+}
+
+model league_editions {
+  id       Int     @id @default(autoincrement())
+  edition  String  @db.VarChar(30)
+
+  league   leagues @relation(fields: [league_id], references: [id])
+  league_id Int
+
+  winner   clubs   @relation("WinnerClub", fields: [winner_id], references: [id])
+  winner_id Int
+
+  leagueClubs league_clubs[]
+}
+
+model league_clubs {
+  id               Int   @id @default(autoincrement())
+  league_edition   league_editions @relation(fields: [league_edition_id], references: [id])
+  league_edition_id Int
+  club             clubs @relation(fields: [club_id], references: [id])
+  club_id          Int
+}
+
+model player_nationalities {
+  id        Int     @id @default(autoincrement())
+  player    players @relation(fields: [player_id], references: [id])
+  player_id Int
+  country   countries @relation(fields: [country_id], references: [id])
+  country_id Int
+}
+
+model salaries {
+  id        Int     @id @default(autoincrement())
+  salary    BigInt
+  date      DateTime @db.Date
+
+  player    players @relation(fields: [player_id], references: [id])
+  player_id Int
+}
+
+model transfers {
+  id       Int     @id @default(autoincrement())
+  value    BigInt
+  date     DateTime @db.Date
+  type     transfer_type
+
+  origin   clubs?  @relation("TransferOrigin", fields: [origin_id], references: [id])
+  origin_id Int?
+  destiny  clubs   @relation("TransferDestiny", fields: [destiny_id], references: [id])
+  destiny_id Int
+  player   players @relation(fields: [player_id], references: [id])
+  player_id Int
+}
+
+model values {
+  id        Int     @id @default(autoincrement())
+  value     BigInt
+  date      DateTime @db.Date
+
+  player    players @relation(fields: [player_id], references: [id])
+  player_id Int
+}
+
+model users {
+  username   String   @id @db.VarChar(32)
+  email      String   @unique @db.VarChar(255)
+  password   String   @db.VarChar(255)
+  created_at DateTime @default(now()) @db.Timestamp(6)
+}

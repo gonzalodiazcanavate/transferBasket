@@ -1,8 +1,8 @@
 -- -----------------------------------------------------
--- Schema basket
+-- Schema public
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS basket;
-SET search_path TO basket;
+CREATE SCHEMA IF NOT EXISTS public;
+SET search_path TO public;
 
 -- -----------------------------------------------------
 -- Definición de tipos personalizados

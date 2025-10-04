@@ -2,12 +2,14 @@
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
+  "description": "Lista de dependedencias del backend de transferBasket",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite"
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -15,12 +17,16 @@
     "react-router-dom": "^7.9.3"
   },
   "devDependencies": {
+    "@eslint/css": "^0.11.1",
     "@eslint/js": "^9.36.0",
+    "@eslint/json": "^0.13.2",
+    "@eslint/markdown": "^7.3.0",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.3",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.36.0",
+    "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.4.0",
