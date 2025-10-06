@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getPlayers } from "../services/api";
+import { getPlayers } from "../services/jugadoresApi.js";
 
 const Home = () => {
 
