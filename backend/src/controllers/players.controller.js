@@ -1,4 +1,4 @@
-import {getAllPlayers} from '../repositories/players.repository.js';
+import {getAllPlayers} from "../repositories/players.repository.js";
 
 export const getPlayers = async (req, res) => {
   try {

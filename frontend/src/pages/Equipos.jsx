@@ -1,9 +1,9 @@
 import React from "react";
 
 const Equipos = () => {
-    return (
-        <div></div>
-    );
+  return (
+    <div />
+  );
 }
 
 export default Equipos;
