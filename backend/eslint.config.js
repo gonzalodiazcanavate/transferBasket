@@ -6,7 +6,21 @@ import css from "@eslint/css";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs}"], plugins: { js }, extends: ["js/recommended"], languageOptions: { globals: globals.node } },
+  {
+    files: ["**/*.{js,mjs,cjs}"], 
+    plugins: {js}, 
+    extends: ["js/recommended"], 
+    languageOptions: {globals: globals.node},
+    rules: {
+      "quotes": ["error", "double"],
+      "indent": ["error", 2],
+      "max-len": ["error", { code: 150 }],
+      "require-jsdoc": "off",
+      "valid-jsdoc": "off",
+      "no-var": "error",
+      "prefer-const": "error",
+    }
+  },
   { files: ["**/*.json"], plugins: { json }, language: "json/json", extends: ["json/recommended"] },
   { files: ["**/*.jsonc"], plugins: { json }, language: "json/jsonc", extends: ["json/recommended"] },
   { files: ["**/*.json5"], plugins: { json }, language: "json/json5", extends: ["json/recommended"] },
