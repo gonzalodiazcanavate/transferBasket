@@ -2,11 +2,13 @@ import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Container, Box, Typography, TextField, Card, Button} from "@mui/material";
 import {loginUser, register} from "../services/usersApi";
+import {validateInput} from "../utils/validation";
 
 const login = () => {
   const [loginData, setLoginData] = useState({username: "", password: ""});
   const [registerData, setRegisterData] = useState({username: "", email: "", password: ""});
   const [error, setError] = useState("");
+  const [errors, setErrors] = useState([]);
   const [success, setSuccess] = useState(null);
   const [isRegistered, setIsRegistered] = useState(true);
   const navigate = useNavigate();
@@ -24,8 +26,22 @@ const login = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setErrors([]);
     setSuccess("");
+    const newErrors = [];
+    if (
+      !validateInput(loginData.username, /^[a-zA-Z0-9]{8,32}$/) && 
+      !validateInput(loginData.username, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
+    ) 
+      newErrors.push("El nombre de usuario no es válido.");
+    if (!validateInput(loginData.password)) 
+      newErrors.push("La contraseña no es válida.");
 
+    // Si hay errores, detenemos el proceso
+    if (newErrors.length > 0) {
+      setErrors(newErrors);
+      return;
+    }
     try {
       const data = await loginUser(loginData.username, loginData.password);
       setSuccess(`Bienvenido, ${data.user.username}`);
@@ -39,8 +55,22 @@ const login = () => {
   const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setErrors([]);
     setSuccess("");
 
+    const newErrors = [];
+    if (!validateInput(registerData.username, /^[a-zA-Z0-9]{8,32}$/)) 
+      newErrors.push("El nombre de usuario no es válido.");
+    if (!validateInput(registerData.email, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) 
+      newErrors.push("El nombre de usuario no es válido.");
+    if (!validateInput(loginData.password)) 
+      newErrors.push("La contraseña no es válida.");
+
+    // Si hay errores, detenemos el proceso
+    if (newErrors.length > 0) {
+      setErrors(newErrors);
+      return;
+    }
     try {
       await register(
         registerData.username,
@@ -68,7 +98,7 @@ const login = () => {
             </Box>
             <Typography>¿No tienes una cuenta? <Button onClick={() => setIsRegistered(false)}>Registrate aquí</Button></Typography>
           </Box>
-          <Typography color="error">{error ?? ""}</Typography>
+          <Typography color="error" variant="body1">{error ?? ""}</Typography>
         </Card>
       ) : (
         /* --- REGISTRO --- */
@@ -85,8 +115,17 @@ const login = () => {
             </Box>
             <Typography>¿Ya estas registrado? <Button onClick={() => setIsRegistered(true)}>Inicia sesión aquí</Button></Typography>
           </Box>
-          <Typography color="error">{error ?? ""}</Typography>
+          <Typography color="error" variant="body1">{error ?? ""}</Typography>
         </Card>   
+      )}
+      {errors.length > 0 && (
+        <Box sx={{mt: 2}}>
+          {errors.map((errMsg, i) => (
+            <Typography key={i} color="error" variant="body1">
+        • {errMsg}
+            </Typography>
+          ))}
+        </Box>
       )}
     </Container>
   )
