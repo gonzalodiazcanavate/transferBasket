@@ -9,7 +9,6 @@ const login = () => {
   const [registerData, setRegisterData] = useState({username: "", email: "", password: ""});
   const [error, setError] = useState("");
   const [errors, setErrors] = useState([]);
-  const [success, setSuccess] = useState(null);
   const [isRegistered, setIsRegistered] = useState(true);
   const navigate = useNavigate();
 
@@ -27,7 +26,6 @@ const login = () => {
     e.preventDefault();
     setError("");
     setErrors([]);
-    setSuccess("");
     const newErrors = [];
     if (
       !validateInput(loginData.username, /^[a-zA-Z0-9]{8,32}$/) && 
@@ -43,8 +41,7 @@ const login = () => {
       return;
     }
     try {
-      const data = await loginUser(loginData.username, loginData.password);
-      setSuccess(`Bienvenido, ${data.user.username}`);
+      await loginUser(loginData.username, loginData.password);
       navigate("/");
     } catch (err) {
       setError(err.message);
@@ -56,14 +53,13 @@ const login = () => {
     e.preventDefault();
     setError("");
     setErrors([]);
-    setSuccess("");
 
     const newErrors = [];
     if (!validateInput(registerData.username, /^[a-zA-Z0-9]{8,32}$/)) 
       newErrors.push("El nombre de usuario no es válido.");
     if (!validateInput(registerData.email, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) 
       newErrors.push("El nombre de usuario no es válido.");
-    if (!validateInput(loginData.password)) 
+    if (!validateInput(registerData.password)) 
       newErrors.push("La contraseña no es válida.");
 
     // Si hay errores, detenemos el proceso
@@ -77,7 +73,6 @@ const login = () => {
         registerData.email,
         registerData.password
       );
-      setSuccess("Usuario registrado correctamente. Ya puedes iniciar sesión.");
     } catch (err) {
       setError(err.message);
     }
