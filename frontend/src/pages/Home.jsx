@@ -1,15 +1,60 @@
 import React, {useEffect, useState} from "react";
-import {getPlayers} from "../services/jugadoresApi.js";
+import {getPlayers, getPlayer, getPlayersByClub, getPlayerValue, getPlayerValues} from "../services/playersApi.js";
+import {getClubs, getClub, getClubsByLeague, getClubValue} from "../services/clubsApi.js";
 
 const Home = () => {
 
   const [players, setPlayers] = useState([]); // estado inicial vacío
+  const [player, setPlayer] = useState([]); // estado inicial vacío
+  const [playerValue, setPlayerValue] = useState([]);
+  const [playerValues, setPlayerValues] = useState([]);
   const tableHeaders = ["ID", "Nombre", "Posición", "Puntos"];
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await getPlayers();
         setPlayers(data); // guardamos en estado
+        const data2 = await getPlayersByClub(1);
+        setPlayers(data2);
+      } catch (error) {
+        console.error("Error fetching players:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getPlayer(2);
+        setPlayer(data); // guardamos en estado
+      } catch (error) {
+        console.error("Error fetching players:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getPlayerValue(2);
+        setPlayerValue(data); // guardamos en estado
+      } catch (error) {
+        console.error("Error fetching players:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getPlayerValues(2);
+        setPlayerValues(data); // guardamos en estado
       } catch (error) {
         console.error("Error fetching players:", error);
       }
