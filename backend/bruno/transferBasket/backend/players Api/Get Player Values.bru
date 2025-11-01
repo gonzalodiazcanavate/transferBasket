@@ -1,0 +1,19 @@
+meta {
+  name: Get Player Values
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{backendServer}}/jugadores/valores/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 2
+}
+
+settings {
+  encodeUrl: true
+}
