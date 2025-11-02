@@ -3,6 +3,9 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 
 ## [Próxima versión] - Añadir nuevos cambios ##
 #  Agregado (Added)
+- Creación de los endpoints y las apis de jugadores, clubes, valores y usuarios.
+- Autenticación con jwt incorporada.
+- Creación del componente Login.
 
 # Cambiado (Changed)
 

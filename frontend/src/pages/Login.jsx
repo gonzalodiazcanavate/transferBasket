@@ -4,7 +4,7 @@ import {Container, Box, Typography, TextField, Card, Button} from "@mui/material
 import {loginUser, register} from "../services/usersApi";
 import {validateInput} from "../utils/validation";
 
-const login = () => {
+const Login = () => {
   const [loginData, setLoginData] = useState({username: "", password: ""});
   const [registerData, setRegisterData] = useState({username: "", email: "", password: ""});
   const [error, setError] = useState("");
@@ -126,4 +126,4 @@ const login = () => {
   )
 }
 
-export default login;
+export default Login;

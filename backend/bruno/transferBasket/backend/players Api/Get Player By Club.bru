@@ -1,0 +1,19 @@
+meta {
+  name: Get Player By Club
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{backendServer}}/jugadores/club/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 1
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:4000/api/users";
+import {config} from "../config/apiConfig"
+
+const API_URL = `${config.apiUrl}/users`;
 
 // Login
 export async function loginUser(username, password) {

@@ -1,20 +1,27 @@
--- Insertar País
+-- ================================================================
+-- INSERTAR PAÍS
+-- ================================================================
 INSERT INTO countries (name, nationality)
 VALUES ('España', 'Española')
 RETURNING id;
 
 -- Suponemos que devuelve id = 1
 
--- Insertar Liga
+-- ================================================================
+-- INSERTAR LIGA
+-- ================================================================
 INSERT INTO leagues (country_id, name)
 VALUES (1, 'Liga Endesa')
 RETURNING id;
 
 -- Suponemos que devuelve id = 1
 
--- Insertar Club
+-- ================================================================
+-- INSERTAR CLUBES
+-- ================================================================
 INSERT INTO clubs (league_id, name, pitch, city, capacity, start_date, titles)
-VALUES (
+VALUES 
+(
   1,
   'Real Madrid',
   'WiZink Center',
@@ -22,12 +29,23 @@ VALUES (
   17300,
   '1931-03-22',
   36
+),
+(
+  1,
+  'FC Barcelona',
+  'Palau Blaugrana',
+  'Barcelona',
+  7585,
+  '1926-06-24',
+  20
 )
 RETURNING id;
 
--- Suponemos que devuelve id = 1
+-- Suponemos que devuelve: Real Madrid = 1, FC Barcelona = 2
 
--- Insertar Jugadores (quinteto titular 2023/24: Campazzo, Musa, Hezonja, Yabusele, Tavares)
+-- ================================================================
+-- INSERTAR JUGADORES DEL REAL MADRID (quinteto 2023/24)
+-- ================================================================
 INSERT INTO players (
   club_id, selection_id, name, second_name, age, is_captain, value, weight,
   is_international, birth_date, position, pp, birth_place, health, height,
@@ -42,7 +60,9 @@ RETURNING id;
 
 -- Suponemos que devuelve ids del 1 al 5
 
--- Insertar en plantilla (clubs_squad)
+-- ================================================================
+-- INSERTAR JUGADORES EN PLANTILLA (clubs_squad)
+-- ================================================================
 INSERT INTO clubs_squad (club_id, player_id, signin_date, contract_end, salary, value, number)
 VALUES
 (1, 1, '2023-07-01', '2026-06-30', 2500000, 2500000, 7),
@@ -50,3 +70,34 @@ VALUES
 (1, 3, '2022-07-01', '2025-06-30', 1800000, 1800000, 11),
 (1, 4, '2021-07-01', '2024-06-30', 2200000, 2200000, 28),
 (1, 5, '2017-07-01', '2025-06-30', 3000000, 3000000, 22);
+
+-- ================================================================
+-- INSERTAR HISTORIAL DE VALORES (tabla values)
+-- ================================================================
+-- Cada jugador tendrá tres registros simulando evolución en el tiempo
+INSERT INTO values (player_id, value, date)
+VALUES
+-- Campazzo
+(1, 2000000, '2022-07-01'),
+(1, 2300000, '2023-07-01'),
+(1, 2500000, '2024-07-01'),
+
+-- Musa
+(2, 1500000, '2022-07-01'),
+(2, 1800000, '2023-07-01'),
+(2, 2000000, '2024-07-01'),
+
+-- Hezonja
+(3, 1600000, '2022-07-01'),
+(3, 1700000, '2023-07-01'),
+(3, 1800000, '2024-07-01'),
+
+-- Yabusele
+(4, 1900000, '2022-07-01'),
+(4, 2100000, '2023-07-01'),
+(4, 2200000, '2024-07-01'),
+
+-- Tavares
+(5, 2500000, '2022-07-01'),
+(5, 2800000, '2023-07-01'),
+(5, 3000000, '2024-07-01');
