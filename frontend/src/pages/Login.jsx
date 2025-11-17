@@ -58,7 +58,7 @@ const Login = () => {
     if (!validateInput(registerData.username, /^[a-zA-Z0-9]{8,32}$/)) 
       newErrors.push("El nombre de usuario no es válido.");
     if (!validateInput(registerData.email, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) 
-      newErrors.push("El nombre de usuario no es válido.");
+      newErrors.push("El email de usuario no es válido.");
     if (!validateInput(registerData.password)) 
       newErrors.push("La contraseña no es válida.");
 
