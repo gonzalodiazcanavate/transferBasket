@@ -30,7 +30,7 @@ const useLogin = () => {
       !validateInput(loginData.username, /^[a-zA-Z0-9]{8,32}$/) && 
         !validateInput(loginData.username, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
     ) 
-      newErrors.push("El nombre de usuario no es válido.");
+      newErrors.push("El email o nombre de usuario no es válido.");
     if (!validateInput(loginData.password)) 
       newErrors.push("La contraseña no es válida.");
   
@@ -77,4 +77,23 @@ const useLogin = () => {
     }
   };
 
+  return {
+    loginData,
+    setLoginData,
+    registerData,
+    setRegisterData,
+    error,
+    setError,
+    errors,
+    setErrors,
+    isRegistered,
+    setIsRegistered,
+    navigate,
+    handleLoginChange,
+    handleRegisterChange,
+    handleLoginSubmit,
+    handleRegisterSubmit,
+  }
 }
+
+export default useLogin;
