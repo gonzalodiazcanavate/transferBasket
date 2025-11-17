@@ -52,6 +52,7 @@ const Login = () => {
           <Typography color="error" variant="body1">{error ?? ""}</Typography>
         </Card>   
       )}
+      {/* --- ERRORES --- */}
       {errors.length > 0 && (
         <Box sx={{mt: 2}}>
           {errors.map((errMsg, i) => (

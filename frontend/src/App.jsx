@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Transferencias from "./pages/Transferencias";
 import Equipos from "./pages/Equipos";
 import Login from "./pages/Login";
+import PlayerDetails from "./pages/PlayerDetails";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/transferencias" element={<Transferencias />} />
         <Route path="/equipos" element={<Equipos />} />
+        <Route path="/jugador/:id" element={<PlayerDetails />} />
       </Routes>
     </BrowserRouter>
   );
