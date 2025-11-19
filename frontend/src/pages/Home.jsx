@@ -205,7 +205,6 @@ const Home = () => {
       </AppBar>
 
       <main className="bg-[#f8fbff] min-h-screen" style={{ marginTop: "64px" }}>
-        {/* Hero Carousel con deslizamiento direccional */}
         <Box
           sx={{
             minHeight: { xs: "50vh", md: "60vh" },
@@ -224,10 +223,10 @@ const Home = () => {
               (direction === "next" && index === (activeSlide - 1 + totalSlides) % totalSlides) ||
               (direction === "prev" && index === (activeSlide + 1) % totalSlides)
             ) {
-              // Slide que está saliendo
+           
               translateX = direction === "next" ? "-100%" : "100%";
             } else {
-              // Slide que está entrando (fuera de pantalla)
+           
               translateX = direction === "next" ? "100%" : "-100%";
             }
 
@@ -383,12 +382,12 @@ const Home = () => {
             {value === 0 && <TablaJugadores />}
             {value === 1 && (
               <Typography variant="h6" color="text.secondary">
-                🧢 Próximamente: listado detallado de equipos, plantillas y valores.
+                Próximamente: listado detallado de equipos, plantillas y valores.
               </Typography>
             )}
             {value === 2 && (
               <Typography variant="h6" color="text.secondary">
-                🔄 Próximamente: historial de transferencias con fechas, valores y clubes involucrados.
+                 Próximamente: historial de transferencias con fechas, valores y clubes involucrados.
               </Typography>
             )}
           </Box>
