@@ -1,0 +1,19 @@
+meta {
+  name: Get Clubs By League
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{backendServer}}/clubs/liga/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 1
+}
+
+settings {
+  encodeUrl: true
+}

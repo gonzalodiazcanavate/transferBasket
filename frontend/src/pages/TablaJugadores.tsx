@@ -14,15 +14,26 @@ import {
 } from "@mui/material";
 import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
 
-function TablaJugadores() {
-  const [jugadores, setJugadores] = useState([]);
+interface Jugador {
+  id: number;
+  name: string;
+  second_name: string;
+  position: string;
+  pp: number;
+  value: number;
+}
+
+const TablaJugadores: React.FC = () => {
+  const [jugadores, setJugadores] = useState<Jugador[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:3000/jugadores")
       .then((res) => res.json())
-      .then((data) => {
-        setJugadores(data);
+      .then((data: Jugador[]) => {
+        // Ordenar por valor descendente
+        const sorted = [...data].sort((a, b) => b.value - a.value);
+        setJugadores(sorted.slice(0, 10));
         setLoading(false);
       })
       .catch((error) => {
@@ -44,15 +55,15 @@ function TablaJugadores() {
       <Box display="flex" alignItems="center" mb={3}>
         <SportsBasketballIcon sx={{ fontSize: 40, mr: 2, color: "primary.main" }} />
         <Typography variant="h4" component="h1">
-          Jugadores de Baloncesto
+          🏆 Top Jugadores Más Valiosos
         </Typography>
       </Box>
-      
+
       <TableContainer component={Paper} elevation={3}>
         <Table sx={{ minWidth: 650 }} aria-label="tabla de jugadores">
           <TableHead>
             <TableRow sx={{ backgroundColor: "primary.main" }}>
-              <TableCell sx={{ color: "white", fontWeight: "bold" }}>ID</TableCell>
+              <TableCell sx={{ color: "white", fontWeight: "bold" }}>#</TableCell>
               <TableCell sx={{ color: "white", fontWeight: "bold" }}>Nombre</TableCell>
               <TableCell sx={{ color: "white", fontWeight: "bold" }}>Posición</TableCell>
               <TableCell sx={{ color: "white", fontWeight: "bold" }}>Puntos</TableCell>
@@ -60,12 +71,15 @@ function TablaJugadores() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {jugadores.map((jugador) => (
+            {jugadores.map((jugador, index) => (
               <TableRow
                 key={jugador.id}
-                sx={{ '&:nth-of-type(odd)': { backgroundColor: 'background.default' } }}
+                sx={{
+                  "&:nth-of-type(odd)": { backgroundColor: "background.default" },
+                  "&:hover": { backgroundColor: "rgba(0,0,0,0.04)" },
+                }}
               >
-                <TableCell>{jugador.id}</TableCell>
+                <TableCell>{index + 1}</TableCell>
                 <TableCell>
                   <Typography variant="body1" fontWeight="medium">
                     {jugador.name} {jugador.second_name}
@@ -73,7 +87,13 @@ function TablaJugadores() {
                 </TableCell>
                 <TableCell>{jugador.position}</TableCell>
                 <TableCell>{jugador.pp}</TableCell>
-                <TableCell>{new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(jugador.value)}</TableCell>
+                <TableCell>
+                  {new Intl.NumberFormat("es-ES", {
+                    style: "currency",
+                    currency: "EUR",
+                    maximumFractionDigits: 0,
+                  }).format(jugador.value)}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -81,6 +101,6 @@ function TablaJugadores() {
       </TableContainer>
     </Container>
   );
-}
+};
 
 export default TablaJugadores;
