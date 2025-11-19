@@ -84,7 +84,7 @@ const Home = () => {
                   <td className="py-3 px-6 text-left whitespace-nowrap font-medium">{player.id}</td>
                   <td className="py-3 px-6 text-left">{player.name}</td>
                   <td className="py-3 px-6 text-left">{player.position}</td>
-                  <td className="py-3 px-6 text-left">{player.pp}{console.log(player)}</td>
+                  <td className="py-3 px-6 text-left">{player.pp}</td>
                 </tr> 
               ))) : (null)
             }

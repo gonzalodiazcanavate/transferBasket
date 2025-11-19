@@ -2,6 +2,7 @@
  * @file Componente que contiene la imagen y datos básicos del jugador.
  */
 import React from "react";
+import {config} from "../config/apiConfig";
 import {
   Box,
   Card,
@@ -14,15 +15,18 @@ import {
 const PlayerHeader = ({player}) => {
   const {
     name,
+    second_name,
     age,
     birth_date,
     nationality,
     height,
     position,
     club_id,
-    // image,
+    image_url,
     value
   } = player;
+  const BACKEND = config.assetsUrl;
+  console.log(`${BACKEND}/players/${image_url}`);
 
   return (
     <Card
@@ -37,7 +41,7 @@ const PlayerHeader = ({player}) => {
       {/* --- Imagen jugador --- */}
       <CardMedia
         component="img"
-        image='../../public/vite.svg'
+        image={`${BACKEND}/players/${image_url}`}
         alt={name}
         sx={{
           width: {xs: "100%", sm: 160},
@@ -50,7 +54,7 @@ const PlayerHeader = ({player}) => {
       {/* --- Datos jugador --- */}
       <Box sx={{flex: 1}}>
         <Typography variant="h5" fontWeight="bold">
-          {name}
+          {name + " " + second_name}
         </Typography>
 
         <Stack direction="row" spacing={1} sx={{mt: 1, flexWrap: "wrap"}}>
