@@ -1,19 +1,27 @@
 ### Historial de Cambios ###
 Todos los cambios notables del proyecto se documentarán en este archivo.
 
-## [Próxima versión] - Añadir nuevos cambios ##
+## [Version 0.3.0] - Añadir nuevos cambios ##
 #  Agregado (Added)
-- Creación de los endpoints y las apis de jugadores, clubes, valores y usuarios.
-- Autenticación con jwt incorporada.
-- Creación del componente Login.
+- Repositorio de imagenes y funcionalidad para acceder a las mismas añadido al backend.
+- Pestaña de detalles de jugadores añadida.
 
 # Cambiado (Changed)
+- Lógica del componente Login.jsx externalizada al hook useLogin.js para una mejor legibilidad.
 
 # Obsoleto (Deprecated)
 
 # Eliminado (Removed)
 
 # Corregido (Fixed)
+
+
+## [Version 0.2.0] - Añadir nuevos cambios ##
+#  Agregado (Added)
+- Creación de los endpoints y las apis de jugadores, clubes, valores y usuarios.
+- Autenticación con jwt incorporada.
+- Creación del componente Login.
+
 
 ## [Versión 0.1.0] - 2025-10-04 ##
 # Agregado (Added)
