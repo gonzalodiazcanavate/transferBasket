@@ -3,6 +3,7 @@
  */
 import {getAllPlayers, getPlayerById, getAllPlayersByClub} from "../repositories/players.repository.js";
 import {getPlayerCurrentValue, getValuesByPlayerId} from "../repositories/values.repository.js";
+import {getSalariesByPlayerId, getPlayerCurrentSalary} from "../repositories/salaries.repository.js";
 
 export const getPlayers = async (req, res) => {
   try {
@@ -63,5 +64,31 @@ export const getPlayerValue = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error obteniendo el valor del jugador" });
+  }
+};
+
+export const getPlayerSalaries = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    if (isNaN(id)) return res.status(400).json({ error: "ID inválido" });
+
+    const values = await getSalariesByPlayerId(id);
+    res.json(values);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error obteniendo los salarios del jugador" });
+  }
+};
+
+export const getPlayerSalary = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    if (isNaN(id)) return res.status(400).json({ error: "ID inválido" });
+
+    const value = await getPlayerCurrentSalary(id);
+    res.json(value);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error obteniendo el salario del jugador" });
   }
 };

@@ -1,0 +1,19 @@
+meta {
+  name: Get Player Salaries
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{backendServer}}/jugadores/salarios/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 28
+}
+
+settings {
+  encodeUrl: true
+}

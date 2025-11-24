@@ -62,3 +62,27 @@ export async function getPlayerValue(id) {
 
   return res.json();
 }
+
+// Función para obtener el salario actual de un jugador.
+export async function getPlayerSalary(id) {
+  const res = await fetch(`${API_URL}/salario/${id}`);
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error);
+  } 
+
+  return res.json();
+}
+
+// Función para obtener los salarios de un jugador.
+export async function getPlayerSalaries(id) {
+  const res = await fetch(`${API_URL}/salarios/${id}`);
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error);
+  } 
+
+  return res.json();
+}
