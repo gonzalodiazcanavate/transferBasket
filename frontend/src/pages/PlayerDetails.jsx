@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {Container, Box, CircularProgress} from "@mui/material";
 
-import {getPlayer, getPlayerValues} from "../services/playersApi";
+import {getPlayer, getPlayerValues, getPlayerSalaries} from "../services/playersApi";
 import PlayerHeader from "../components/PlayerHeader";
 import PlayerStats from "../components/PlayerStats";
 import ValuesSalariesChart from "../components/ValuesSalariesChart";
@@ -14,6 +14,7 @@ const PlayerDetails = () => {
   const {id} = useParams(); // obtenemos el id del jugador desde la URL
   const [player, setPlayer] = useState(null);
   const [values, setValues] = useState(null);
+  const [salaries, setSalaries] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -48,6 +49,22 @@ const PlayerDetails = () => {
     fetchPlayerValues();
   }, [player]);
 
+  useEffect(() => {
+    const fetchPlayerSalaries = async () => {
+      try {
+        setLoading(true);
+        const data = await getPlayerSalaries(id);
+        setSalaries(data);
+      } catch (err) {
+        console.error("Error cargando historial de valores del jugador:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlayerSalaries();
+  }, [player]);
+
   if (loading) {
     return (
       <Box sx={{display: "flex", justifyContent: "center", mt: 5}}>
@@ -74,9 +91,22 @@ const PlayerDetails = () => {
 
         {/* 🔶 Secciones futuras aquí */}
         <PlayerStats player={player} />
-        <Box sx={{display: "flex", flexDirection: "row", gap: 3}}>
-          <ValuesSalariesChart values={values} />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: {xs: "column", md: "row"},
+            gap: 3
+          }}
+        >
+          <Box sx={{flex: 1, minWidth: 0}}>
+            <ValuesSalariesChart values={values} title={'Historial de Valores'}/>
+          </Box>
+
+          <Box sx={{flex: 1, minWidth: 0}}>
+            <ValuesSalariesChart values={salaries} title={'Historial de Salarios'} />
+          </Box>
         </Box>
+
         
         {/* <PlayerTransfers transfers={player.transfers} /> */}
         {/* <HigherLower initialPlayer={player} /> */}

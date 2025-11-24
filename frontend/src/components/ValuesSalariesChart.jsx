@@ -4,12 +4,12 @@ import {createPayload} from "../helpers/valuesSalariesChart.helper";
 import {Box, Typography} from "@mui/material";
 
 
-const ValuesSalariesChart = ({isAnimationActive = true, values}) => {
+const ValuesSalariesChart = ({isAnimationActive = true, values, title}) => {
   const data = values ? createPayload(values) : [{date: "", value: 0}]
   console.log(data)
   return (
     <Box sx={{display: "flex", flexDirection: "column", gap: 3}}>
-      <Typography variant="h6">Historial de valores</Typography>
+      <Typography variant="h6">{title}</Typography>
       <AreaChart
         style={{width: "100%", maxWidth: "700px", maxHeight: "70vh", aspectRatio: 1.618}}
         responsive
