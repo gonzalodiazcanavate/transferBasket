@@ -15,7 +15,7 @@ export async function getPlayers() {
   return res.json();
 }
 
-// Función para obtener un jugador.
+// Función para obtener todos los jugadores de un club.
 export async function getPlayersByClub(id) {
   const res = await fetch(`${API_URL}/club/${id}`);
 
