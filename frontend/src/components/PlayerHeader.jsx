@@ -25,6 +25,7 @@ const PlayerHeader = ({player}) => {
     image_url,
     value
   } = player;
+
   const BACKEND = config.assetsUrl;
   console.log(`${BACKEND}/players/${image_url}`);
 

@@ -5,17 +5,21 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {Container, Box, CircularProgress} from "@mui/material";
 
-import {getPlayer} from "../services/playersApi";
+import {getPlayer, getPlayerValues} from "../services/playersApi";
 import PlayerHeader from "../components/PlayerHeader";
+import PlayerStats from "../components/PlayerStats";
+import StatsChart from "../components/StatsChart";
 
 const PlayerDetails = () => {
   const {id} = useParams(); // obtenemos el id del jugador desde la URL
   const [player, setPlayer] = useState(null);
+  const [values, setValues] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPlayer = async () => {
       try {
+        setLoading(true);
         const data = await getPlayer(id);
         setPlayer(data);
       } catch (err) {
@@ -27,6 +31,22 @@ const PlayerDetails = () => {
 
     fetchPlayer();
   }, [id]);
+
+  useEffect(() => {
+    const fetchPlayerValues = async () => {
+      try {
+        setLoading(true);
+        const data = await getPlayerValues(id);
+        setValues(data);
+      } catch (err) {
+        console.error("Error cargando historial de valores del jugador:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlayerValues();
+  }, [player]);
 
   if (loading) {
     return (
@@ -53,7 +73,7 @@ const PlayerDetails = () => {
         <PlayerHeader player={player} />
 
         {/* 🔶 Secciones futuras aquí */}
-        {/* <PlayerStats player={player} /> */}
+        <PlayerStats player={player} />
         {/* <PlayerValueChart history={player.valueHistory} /> */}
         {/* <PlayerTransfers transfers={player.transfers} /> */}
         {/* <HigherLower initialPlayer={player} /> */}
