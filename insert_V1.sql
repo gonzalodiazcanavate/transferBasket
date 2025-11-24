@@ -978,7 +978,7 @@ WHERE c.name = 'Real Madrid'
 
 -- 2) FACU CAMPAZZO
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 2500000, '2022-07-01'
+SELECT p.id, 500000, '2018-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'Real Madrid'
@@ -989,7 +989,29 @@ WHERE c.name = 'Real Madrid'
   );
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 2800000, '2023-07-01'
+SELECT p.id, 1500000, '2019-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Real Madrid'
+  AND p.name = 'Facundo' AND p.second_name = 'Campazzo'
+  AND NOT EXISTS (
+    SELECT 1 FROM "values" v
+    WHERE v.player_id = p.id AND v.date = '2022-07-01'
+  );
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 2500000, '2020-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Real Madrid'
+  AND p.name = 'Facundo' AND p.second_name = 'Campazzo'
+  AND NOT EXISTS (
+    SELECT 1 FROM "values" v
+    WHERE v.player_id = p.id AND v.date = '2022-07-01'
+  );
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 2800000, '2021-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'Real Madrid'
@@ -1000,7 +1022,7 @@ WHERE c.name = 'Real Madrid'
   );
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 3000000, '2024-07-01'
+SELECT p.id, 3000000, '2022-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'Real Madrid'
@@ -1008,6 +1030,28 @@ WHERE c.name = 'Real Madrid'
   AND NOT EXISTS (
     SELECT 1 FROM "values" v
     WHERE v.player_id = p.id AND v.date = '2024-07-01'
+  );
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 12500000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Real Madrid'
+  AND p.name = 'Facundo' AND p.second_name = 'Campazzo'
+  AND NOT EXISTS (
+    SELECT 1 FROM "values" v
+    WHERE v.player_id = p.id AND v.date = '2022-07-01'
+  );
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 1000000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Real Madrid'
+  AND p.name = 'Facundo' AND p.second_name = 'Campazzo'
+  AND NOT EXISTS (
+    SELECT 1 FROM "values" v
+    WHERE v.player_id = p.id AND v.date = '2022-07-01'
   );
 
 
