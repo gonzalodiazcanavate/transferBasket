@@ -17,13 +17,13 @@ INSERT INTO salaries (salary, date, player_id) VALUES
     LIMIT 1)),
 
 -- Facu Campazzo
-(2200000, '2023-07-01', (SELECT id FROM players WHERE name = 'Facu' AND second_name = 'Campazzo'
+(2200000, '2023-07-01', (SELECT id FROM players WHERE name = 'Facundo' AND second_name = 'Campazzo'
       AND club_id = (SELECT id FROM clubs WHERE name = 'Real Madrid')
     LIMIT 1)),
-(2310000, '2024-07-01', (SELECT id FROM players WHERE name = 'Facu' AND second_name = 'Campazzo'
+(2310000, '2024-07-01', (SELECT id FROM players WHERE name = 'Facundo' AND second_name = 'Campazzo'
       AND club_id = (SELECT id FROM clubs WHERE name = 'Real Madrid')
     LIMIT 1)),
-(2420000, '2025-07-01', (SELECT id FROM players WHERE name = 'Facu' AND second_name = 'Campazzo'
+(2420000, '2025-07-01', (SELECT id FROM players WHERE name = 'Facundo' AND second_name = 'Campazzo'
       AND club_id = (SELECT id FROM clubs WHERE name = 'Real Madrid')
     LIMIT 1)),
 

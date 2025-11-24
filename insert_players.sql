@@ -101,51 +101,97 @@ INSERT INTO players (
   is_international, birth_date, position, pp, birth_place, health, height,
   rp, ap, sp, shot_pct, threes_pct, fp
 ) VALUES
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Andrés', 'Feliz', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Base',
-   0.00, 'Desconocido', 'Sano', 1.90, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Facu', 'Campazzo', 25, TRUE, 0.00, FALSE, '2000-01-01', 'Base',
-   0.00, 'Desconocido', 'Sano', 1.80, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Théo', 'Maledon', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Base',
-   0.00, 'Desconocido', 'Sano', 1.90, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Sergio', 'Llull', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Escolta',
-   0.00, 'Desconocido', 'Sano', 1.90, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Alberto', 'Abalde', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Alero',
-   0.00, 'Desconocido', 'Sano', 1.90, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'David', 'Kramer', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Alero',
-   0.00, 'Desconocido', 'Sano', 1.90, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Gabriel', 'Deck', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Alero',
-   0.00, 'Desconocido', 'Sano', 1.90, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Gabriele', 'Procida', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Alero',
-   0.00, 'Desconocido', 'Sano', 1.90, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Mario', 'Hezonja', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Alero',
-   0.00, 'Desconocido', 'Sano', 2.03, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Chuma', 'Okeke', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Ala_Pivót',
-   0.00, 'Desconocido', 'Sano', 2.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Izan', 'Almansa', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Ala_Pivót',
-   0.00, 'Desconocido', 'Sano', 2.08, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Trey', 'Lyles', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Ala_Pivót',
-   0.00, 'Desconocido', 'Sano', 2.06, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Usman', 'Garuba', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Ala_Pivót',
-   0.00, 'Desconocido', 'Sano', 2.03, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Bruno', 'Fernando', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Pivót',
-   0.00, 'Desconocido', 'Sano', 2.08, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00),
-  ((SELECT id FROM clubs WHERE name = 'Real Madrid'),
-   NULL, 'Walter', 'Tavares', 25, FALSE, 0.00, FALSE, '2000-01-01', 'Pivót',
-   0.00, 'Desconocido', 'Sano', 2.20, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00);
+
+-- ANDRÉS FELIZ
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Andrés', 'Feliz', 26, FALSE, 86.0, TRUE, '1997-08-12', 'Base',
+ 11.2, 'Santo Domingo (Rep. Dominicana)', 'Sano', 1.86,
+ 3.1, 4.8, 1.2, 45.0, 36.5, 3),
+
+-- FACUNDO CAMPAZZO
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Facundo', 'Campazzo', 33, TRUE, 88.0, TRUE, '1991-03-23', 'Base',
+ 12.8, 'Córdoba (Argentina)', 'Sano', 1.81,
+ 3.0, 7.4, 1.5, 46.0, 37.0, 2.4),
+
+-- THÉO MALEDON
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Théo', 'Maledon', 23, FALSE, 91.0, TRUE, '2001-06-12', 'Base',
+ 8.7, 'Rouen (Francia)', 'Sano', 1.93,
+ 2.8, 3.9, 0.9, 44.0, 34.0, 3.1),
+
+-- SERGIO LLULL
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Sergio', 'Llull', 37, TRUE, 92.0, TRUE, '1987-11-15', 'Escolta',
+ 7.9, 'Mahón (España)', 'Sano', 1.90,
+ 1.3, 2.1, 0.5, 43.0, 35.5, 2.9),
+
+-- ALBERTO ABALDE
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Alberto', 'Abalde', 29, FALSE, 95.0, TRUE, '1995-12-15', 'Alero',
+ 6.4, 'Ferrol (España)', 'Sano', 2.02,
+ 2.4, 1.9, 0.7, 48.0, 37.0, 2.6),
+
+-- DAVID KRAMER
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'David', 'Kramer', 27, FALSE, 95.0, TRUE, '1997-01-14', 'Alero',
+ 5.1, 'Myjava (Eslovaquia)', 'Sano', 1.98,
+ 2.0, 1.2, 0.6, 44.0, 33.0, 2.1),
+
+-- GABRIEL DECK
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Gabriel', 'Deck', 29, FALSE, 105.0, TRUE, '1995-02-08', 'Alero',
+ 11.0, 'Colonia Dora (Argentina)', 'Sano', 1.98,
+ 4.6, 2.3, 0.8, 54.0, 30.5, 2),
+
+-- GABRIELE PROCIDA
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Gabriele', 'Procida', 22, FALSE, 92.0, TRUE, '2002-06-01', 'Alero',
+ 7.2, 'Como (Italia)', 'Sano', 2.00,
+ 2.1, 1.0, 0.9, 47.0, 37.5, 1.4),
+
+-- MARIO HEZONJA
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Mario', 'Hezonja', 29, FALSE, 102.0, TRUE, '1995-02-25', 'Alero',
+ 13.4, 'Dubrovnik (Croacia)', 'Sano', 2.03,
+ 4.8, 1.9, 1.0, 49.0, 38.0, 2.2),
+
+-- CHUMA OKEKE
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Chuma', 'Okeke', 26, FALSE, 104.0, TRUE, '1998-08-18', 'Ala_Pivót',
+ 6.3, 'Atlanta, Georgia (EE.UU.)', 'Sano', 2.03,
+ 3.5, 1.4, 0.9, 45.0, 34.0, 4),
+
+-- IZAN ALMANSA
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Izan', 'Almansa', 19, FALSE, 102.0, TRUE, '2005-06-07', 'Ala_Pivót',
+ 4.9, 'Murcia (España)', 'Sano', 2.08,
+ 4.0, 0.9, 0.6, 52.0, 25.0, 2.4),
+
+-- TREY LYLES
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Trey', 'Lyles', 29, FALSE, 111.0, TRUE, '1995-11-05', 'Ala_Pivót',
+ 9.7, 'Saskatoon (Canadá)', 'Sano', 2.06,
+ 5.2, 1.4, 0.5, 47.0, 36.0, 2.9),
+
+-- USMAN GARUBA
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Usman', 'Garuba', 23, FALSE, 104.0, TRUE, '2002-03-09', 'Ala_Pivót',
+ 6.1, 'Madrid (España)', 'Sano', 2.03,
+ 5.8, 1.8, 1.1, 56.0, 28.0, 3.7),
+
+-- BRUNO FERNANDO
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Bruno', 'Fernando', 26, FALSE, 109.0, TRUE, '1998-08-15', 'Pivót',
+ 8.4, 'Luanda (Angola)', 'Sano', 2.08,
+ 5.9, 1.0, 0.7, 63.0, 0.0, 2.15),
+
+-- WALTER TAVARES
+((SELECT id FROM clubs WHERE name = 'Real Madrid'),
+ NULL, 'Walter', 'Tavares', 32, FALSE, 127.0, TRUE, '1992-03-22', 'Pivót',
+ 10.1, 'Maio (Cabo Verde)', 'Sano', 2.20,
+ 7.8, 1.1, 0.8, 66.0, 0.0, 3.6);
+
 
 -- ================================================================
 -- JUGADORES BAXI MANRESA
