@@ -90,6 +90,7 @@ const PlayerDetails = () => {
         <PlayerHeader player={player} />
 
         {/* 🔶 Secciones futuras aquí */}
+        {/* Stats del jugador */}
         <PlayerStats player={player} />
         <Box
           sx={{
@@ -98,12 +99,13 @@ const PlayerDetails = () => {
             gap: 3
           }}
         >
+          {/* Valores del jugador */}
           <Box sx={{flex: 1, minWidth: 0}}>
-            <ValuesSalariesChart values={values} title={'Historial de Valores'}/>
+            <ValuesSalariesChart values={values} title='Historial de Valores'/>
           </Box>
-
+          {/* Salarios del jugador */}
           <Box sx={{flex: 1, minWidth: 0}}>
-            <ValuesSalariesChart values={salaries} title={'Historial de Salarios'} />
+            <ValuesSalariesChart values={salaries} title='Historial de Salarios'/>
           </Box>
         </Box>
 

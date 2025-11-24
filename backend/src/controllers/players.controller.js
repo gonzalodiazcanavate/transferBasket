@@ -1,7 +1,7 @@
 /**
  * @file Controlador de jugadores.
  */
-import {getAllPlayers, getPlayerById, getAllPlayersByClub} from "../repositories/players.repository.js";
+import {getAllPlayers, getPlayerById, getAllPlayersByClub, getPlayerFullById} from "../repositories/players.repository.js";
 import {getPlayerCurrentValue, getValuesByPlayerId} from "../repositories/values.repository.js";
 import {getSalariesByPlayerId, getPlayerCurrentSalary} from "../repositories/salaries.repository.js";
 
@@ -90,5 +90,18 @@ export const getPlayerSalary = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error obteniendo el salario del jugador" });
+  }
+};
+
+export const getPlayerFull = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    if (isNaN(id)) return res.status(400).json({ error: "ID inválido" });
+
+    const player = await getPlayerFullById(id);
+    res.json(player);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error obteniendo el jugador completo" });
   }
 };

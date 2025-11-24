@@ -1,0 +1,19 @@
+meta {
+  name: Get Player Full
+  type: http
+  seq: 8
+}
+
+get {
+  url: {{backendServer}}/jugadores/completo/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 28
+}
+
+settings {
+  encodeUrl: true
+}
