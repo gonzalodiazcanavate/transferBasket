@@ -8,7 +8,7 @@ import {Container, Box, CircularProgress} from "@mui/material";
 import {getPlayer, getPlayerValues} from "../services/playersApi";
 import PlayerHeader from "../components/PlayerHeader";
 import PlayerStats from "../components/PlayerStats";
-import StatsChart from "../components/StatsChart";
+import ValuesSalariesChart from "../components/ValuesSalariesChart";
 
 const PlayerDetails = () => {
   const {id} = useParams(); // obtenemos el id del jugador desde la URL
@@ -67,14 +67,17 @@ const PlayerDetails = () => {
   }
 
   return (
-    <Container maxWidth="md" sx={{pb: 5}}>
+    <Container maxWidth="lg" sx={{pb: 5}}>
       <Box sx={{mt: 2}}>
         {/* 🔵 Header con foto + info básica */}
         <PlayerHeader player={player} />
 
         {/* 🔶 Secciones futuras aquí */}
         <PlayerStats player={player} />
-        {/* <PlayerValueChart history={player.valueHistory} /> */}
+        <Box sx={{display: "flex", flexDirection: "row", gap: 3}}>
+          <ValuesSalariesChart values={values} />
+        </Box>
+        
         {/* <PlayerTransfers transfers={player.transfers} /> */}
         {/* <HigherLower initialPlayer={player} /> */}
       </Box>

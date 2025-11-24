@@ -7,6 +7,11 @@ import {calculatePercentage} from "../utils/math";
 // Valores máximos que usaremos como referencia basados en los records de la acb.
 const $FULL_MARKS = {Puntos: 20, Asistencias: 6, Rebotes: 12, Robos: 3, Faltas: 5}
 
+/**
+ * 
+ * @param {Object} player Objeto jugador con las propiedades listadas en la base de datos.
+ * @returns {Array<Object>} Array de objetos con las stadísticas del jugador listas para ser representadas en la gráfica.
+ */
 export const createPayload = (player) => {
   const data = [];
 
