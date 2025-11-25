@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Container, Box, Typography, TextField, Card, Button } from "@mui/material";
-import { loginUser, register } from "../services/usersApi";
-import { validateInput } from "../utils/validation";
+/**
+ * @file Página de logueo y registro
+ */
+// eslint-disable-next-line no-unused-vars
+import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {Container, Box, Typography, TextField, Card, Button} from "@mui/material";
+import {loginUser, register} from "../services/usersApi";
+import {validateInput} from "../utils/validation";
 
 const Login = () => {
-  const [loginData, setLoginData] = useState({ username: "", password: "" });
-  const [registerData, setRegisterData] = useState({ username: "", email: "", password: "" });
+  const [loginData, setLoginData] = useState({username: "", password: ""});
+  const [registerData, setRegisterData] = useState({username: "", email: "", password: ""});
   const [error, setError] = useState("");
   const [errors, setErrors] = useState([]);
   const [isRegistered, setIsRegistered] = useState(true);
@@ -14,11 +18,11 @@ const Login = () => {
 
   // --- Handlers para los formularios ---
   const handleLoginChange = (e) => {
-    setLoginData({ ...loginData, [e.target.id]: e.target.value });
+    setLoginData({...loginData, [e.target.id]: e.target.value});
   };
 
   const handleRegisterChange = (e) => {
-    setRegisterData({ ...registerData, [e.target.id]: e.target.value });
+    setRegisterData({...registerData, [e.target.id]: e.target.value});
   };
 
   // --- Login ---
@@ -93,15 +97,15 @@ const Login = () => {
       }}
     >
       {isRegistered ? (
-        <Card elevation={10} sx={{ p: 4, width: "100%", mt: 8, borderRadius: 3, borderColor: "#1F29E1" }}>
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+        <Card elevation={10} sx={{p: 4, width: "100%", mt: 8, borderRadius: 3, borderColor: "#1F29E1"}}>
+          <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", gap: 3}}>
             <Typography variant="h4" component="h4">
               Iniciar Sesión
             </Typography>
-            <Box component="form" onSubmit={handleLoginSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Box component="form" onSubmit={handleLoginSubmit} sx={{display: "flex", flexDirection: "column", gap: 2}}>
               <TextField id="username" type="text" label="Nombre de Usuario o email" onChange={handleLoginChange} value={loginData.username} />
               <TextField id="password" type="password" label="Contraseña" onChange={handleLoginChange} value={loginData.password} />
-              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2, py: 1.5, borderRadius: 2 }}>
+              <Button type="submit" fullWidth variant="contained" sx={{mt: 3, mb: 2, py: 1.5, borderRadius: 2}}>
                 Entrar
               </Button>
             </Box>
@@ -115,16 +119,16 @@ const Login = () => {
           </Typography>
         </Card>
       ) : (
-        <Card elevation={10} sx={{ p: 4, width: "100%", mt: 8, borderRadius: 3, borderColor: "#1F29E1" }}>
-          <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+        <Card elevation={10} sx={{p: 4, width: "100%", mt: 8, borderRadius: 3, borderColor: "#1F29E1"}}>
+          <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", gap: 3}}>
             <Typography variant="h4" component="h4">
               Registrarse
             </Typography>
-            <Box component="form" onSubmit={handleRegisterSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <Box component="form" onSubmit={handleRegisterSubmit} sx={{display: "flex", flexDirection: "column", gap: 2}}>
               <TextField id="username" type="text" label="Nombre de Usuario" onChange={handleRegisterChange} value={registerData.username} />
               <TextField id="email" type="text" label="Correo electrónico" onChange={handleRegisterChange} value={registerData.email} />
               <TextField id="password" type="password" label="Contraseña" onChange={handleRegisterChange} value={registerData.password} />
-              <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2, py: 1.5, borderRadius: 2 }}>
+              <Button type="submit" fullWidth variant="contained" sx={{mt: 3, mb: 2, py: 1.5, borderRadius: 2}}>
                 Registrar
               </Button>
             </Box>
@@ -139,7 +143,7 @@ const Login = () => {
         </Card>
       )}
       {errors.length > 0 && (
-        <Box sx={{ mt: 2 }}>
+        <Box sx={{mt: 2}}>
           {errors.map((errMsg, i) => (
             <Typography key={i} color="error" variant="body1">
               • {errMsg}

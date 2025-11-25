@@ -1,3 +1,7 @@
+/**
+ * @file Enrutador de la página
+ */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from "./pages/Home";

@@ -1,5 +1,5 @@
 // src/pages/TablaJugadores.jsx
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {
   Table,
   TableBody,
@@ -12,7 +12,7 @@ import {
   CircularProgress,
   Typography,
 } from "@mui/material";
-import { getPlayers } from "../services/playersApi";
+import {getPlayers} from "../services/playersApi";
 
 const TablaJugadores = () => {
   const [jugadores, setJugadores] = useState([]);
@@ -36,9 +36,9 @@ const TablaJugadores = () => {
 
   if (loading) {
     return (
-      <Box sx={{ display: "flex", justifyContent: "center", py: 4 }}>
+      <Box sx={{display: "flex", justifyContent: "center", py: 4}}>
         <CircularProgress />
-        <Typography sx={{ ml: 2 }}>Cargando jugadores...</Typography>
+        <Typography sx={{ml: 2}}>Cargando jugadores...</Typography>
       </Box>
     );
   }
@@ -52,8 +52,8 @@ const TablaJugadores = () => {
   }
 
   return (
-    <TableContainer component={Paper} sx={{ maxWidth: "100%", overflowX: "auto" }}>
-      <Table sx={{ minWidth: 650 }} aria-label="tabla de jugadores">
+    <TableContainer component={Paper} sx={{maxWidth: "100%", overflowX: "auto"}}>
+      <Table sx={{minWidth: 650}} aria-label="tabla de jugadores">
         <TableHead>
           <TableRow>
             <TableCell>Nombre</TableCell>
@@ -66,7 +66,7 @@ const TablaJugadores = () => {
         <TableBody>
           {jugadores.map((jugador) => (
             <TableRow key={jugador.id || jugador.nombre} hover>
-              <TableCell sx={{ fontWeight: 600 }}>{jugador.nombre}</TableCell>
+              <TableCell sx={{fontWeight: 600}}>{jugador.nombre}</TableCell>
               <TableCell align="right">{jugador.edad || "—"}</TableCell>
               <TableCell>{jugador.posicion || "—"}</TableCell>
               <TableCell>{jugador.equipo?.nombre || jugador.equipoId || "—"}</TableCell>
