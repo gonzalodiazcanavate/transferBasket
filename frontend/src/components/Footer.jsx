@@ -1,3 +1,6 @@
+/**
+ * @file Footer de la página
+ */
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import {Box, Typography} from "@mui/material"

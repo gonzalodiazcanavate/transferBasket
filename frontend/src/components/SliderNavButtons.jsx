@@ -1,3 +1,8 @@
+/**
+ * @file Botones para manejar el carrusel/slider presente en HomeSlider.jsx
+ */
+// eslint-disable-next-line no-unused-vars
+import React from "react";
 import {IconButton} from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";

@@ -1,6 +1,10 @@
+/**
+ * @file Header de la página
+ */
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import {AppBar, Box, Button, Link, TextField, Toolbar, Typography} from "@mui/material";
+import {Link} from "react-router-dom";
+import {AppBar, Box, Button, TextField, Toolbar, Typography} from "@mui/material";
 import logo from "../assets/Transferbasket.jpeg";
 import SearchIcon from "@mui/icons-material/Search";
 
