@@ -1,98 +1,86 @@
+/**
+ * @file Índice/Home de transferbasket
+ */
+// eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from "react";
-import {getPlayers, getPlayer, getPlayersByClub, getPlayerValue, getPlayerValues} from "../services/playersApi.js";
-import {getClubs, getClub, getClubsByLeague, getClubValue} from "../services/clubsApi.js";
+import TablaJugadores from "../pages/TablaJugadores";
+import Header from "../components/Header"
+import Footer from "../components/Footer"
+import HomeSlider from "../components/HomeSlider";
+import {
+  Typography,
+  Box,
+  Tabs,
+  Tab,
+} from "@mui/material";
+import {useHome} from "../hooks/useHome";
 
 const Home = () => {
+  const {
+    value,
+    isMobile,
+    handleChange,
+  } = useHome();
 
-  const [players, setPlayers] = useState([]); // estado inicial vacío
-  const [player, setPlayer] = useState([]); // estado inicial vacío
-  const [playerValue, setPlayerValue] = useState([]);
-  const [playerValues, setPlayerValues] = useState([]);
-  const tableHeaders = ["ID", "Nombre", "Posición", "Puntos"];
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getPlayers();
-        setPlayers(data); // guardamos en estado
-        const data2 = await getPlayersByClub(1);
-        setPlayers(data2);
-      } catch (error) {
-        console.error("Error fetching players:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getPlayer(2);
-        setPlayer(data); // guardamos en estado
-      } catch (error) {
-        console.error("Error fetching players:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getPlayerValue(2);
-        setPlayerValue(data); // guardamos en estado
-      } catch (error) {
-        console.error("Error fetching players:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getPlayerValues(2);
-        setPlayerValues(data); // guardamos en estado
-      } catch (error) {
-        console.error("Error fetching players:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
   return (
-    <div className="p-8 bg-gray-50 min-h-screen min-w-full">
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Estadísticas de Jugadores (Tabla Dinámica)</h1>
-      <div className="overflow-x-auto shadow-xl rounded-xl">
-        <table className="min-w-full bg-white border border-gray-200">
-          <thead>
-            <tr className="bg-indigo-600 text-white uppercase text-sm leading-normal">
-              {tableHeaders.map(header => (
-                <th key={header} className="py-3 px-6 text-left">{header}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="text-gray-700 text-sm font-light">
-            {players ? (
-              players.map(player => (
-                <tr
-                  key={player.id} 
-                  className="border-b border-gray-200 hover:bg-indigo-100/50 transition duration-150 ease-in-out"
-                >
-                  <td className="py-3 px-6 text-left whitespace-nowrap font-medium">{player.id}</td>
-                  <td className="py-3 px-6 text-left">{player.name}</td>
-                  <td className="py-3 px-6 text-left">{player.position}</td>
-                  <td className="py-3 px-6 text-left">{player.pp}</td>
-                </tr> 
-              ))) : (null)
-            }
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <>
+      {/* Header */}
+      <Header/>
+      {/* Main */}
+      <Box component="main"
+        sx={{
+          backgroundColor: "#f8fbff",
+          minHeight: "100vh",
+          marginTop: "64px",
+        }}
+      >
+        {/* Contenedor de slides */}
+        <HomeSlider />
+
+        {/* Tabs de secciones */}
+        <Box sx={{width: "100%", bgcolor: "background.paper", mt: 4}}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            centered
+            textColor="primary"
+            indicatorColor="primary"
+            variant={isMobile ? "fullWidth" : "standard"}
+            sx={{
+              borderBottom: 1,
+              borderColor: "divider",
+              px: 2,
+              "& .MuiTab-root": {
+                fontWeight: 600,
+                textTransform: "none",
+                fontSize: "1rem",
+              },
+            }}
+          >
+            <Tab label="Jugadores" />
+            <Tab label="Equipos" />
+            <Tab label="Transferencias" />
+          </Tabs>
+
+          <Box sx={{p: {xs: 2, md: 4}}}>
+            {value === 0 && <TablaJugadores />}
+            {value === 1 && (
+              <Typography variant="h6" color="text.secondary">
+                Próximamente: listado detallado de equipos, plantillas y valores.
+              </Typography>
+            )}
+            {value === 2 && (
+              <Typography variant="h6" color="text.secondary">
+                 Próximamente: historial de transferencias con fechas, valores y clubes involucrados.
+              </Typography>
+            )}
+          </Box>
+        </Box>
+        {/* Footer */}
+        <Footer/>
+      </Box>
+    </>
   );
-}
+};
 
 export default Home;
