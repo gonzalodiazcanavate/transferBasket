@@ -5,7 +5,7 @@ import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {Container, Box, CircularProgress} from "@mui/material";
 
-import {getPlayer, getPlayerValues, getPlayerSalaries} from "../services/playersApi";
+import {getFullPlayer, getPlayerValues, getPlayerSalaries} from "../services/playersApi";
 import PlayerHeader from "../components/PlayerHeader";
 import PlayerStats from "../components/PlayerStats";
 import ValuesSalariesChart from "../components/ValuesSalariesChart";
@@ -21,7 +21,7 @@ const PlayerDetails = () => {
     const fetchPlayer = async () => {
       try {
         setLoading(true);
-        const data = await getPlayer(id);
+        const data = await getFullPlayer(id);
         setPlayer(data);
       } catch (err) {
         console.error("Error cargando jugador:", err);

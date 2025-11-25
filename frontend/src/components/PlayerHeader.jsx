@@ -3,6 +3,7 @@
  */
 import React from "react";
 import {config} from "../config/apiConfig";
+import {formatNationalities} from "../utils/format";
 import {
   Box,
   Card,
@@ -22,8 +23,11 @@ const PlayerHeader = ({player}) => {
     height,
     position,
     club_id,
+    club,
     image_url,
-    value
+    values,
+    salaries,
+    nationalities
   } = player;
 
   // Ruta a imagen del jugador
@@ -63,7 +67,7 @@ const PlayerHeader = ({player}) => {
           <Chip label={`${age} años`} />
           <Chip label={`Nacido: ${birth_date}`} />
           <Chip label={`Altura: ${height}`} />
-          <Chip label={nationality} />
+          <Chip label={`Nacionalidad: ${formatNationalities(nationalities)}`} />
         </Stack>
 
         <Typography sx={{mt: 2}}>
@@ -71,12 +75,12 @@ const PlayerHeader = ({player}) => {
         </Typography>
 
         <Typography>
-          <strong>Club actual:</strong> {club_id}
+          <strong>Club actual:</strong> {club.name}
         </Typography>
 
-        {value && (
+        {values && (
           <Chip
-            label={`Valor mercado: ${value} M€`}
+            label={`Valor mercado: ${values[0].value} M€`}
             color="primary"
             sx={{mt: 2}}
           />

@@ -46,6 +46,20 @@ export const getPlayerFullById = (id) =>
           salary: true,
           date: true
         }
+      },
+      // Nacionalidades
+      nationalities: {
+        select: {
+          country: {
+            select: {
+              id: true,
+              name: true,
+              nationality: true,
+              image_url: true
+            }
+            
+          }
+        }
       }
     }
   });
