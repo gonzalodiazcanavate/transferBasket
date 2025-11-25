@@ -1,7 +1,7 @@
 ### Historial de Cambios ###
 Todos los cambios notables del proyecto se documentarán en este archivo.
 
-## [Version 0.3.0] - Añadir nuevos cambios ##
+## [PROXIMA VERSION] - Añadir nuevos cambios ##
 #  Agregado (Added)
 - Repositorio de imagenes y funcionalidad para acceder a las mismas añadido al backend.
 - Pestaña de detalles de jugadores añadida.
@@ -16,7 +16,7 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 # Corregido (Fixed)
 
 
-## [Version 0.2.0] - Añadir nuevos cambios ##
+## [Version 0.2.0] - 2025-11-10
 #  Agregado (Added)
 - Creación de los endpoints y las apis de jugadores, clubes, valores y usuarios.
 - Autenticación con jwt incorporada.
