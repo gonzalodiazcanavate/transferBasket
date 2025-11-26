@@ -1,3 +1,7 @@
+/**
+ * @file Gráfica de stats del jugador
+ */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import {Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis} from "recharts";
 import {createPayload} from "../helpers/statsChart.helper";

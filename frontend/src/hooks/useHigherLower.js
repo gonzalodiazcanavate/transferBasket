@@ -1,3 +1,6 @@
+/**
+ * @file Hook personalizado que contiene la lógica del componente HigerLower.jsx
+ */
 import {useEffect, useState} from "react";
 import {getPlayersByClub} from "../services/playersApi";
 
@@ -11,7 +14,7 @@ export const useHigherLower = (initialPlayer) => {
   const [gameOver, setGameOver] = useState(false);
   const [victory, setVictory] = useState(false);
 
-  // 🔹 Cargar jugadores del mismo club
+  // Cargar jugadores del mismo club que el jugador inicial
   useEffect(() => {
     const fetchPlayers = async () => {
       const list = await getPlayersByClub(initialPlayer.club_id);
@@ -24,7 +27,7 @@ export const useHigherLower = (initialPlayer) => {
     fetchPlayers();
   }, [initialPlayer]);
 
-  // 🔹 Elegir un oponente nuevo
+  // Elegir un oponente nuevo
   const pickOpponent = (list, used) => {
     const remaining = list.filter((p) => !used.includes(p.id));
 
@@ -37,7 +40,7 @@ export const useHigherLower = (initialPlayer) => {
     setOpponent(random);
   };
 
-  // 🔹 Acción al elegir un jugador
+  // Al clickar en un jugador comparamos sus pp (Points per Game) y reaccionamos en consecuencia
   const handleChoose = (choice) => {
     if (!opponent) return;
 
@@ -48,7 +51,7 @@ export const useHigherLower = (initialPlayer) => {
     const other = choice === "left" ? opponentValue : currentValue;
 
     if (chosen >= other) {
-      // 🔥 ACIERTO
+      //  Si acertamos el jugador seleccionado pasa a ser current y seleccionamos un nuevo oponent
       const winner = chosen === currentValue ? current : opponent;
 
       setScore((prev) => prev + 100);
@@ -59,7 +62,7 @@ export const useHigherLower = (initialPlayer) => {
 
       pickOpponent(players, newUsed);
     } else {
-      // ❌ FALLO
+      // En caso de fallo se acaba el juego
       setGameOver(true);
     }
   };

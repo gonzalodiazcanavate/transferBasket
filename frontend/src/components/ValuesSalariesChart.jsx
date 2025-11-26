@@ -1,3 +1,7 @@
+/**
+ * @file Gráfica que muestra historial de salarios/valores de un jugador
+ */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import {Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis} from "recharts";
 import {createPayload} from "../helpers/valuesSalariesChart.helper";

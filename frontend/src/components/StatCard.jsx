@@ -1,5 +1,9 @@
+/**
+ * @file Componente que representa cada recudaro con un stat de un jugador
+ */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
-import { Paper, Typography } from "@mui/material";
+import {Paper, Typography} from "@mui/material";
 const StatCard = ({label, value}) => (
   <Paper
     elevation={2}

@@ -14,6 +14,9 @@ import {
   Chip
 } from "@mui/material";
 
+// Ruta a imagen del jugador
+const BACKEND = config.assetsUrl;
+
 const PlayerHeader = ({player}) => {
   const {
     name,
@@ -28,10 +31,6 @@ const PlayerHeader = ({player}) => {
     salary,
     nationalities
   } = player;
-
-  // Ruta a imagen del jugador
-  const BACKEND = config.assetsUrl;
-  console.log(`${BACKEND}/players/${image_url}`);
 
   return (
     <Card

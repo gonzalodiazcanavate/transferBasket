@@ -1,6 +1,9 @@
-
+/**
+ * @file Contenedor del grid de stat del jugador y de la gráfica de stats
+ */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
-import {Box,Grid,Typography} from "@mui/material";
+import {Box} from "@mui/material";
 import StatsGrid from "./StatsGrid";
 import StatsChart from "./StatsChart";
 

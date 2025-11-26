@@ -1,5 +1,9 @@
+/**
+ * @file Componente que contiene un juego de adivinar al jugador más anotador
+ */
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import {config} from "../config/apiConfig";
 import {
   Box,
   Typography,
@@ -10,8 +14,10 @@ import {
   Button,
   Stack
 } from "@mui/material";
-
 import {useHigherLower} from "../hooks/useHigherLower";
+
+// Ruta a imagenes
+const BACKEND = config.assetsUrl;
 
 const HigherLower = ({initialPlayer}) => {
   const {
@@ -24,7 +30,7 @@ const HigherLower = ({initialPlayer}) => {
     resetGame
   } = useHigherLower(initialPlayer);
 
-  // ⛔ Pantalla de Fin
+  // Pantalla de Fin de partida
   if (gameOver) {
     return (
       <Box sx={{mt: 4, textAlign: "center"}}>
@@ -43,7 +49,7 @@ const HigherLower = ({initialPlayer}) => {
     );
   }
 
-  // 🏆 Pantalla de victoria
+  // Pantalla de victoria
   if (victory) {
     return (
       <Box sx={{mt: 4, textAlign: "center"}}>
@@ -78,14 +84,24 @@ const HigherLower = ({initialPlayer}) => {
         Puntuación: {score}
       </Typography>
 
-      <Stack direction="column" spacing={2} alignItems="center" sx={{width: "100%"}}>
+      <Stack direction={{xs: "column", md: "row"}} spacing={2} alignItems="center" justifyContent="center" sx={{width: "100%"}}>
         {/*Jugador izquierda*/}
-        <Card sx={{width: "100%", maxWidth: 280}}>
+        <Card
+          sx={{
+            width: "100%",
+            maxWidth: 280,
+            transition: "transform 0.2s ease, box-shadow 0.2s ease",
+            "&:hover": {
+              transform: "scale(1.03)",
+              boxShadow: 6,
+            },
+          }}
+        >
           <CardActionArea onClick={() => handleChoose("left")}>
             <CardMedia
               component="img"
-              height="180"
-              src={`/assets/players/${current.image_url}`}
+              height="80"
+              src={`${BACKEND}/players/${current.image_url}`}
               alt={current.name}
             />
             <CardContent>
@@ -99,12 +115,22 @@ const HigherLower = ({initialPlayer}) => {
         <Typography variant="h5" fontWeight={700}>VS</Typography>
 
         {/*Jugador derecha*/}
-        <Card sx={{width: "100%", maxWidth: 280}}>
+        <Card
+          sx={{
+            width: "100%",
+            maxWidth: 280,
+            transition: "transform 0.2s ease, box-shadow 0.2s ease",
+            "&:hover": {
+              transform: "scale(1.03)",
+              boxShadow: 6,
+            },
+          }}
+        >
           <CardActionArea onClick={() => handleChoose("right")}>
             <CardMedia
               component="img"
-              height="180"
-              src={`/assets/players/${opponent.image_url}`}
+              height="80"
+              src={`${BACKEND}/players/${opponent.image_url}`}
               alt={opponent.name}
             />
             <CardContent>

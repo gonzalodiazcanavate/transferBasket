@@ -1,5 +1,9 @@
+/**
+ * @file Tabla con el historial de traspasos de un jugador
+ */
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import {config} from "../config/apiConfig";
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
   Paper, Avatar, Stack, Typography
@@ -7,6 +11,9 @@ import {
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {formatDate, formatValue} from "../utils/format";
+
+// Ruta a imagen del jugador
+const BACKEND = config.assetsUrl;
 
 const PlayerTransfers = ({transfers}) => {
   if (!transfers || transfers.length === 0) {
@@ -20,11 +27,11 @@ const PlayerTransfers = ({transfers}) => {
     <TableContainer component={Paper} sx={{mt: 4}}>
       <Table>
         <TableHead>
-          <TableRow>
-            <TableCell><strong>Origen</strong></TableCell>
-            <TableCell><strong>Fecha</strong></TableCell>
-            <TableCell><strong>Valor</strong></TableCell>
-            <TableCell><strong>Destino</strong></TableCell>
+          <TableRow >
+            <TableCell sx={{textAlign: {md: "center"}}}><strong>Origen</strong></TableCell>
+            <TableCell sx={{textAlign: {md: "center"}}}><strong>Fecha</strong></TableCell>
+            <TableCell sx={{textAlign: {md: "center"}}}><strong>Valor</strong></TableCell>
+            <TableCell sx={{textAlign: {md: "center"}}}><strong>Destino</strong></TableCell>
           </TableRow>
         </TableHead>
 
@@ -51,8 +58,8 @@ const PlayerTransfers = ({transfers}) => {
                     <Avatar
                       src={
                         visualOrigin?.image_url
-                          ? `/assets/clubs/${visualOrigin.image_url}`
-                          : "/assets/default-club.png"
+                          ? `${BACKEND}/clubs/${visualOrigin.image_url}`
+                          : `${BACKEND}/default-club.png`
                       }
                       sx={{width: 32, height: 32}}
                     />
@@ -62,7 +69,7 @@ const PlayerTransfers = ({transfers}) => {
                 </TableCell>
 
                 {/* FECHA */}
-                <TableCell>{formatDate(t.date)}</TableCell>
+                <TableCell sx={{textAlign: {md: "center"}}}>{formatDate(t.date)}</TableCell>
 
                 {/* VALOR + FLECHA */}
                 <TableCell>
@@ -102,10 +109,10 @@ const PlayerTransfers = ({transfers}) => {
                     <Avatar
                       src={
                         visualDestiny?.image_url
-                          ? `/assets/clubs/${visualDestiny.image_url}`
-                          : "/assets/default-club.png"
+                          ? `${BACKEND}/clubs/${visualDestiny.image_url}`
+                          : `${BACKEND}/default-club.png`
                       }
-                      sx={{width: 32, height: 32}}
+                      sx={{width: 36, height: 36}}
                     />
                     <Typography>{visualDestiny?.name}</Typography>
                   </Stack>
