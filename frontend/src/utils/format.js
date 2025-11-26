@@ -17,7 +17,5 @@ export const formatDate = (isoString) => isoString.split("T")[0];
 export const formatNationalities = (nationalities) => {
   if (!nationalities || nationalities.length === 0) return "";
 
-  return nationalities
-    .map(n => n.country.nationality)
-    .join("/");
+  return nationalities.join("/");
 }
