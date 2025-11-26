@@ -112,7 +112,6 @@ WHERE c.name = 'Real Madrid'
   );
 
 
-
 INSERT INTO "values" (player_id, value, date)
 SELECT p.id, 3000000, '2024-07-01'
 FROM players p
