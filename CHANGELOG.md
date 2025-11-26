@@ -1,10 +1,12 @@
 ### Historial de Cambios ###
 Todos los cambios notables del proyecto se documentarán en este archivo.
 
-## [PROXIMA VERSION] - Añadir nuevos cambios ##
+## [Próxima Versión] - Añadir nuevos cambios ##
 #  Agregado (Added)
 - Repositorio de imagenes y funcionalidad para acceder a las mismas añadido al backend.
 - Pestaña de detalles de jugadores añadida.
+- Endpoints relativos a traspasos añadidos.
+- Índice de la página añadido.
 
 # Cambiado (Changed)
 - Lógica del componente Login.jsx externalizada al hook useLogin.js para una mejor legibilidad.
@@ -14,6 +16,18 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 # Eliminado (Removed)
 
 # Corregido (Fixed)
+
+
+
+## [Version 0.3.0] - 2025-11-26
+#  Agregado (Added)
+- Repositorio de imagenes y funcionalidad para acceder a las mismas añadido al backend.
+- Pestaña de detalles de jugadores añadida.
+- Endpoints relativos a traspasos añadidos.
+- Índice de la página añadido.
+
+# Cambiado (Changed)
+- Lógica del componente Login.jsx externalizada al hook useLogin.js para una mejor legibilidad.
 
 
 ## [Version 0.2.0] - 2025-11-10
