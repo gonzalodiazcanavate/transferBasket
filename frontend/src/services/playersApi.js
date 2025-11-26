@@ -75,6 +75,18 @@ export async function getPlayerSalary(id) {
   return res.json();
 }
 
+// Función para obtener el historial de traspasos de un jugador.
+export async function getPlayerTransfers(id) {
+  const res = await fetch(`${API_URL}/traspasos/${id}`);
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error);
+  } 
+
+  return res.json();
+}
+
 // Función para obtener los salarios de un jugador.
 export async function getPlayerSalaries(id) {
   const res = await fetch(`${API_URL}/salarios/${id}`);

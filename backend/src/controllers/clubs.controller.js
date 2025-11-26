@@ -3,6 +3,7 @@
  */
 import {getAllClubs, getClubById, getClubsByLeagueId} from "../repositories/clubs.repository.js";
 import {getTotalClubValue} from "../repositories/values.repository.js";
+import { getClubTransfersById } from "../repositories/transfers.repository.js";
 
 // Devuelve un array con todos los clubes
 export const getClubs = async (req, res) => {
@@ -51,6 +52,20 @@ export const getClubValue = async (req, res) => {
 
     const totalValue = await getTotalClubValue(id);
     res.json(totalValue);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error obteniendo el club" });
+  }
+};
+
+// Devuelve un array con los traspasos en los que ha estado involucrado el club.
+export const getClubTransfers = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    if (isNaN(id)) return res.status(400).json({ error: "ID inválido" });
+
+    const transfers = await getClubTransfersById(id);
+    res.json(transfers);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error obteniendo el club" });

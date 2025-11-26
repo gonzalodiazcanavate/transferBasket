@@ -1,0 +1,19 @@
+meta {
+  name: Get Club Transfers
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{backendServer}}/clubs/traspasos/:id
+  body: none
+  auth: inherit
+}
+
+params:path {
+  id: 10
+}
+
+settings {
+  encodeUrl: true
+}

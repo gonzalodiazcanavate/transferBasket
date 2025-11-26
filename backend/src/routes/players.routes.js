@@ -8,6 +8,7 @@ import {
   getPlayerValues,
   getPlayerSalaries,
   getPlayerSalary,
+  getPlayerTransfers,
   getPlayerFull
 } from "../controllers/players.controller.js";
 
@@ -21,5 +22,5 @@ router.get("/valores/:id", getPlayerValues);
 router.get("/valor/:id", getPlayerValue);
 router.get("/salario/:id", getPlayerSalary);
 router.get("/salarios/:id", getPlayerSalaries);
-
+router.get("/transferencias/:id", getPlayerTransfers);
 export default router;

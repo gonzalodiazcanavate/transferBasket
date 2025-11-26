@@ -4,6 +4,7 @@
 import {getAllPlayers, getPlayerById, getAllPlayersByClub, getPlayerFullById} from "../repositories/players.repository.js";
 import {getPlayerCurrentValue, getValuesByPlayerId} from "../repositories/values.repository.js";
 import {getSalariesByPlayerId, getPlayerCurrentSalary} from "../repositories/salaries.repository.js";
+import { getPlayerTransfersById } from "../repositories/transfers.repository.js";
 import {sanitizePlayer} from "../utils/sanitaze.js";
 
 export const getPlayers = async (req, res) => {
@@ -93,6 +94,19 @@ export const getPlayerSalary = async (req, res) => {
     res.status(500).json({ error: "Error obteniendo el salario del jugador" });
   }
 };
+
+export const getPlayerTransfers = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    if (isNaN(id)) return res.status(400).json({ error: "ID inválido" });
+
+    const transfers = await getPlayerTransfersById(id);
+    res.json(transfers);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error obteniendo historial de traspasos del jugador" });
+  }
+}
 
 export const getPlayerFull = async (req, res) => {
   try {

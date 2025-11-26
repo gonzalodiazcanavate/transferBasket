@@ -26,9 +26,21 @@ export async function getClub(id) {
   return res.json();
 }
 
-// Función para todos los clubes de una liga.
+// Función para obtener todos los clubes de una liga.
 export async function getClubsByLeague(id) {
   const res = await fetch(`${API_URL}/liga/${id}`);
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error);
+  } 
+
+  return res.json();
+}
+
+// Función para obtener todos los traspasos de un club
+export async function getClubTransfers(id) {
+  const res = await fetch(`${API_URL}/traspasos/${id}`);
 
   if (!res.ok) {
     const error = await res.json();
