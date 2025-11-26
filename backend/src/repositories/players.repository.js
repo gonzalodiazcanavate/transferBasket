@@ -15,3 +15,51 @@ export const getAllPlayersByClub = (club_id) => prisma.players.findMany({
 export const getPlayerById = (id) => prisma.players.findUnique({
   where: {id: id}
 });
+
+// Trae todos los datos completos de un jugador por ID.
+export const getPlayerFullById = (id) =>
+  prisma.players.findUnique({
+    where: { id },
+    // Joints con tablas relacionadas
+    include: {
+      club: {
+        select: {
+          id: true,
+          name: true,
+          image_url: true
+        }
+      },
+
+      values: {
+        orderBy: { date: "desc" },
+        take: 1,
+        select: {
+          value: true,
+          date: true
+        }
+      },
+
+      salaries: {
+        orderBy: { date: "desc" },
+        take: 1,
+        select: {
+          salary: true,
+          date: true
+        }
+      },
+      // Nacionalidades
+      nationalities: {
+        select: {
+          country: {
+            select: {
+              id: true,
+              name: true,
+              nationality: true,
+              image_url: true
+            }
+            
+          }
+        }
+      }
+    }
+  });
