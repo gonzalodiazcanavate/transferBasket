@@ -1,0 +1,86 @@
+import {useEffect, useState} from "react";
+import {getPlayersByClub} from "../services/playersApi";
+
+export const useHigherLower = (initialPlayer) => {
+  const [players, setPlayers] = useState([]);
+  const [current, setCurrent] = useState(initialPlayer);
+  const [opponent, setOpponent] = useState(null);
+  const [score, setScore] = useState(0);
+  const [usedIds, setUsedIds] = useState([initialPlayer.id]);
+
+  const [gameOver, setGameOver] = useState(false);
+  const [victory, setVictory] = useState(false);
+
+  // 🔹 Cargar jugadores del mismo club
+  useEffect(() => {
+    const fetchPlayers = async () => {
+      const list = await getPlayersByClub(initialPlayer.club_id);
+
+      const filtered = list.filter((p) => p.id !== initialPlayer.id);
+      setPlayers(filtered);
+      pickOpponent(filtered, [initialPlayer.id]);
+    };
+
+    fetchPlayers();
+  }, [initialPlayer]);
+
+  // 🔹 Elegir un oponente nuevo
+  const pickOpponent = (list, used) => {
+    const remaining = list.filter((p) => !used.includes(p.id));
+
+    if (remaining.length === 0) {
+      setVictory(true);
+      return;
+    }
+
+    const random = remaining[Math.floor(Math.random() * remaining.length)];
+    setOpponent(random);
+  };
+
+  // 🔹 Acción al elegir un jugador
+  const handleChoose = (choice) => {
+    if (!opponent) return;
+
+    const currentValue = Number(current.pp);
+    const opponentValue = Number(opponent.pp);
+
+    const chosen = choice === "left" ? currentValue : opponentValue;
+    const other = choice === "left" ? opponentValue : currentValue;
+
+    if (chosen >= other) {
+      // 🔥 ACIERTO
+      const winner = chosen === currentValue ? current : opponent;
+
+      setScore((prev) => prev + 100);
+      setCurrent(winner);
+
+      const newUsed = [...usedIds, opponent.id];
+      setUsedIds(newUsed);
+
+      pickOpponent(players, newUsed);
+    } else {
+      // ❌ FALLO
+      setGameOver(true);
+    }
+  };
+
+  // 🔄 Reiniciar partida
+  const resetGame = () => {
+    setScore(0);
+    setUsedIds([initialPlayer.id]);
+    setCurrent(initialPlayer);
+    pickOpponent(players, [initialPlayer.id]);
+    setVictory(false);
+    setGameOver(false);
+  };
+
+  return {
+    current,
+    opponent,
+    score,
+    gameOver,
+    victory,
+    handleChoose,
+    resetGame
+  };
+};

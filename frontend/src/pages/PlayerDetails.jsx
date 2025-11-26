@@ -1,6 +1,7 @@
 /**
  * @file Página de detalles del jugador
  */
+// eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {Container, Box, CircularProgress, Typography} from "@mui/material";
@@ -12,6 +13,7 @@ import PlayerHeader from "../components/PlayerHeader";
 import PlayerStats from "../components/PlayerStats";
 import ValuesSalariesChart from "../components/ValuesSalariesChart";
 import PlayerTransfers from "../components/PlayerTransfers";
+import HigherLower from "../components/HigherLower";
 
 const PlayerDetails = () => {
   const {id} = useParams(); // obtenemos el id del jugador desde la URL
@@ -135,7 +137,7 @@ const PlayerDetails = () => {
             <PlayerTransfers transfers={transfers} />
           </Box>
           
-          {/* <HigherLower initialPlayer={player} /> */}
+          <HigherLower initialPlayer={player} />
         </Box>
       </Container>
       <Footer/>

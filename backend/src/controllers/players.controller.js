@@ -22,7 +22,7 @@ export const getPlayersByClub = async (req, res) => {
     const id = parseInt(req.params.id);
     if (isNaN(id)) return res.status(400).json({ error: "ID inválido" });
 
-    const players = await getAllPlayersByClub();
+    const players = await getAllPlayersByClub(id);
     res.json(players);
   } catch (error) {
     console.log(error);
