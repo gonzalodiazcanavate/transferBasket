@@ -6,6 +6,8 @@ import {useParams} from "react-router-dom";
 import {Container, Box, CircularProgress} from "@mui/material";
 
 import {getFullPlayer, getPlayerValues, getPlayerSalaries} from "../services/playersApi";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import PlayerHeader from "../components/PlayerHeader";
 import PlayerStats from "../components/PlayerStats";
 import ValuesSalariesChart from "../components/ValuesSalariesChart";
@@ -84,36 +86,40 @@ const PlayerDetails = () => {
   }
 
   return (
-    <Container maxWidth="lg" sx={{pb: 5}}>
-      <Box sx={{mt: 2}}>
-        {/* 🔵 Header con foto + info básica */}
-        <PlayerHeader player={player} />
+    <>
+      <Header />
+      <Container maxWidth="lg" sx={{pb: 5, mt: 10, backgroundColor: "#F5F5F5", borderRadius: "8px"}}>
+        <Box sx={{mt: 2, pt: 3}}>
+          {/* 🔵 Header con foto + info básica */}
+          <PlayerHeader player={player} />
 
-        {/* 🔶 Secciones futuras aquí */}
-        {/* Stats del jugador */}
-        <PlayerStats player={player} />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: {xs: "column", md: "row"},
-            gap: 3
-          }}
-        >
-          {/* Valores del jugador */}
-          <Box sx={{flex: 1, minWidth: 0}}>
-            <ValuesSalariesChart values={values} title='Historial de Valores'/>
+          {/* 🔶 Secciones futuras aquí */}
+          {/* Stats del jugador */}
+          <PlayerStats player={player} />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: {xs: "column", md: "row"},
+              gap: 3
+            }}
+          >
+            {/* Valores del jugador */}
+            <Box sx={{flex: 1, minWidth: 0}}>
+              <ValuesSalariesChart values={values} title='Historial de Valores'/>
+            </Box>
+            {/* Salarios del jugador */}
+            <Box sx={{flex: 1, minWidth: 0}}>
+              <ValuesSalariesChart values={salaries} title='Historial de Salarios'/>
+            </Box>
           </Box>
-          {/* Salarios del jugador */}
-          <Box sx={{flex: 1, minWidth: 0}}>
-            <ValuesSalariesChart values={salaries} title='Historial de Salarios'/>
-          </Box>
-        </Box>
 
         
-        {/* <PlayerTransfers transfers={player.transfers} /> */}
-        {/* <HigherLower initialPlayer={player} /> */}
-      </Box>
-    </Container>
+          {/* <PlayerTransfers transfers={player.transfers} /> */}
+          {/* <HigherLower initialPlayer={player} /> */}
+        </Box>
+      </Container>
+      <Footer/>
+    </>
   );
 };
 

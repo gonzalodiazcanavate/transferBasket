@@ -1,9 +1,10 @@
 /**
  * @file Componente que contiene la imagen y datos básicos del jugador.
  */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import {config} from "../config/apiConfig";
-import {formatNationalities} from "../utils/format";
+import {formatNationalities, formatDate} from "../utils/format";
 import {
   Box,
   Card,
@@ -19,14 +20,12 @@ const PlayerHeader = ({player}) => {
     second_name,
     age,
     birth_date,
-    nationality,
     height,
     position,
-    club_id,
     club,
     image_url,
-    values,
-    salaries,
+    value,
+    salary,
     nationalities
   } = player;
 
@@ -65,7 +64,7 @@ const PlayerHeader = ({player}) => {
 
         <Stack direction="row" spacing={1} sx={{mt: 1, flexWrap: "wrap"}}>
           <Chip label={`${age} años`} />
-          <Chip label={`Nacido: ${birth_date}`} />
+          <Chip label={`Nacido: ${formatDate(birth_date)}`} />
           <Chip label={`Altura: ${height}`} />
           <Chip label={`Nacionalidad: ${formatNationalities(nationalities)}`} />
         </Stack>
@@ -78,11 +77,18 @@ const PlayerHeader = ({player}) => {
           <strong>Club actual:</strong> {club.name}
         </Typography>
 
-        {values && (
+        {value && (
           <Chip
-            label={`Valor mercado: ${values[0].value} M€`}
+            label={`Valor mercado: ${value}€`}
             color="primary"
-            sx={{mt: 2}}
+            sx={{mt: 2, mr: 2}}
+          />
+        )}
+        {salary && (
+          <Chip
+            label={`Salario: ${salary}€`}
+            color="primary"
+            sx={{mt: 2, mr: 2}}
           />
         )}
       </Box>
