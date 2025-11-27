@@ -3,13 +3,9 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 
 ## [Próxima Versión] - Añadir nuevos cambios ##
 #  Agregado (Added)
-- Repositorio de imagenes y funcionalidad para acceder a las mismas añadido al backend.
-- Pestaña de detalles de jugadores añadida.
-- Endpoints relativos a traspasos añadidos.
-- Índice de la página añadido.
+- Endpoints para recibir clubes y jugadores con su valor actual añadidos.
 
 # Cambiado (Changed)
-- Lógica del componente Login.jsx externalizada al hook useLogin.js para una mejor legibilidad.
 
 # Obsoleto (Deprecated)
 

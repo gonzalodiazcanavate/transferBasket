@@ -110,3 +110,15 @@ export async function getFullPlayer(id) {
 
   return res.json();
 }
+
+// Función para obtener un jugador con datos extra relativos a su club y  su valor y salario actuales.
+export async function getFullPlayers() {
+  const res = await fetch(`${API_URL}/completos`);
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error);
+  } 
+
+  return res.json();
+}

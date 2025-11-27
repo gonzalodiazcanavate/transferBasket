@@ -1,13 +1,17 @@
 meta {
-  name: GetAll Players
+  name: Get Full Club
   type: http
-  seq: 1
+  seq: 6
 }
 
 get {
-  url: {{backendServer}}/jugadores
+  url: {{backendServer}}/clubs/completo/:id
   body: none
   auth: inherit
+}
+
+params:path {
+  id: 10
 }
 
 settings {

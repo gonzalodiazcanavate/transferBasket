@@ -61,3 +61,27 @@ export async function getClubValue(id) {
 
   return res.json();
 }
+
+// Función para obtener lista global de clubs.
+export async function getClubsWithValue() {
+  const res = await fetch(`${API_URL}/completos`);
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error);
+  } 
+
+  return res.json();
+}
+
+// Función para obtener un club.
+export async function getClubWithValue(id) {
+  const res = await fetch(`${API_URL}/completo/${id}`);
+
+  if (!res.ok) {
+    const error = await res.json();
+    throw new Error(error);
+  } 
+
+  return res.json();
+}

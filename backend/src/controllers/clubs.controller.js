@@ -1,7 +1,7 @@
 /**
  * @file Controlador de clubs.
  */
-import {getAllClubs, getClubById, getClubsByLeagueId} from "../repositories/clubs.repository.js";
+import {getAllClubs, getClubById, getClubsByLeagueId, getClubWithTotalValue, getAllClubsWithTotalValue} from "../repositories/clubs.repository.js";
 import {getTotalClubValue} from "../repositories/values.repository.js";
 import { getClubTransfersById } from "../repositories/transfers.repository.js";
 
@@ -13,6 +13,17 @@ export const getClubs = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error obteniendo clubs" });
+  }
+};
+
+// Devuelve un array con todos los clubes
+export const getClubsWithTotalValue = async (req, res) => {
+  try {
+    const clubs = await getAllClubsWithTotalValue();
+    res.json(clubs);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error obteniendo clubs con valor total" });
   }
 };
 
@@ -69,5 +80,19 @@ export const getClubTransfers = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error obteniendo el club" });
+  }
+};
+
+// Devuelve los datos de un club
+export const getClubWithValue = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    if (isNaN(id)) return res.status(400).json({ error: "ID inválido" });
+
+    const club = await getClubWithTotalValue(id);
+    res.json(club);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error obteniendo el club con valor total" });
   }
 };

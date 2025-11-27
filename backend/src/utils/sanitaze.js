@@ -34,3 +34,22 @@ export function sanitizePlayer(player) {
     salaries: undefined,
   };
 }
+
+// Convierte datos que vienen de la base de datos como BigInt en Number
+export const convertBigInt = (obj) => {
+  if (obj === null || obj === undefined) return obj;
+
+  if (typeof obj === "bigint") return Number(obj);
+
+  if (Array.isArray(obj)) return obj.map(convertBigInt);
+
+  if (typeof obj === "object") {
+    const newObj = {};
+    for (const key in obj) {
+      newObj[key] = convertBigInt(obj[key]);
+    }
+    return newObj;
+  }
+
+  return obj;
+};
