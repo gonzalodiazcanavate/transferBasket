@@ -1,5 +1,5 @@
 /**
- * @file Repositorio de valores de jugadores.
+ * @file Repositorio de valores de jugadores/clubes.
  */
 import prisma from "../config/db.js";
 

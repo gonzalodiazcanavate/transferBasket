@@ -1,7 +1,7 @@
 /**
  * @file Controlador de jugadores.
  */
-import {getAllPlayers, getPlayerById, getAllPlayersByClub, getPlayerFullById} from "../repositories/players.repository.js";
+import {getAllPlayers, getPlayerById, getAllPlayersByClub, getPlayerFullById, getAllPlayersFull} from "../repositories/players.repository.js";
 import {getPlayerCurrentValue, getValuesByPlayerId} from "../repositories/values.repository.js";
 import {getSalariesByPlayerId, getPlayerCurrentSalary} from "../repositories/salaries.repository.js";
 import { getPlayerTransfersById } from "../repositories/transfers.repository.js";
@@ -107,6 +107,17 @@ export const getPlayerTransfers = async (req, res) => {
     res.status(500).json({ error: "Error obteniendo historial de traspasos del jugador" });
   }
 }
+
+export const getPlayersFull = async (req, res) => {
+  try {
+    const players = await getAllPlayersFull();
+    const playersDto = players.map(sanitizePlayer);
+    res.json(playersDto);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error obteniendo los jugadores completos" });
+  }
+};
 
 export const getPlayerFull = async (req, res) => {
   try {

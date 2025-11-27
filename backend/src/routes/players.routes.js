@@ -9,12 +9,14 @@ import {
   getPlayerSalaries,
   getPlayerSalary,
   getPlayerTransfers,
-  getPlayerFull
+  getPlayerFull, 
+  getPlayersFull,
 } from "../controllers/players.controller.js";
 
 const router = Router();
 
 router.get("/", getPlayers);
+router.get("/completos", getPlayersFull);
 router.get("/:id", getPlayer);
 router.get("/completo/:id", getPlayerFull);
 router.get("/club/:id", getPlayersByClub);
