@@ -46,7 +46,7 @@ const ClubDetails = () => {
           <PlayersList players={players}/>
           {/* Historial de traspasos del club */}
           <Box my={{xs: 4, md: 10}}>
-            <Typography variant="h5">Historial Traspasos</Typography>
+            <Typography variant="h5"><strong>Historial de Traspasos</strong></Typography>
             <TransfersTable transfers={transfers} />
           </Box>
           
