@@ -17,6 +17,9 @@ export function sanitizePlayer(player) {
   return {
     ...player,
 
+    // Sustituimos el carácter _ por un espacio en blanco en positions
+    position: player.position.replace(/_/g, "-"),
+
     // Añade la propiedad value, asi tenemos el valor actual y no un array con sus valores
     value: player.values?.[0]?.value ?? null,
 

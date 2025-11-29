@@ -3,10 +3,11 @@
  */
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import {Link} from "react-router-dom";
 import {config} from "../config/apiConfig";
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
-  Paper, Avatar, Stack, Typography
+  Paper, Box, Stack, Typography
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -15,7 +16,7 @@ import {formatDate, formatValue} from "../utils/format";
 // Ruta a imagen del jugador
 const BACKEND = config.assetsUrl;
 
-const PlayerTransfers = ({transfers}) => {
+const TransfersTable = ({transfers}) => {
   if (!transfers || transfers.length === 0) {
     return <Typography>No hay transferencias registradas.</Typography>;
   }
@@ -53,18 +54,26 @@ const PlayerTransfers = ({transfers}) => {
 
                 {/*CLUB ORIGEN */}
                 <TableCell>
-                  <Stack direction="row" spacing={2} alignItems="center">
+                  <Stack 
+                    component={Link} 
+                    to={`/equipo/${visualOrigin.id}`}
+                    direction="row" 
+                    spacing={1} 
+                    alignItems="center" 
+                    sx={{display: "inline-flex"}}>
                     {/* ICONO CLUB */}
-                    <Avatar
+                    <Box
+                      component="img"
                       src={
                         visualOrigin?.image_url
                           ? `${BACKEND}/clubs/${visualOrigin.image_url}`
                           : `${BACKEND}/default-club.png`
                       }
-                      sx={{width: 32, height: 32}}
+                      alt={visualOrigin?.name}
+                      sx={{width: 32, height: 32, objectFit: "contain"}}
                     />
                     {/* NOMBRE CLUB */}
-                    <Typography>{visualOrigin?.name}</Typography>
+                    <Typography sx={{display: {xs: "none", md: "inherit"}}}>{visualOrigin?.name}</Typography>
                   </Stack>
                 </TableCell>
 
@@ -105,16 +114,26 @@ const PlayerTransfers = ({transfers}) => {
 
                 {/* CLUB DESTINO */}
                 <TableCell>
-                  <Stack direction="row" spacing={2} alignItems="center">
-                    <Avatar
+                  <Stack 
+                    component={Link} 
+                    to={`/equipo/${visualDestiny.id}`}
+                    direction="row" 
+                    spacing={1} 
+                    alignItems="center" 
+                    sx={{display: "inline-flex"}}>
+                    {/* ICONO CLUB */}
+                    <Box
+                      component="img"
                       src={
-                        visualDestiny?.image_url
+                        visualOrigin?.image_url
                           ? `${BACKEND}/clubs/${visualDestiny.image_url}`
                           : `${BACKEND}/default-club.png`
                       }
-                      sx={{width: 36, height: 36}}
+                      alt={visualDestiny?.name}
+                      sx={{width: 32, height: 32, objectFit: "contain"}}
                     />
-                    <Typography>{visualDestiny?.name}</Typography>
+                    {/* NOMBRE CLUB */}
+                    <Typography sx={{display: {xs: "none", md: "inherit"}}}>{visualDestiny?.name}</Typography>
                   </Stack>
                 </TableCell>
 
@@ -127,4 +146,4 @@ const PlayerTransfers = ({transfers}) => {
   );
 };
 
-export default PlayerTransfers;
+export default TransfersTable;

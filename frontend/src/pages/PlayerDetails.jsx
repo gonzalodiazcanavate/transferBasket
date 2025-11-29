@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 import PlayerHeader from "../components/PlayerHeader";
 import PlayerStats from "../components/PlayerStats";
 import ValuesSalariesChart from "../components/ValuesSalariesChart";
-import PlayerTransfers from "../components/PlayerTransfers";
+import TransfersTable from "../components/TransfersTable";
 import HigherLower from "../components/HigherLower";
 import {usePlayerDetails} from "../hooks/usePlayerDetails";
 
@@ -67,7 +67,7 @@ const PlayerDetails = () => {
           {/* Historial de traspasos del jugador */}
           <Box my={5}>
             <Typography variant="h5">Historial de Traspasos</Typography>
-            <PlayerTransfers transfers={transfers} />
+            <TransfersTable transfers={transfers} />
           </Box>
           
           <HigherLower initialPlayer={player} />

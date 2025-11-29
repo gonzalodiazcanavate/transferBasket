@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Equipos from "./pages/Equipos";
 import Login from "./pages/Login";
 import PlayerDetails from "./pages/PlayerDetails";
+import ClubDetails from "./pages/ClubDetails"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/equipos" element={<Equipos />} />
+        <Route path="/equipo/:id" element={<ClubDetails />} />
         <Route path="/jugador/:id" element={<PlayerDetails />} />
       </Routes>
     </BrowserRouter>

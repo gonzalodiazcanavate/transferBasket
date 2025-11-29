@@ -10,7 +10,8 @@ import {sanitizePlayer} from "../utils/sanitaze.js";
 export const getPlayers = async (req, res) => {
   try {
     const players = await getAllPlayers();
-    res.json(players);
+    const playersSanitazed = players.map(sanitizePlayer);
+    res.json(playersSanitazed);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error obteniendo jugadores" });
@@ -23,7 +24,8 @@ export const getPlayersByClub = async (req, res) => {
     if (isNaN(id)) return res.status(400).json({ error: "ID inválido" });
 
     const players = await getAllPlayersByClub(id);
-    res.json(players);
+    const playersSanitazed = players.map(sanitizePlayer);
+    res.json(playersSanitazed);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error obteniendo jugadores" });
@@ -36,7 +38,8 @@ export const getPlayer = async (req, res) => {
     if (isNaN(id)) return res.status(400).json({ error: "ID inválido" });
 
     const player = await getPlayerById(id);
-    res.json(player);
+    const playersSanitazed = sanitizePlayer(player);
+    res.json(playersSanitazed);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Error obteniendo el jugador" });

@@ -3,6 +3,7 @@
  */
 // eslint-disable-next-line no-unused-vars
 import React from "react";
+import { Link } from "react-router-dom";
 import {config} from "../config/apiConfig";
 import {formatNationalities, formatDate} from "../utils/format";
 import {
@@ -73,7 +74,34 @@ const PlayerHeader = ({player}) => {
         </Typography>
 
         <Typography>
-          <strong>Club actual:</strong> {club.name}
+          <Stack 
+            component={Link} 
+            to={`/equipo/${club.id}`}
+            direction="row" 
+            spacing={1} 
+            alignItems="center" 
+            sx={{display: "inline-flex"}}>
+            <Typography><strong>Club Actual: </strong></Typography>
+
+            {/* ICONO CLUB */}
+            <Box
+              component="img"
+              src={
+                club?.image_url
+                  ? `${BACKEND}/clubs/${club.image_url}`
+                  : `${BACKEND}/default-club.png`
+              }
+              alt={club?.name}
+              sx={{
+                width: 28,
+                height: 28,
+                objectFit: "contain",
+              }}
+            />
+
+            {/* NOMBRE CLUB */}
+            <Typography>{club?.name}</Typography>
+          </Stack>
         </Typography>
 
         {value && (
