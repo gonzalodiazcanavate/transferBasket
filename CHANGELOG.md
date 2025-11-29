@@ -3,8 +3,6 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 
 ## [Próxima Versión] - Añadir nuevos cambios ##
 #  Agregado (Added)
-- Endpoints para recibir clubes y jugadores con su valor actual añadidos.
-- Añadida Página de Detalles de Club.
 
 # Cambiado (Changed)
 
@@ -14,7 +12,15 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 
 # Corregido (Fixed)
 
+## [Versión 0.4.0] - 2025-11-29
+#  Agregado (Added)
+- Endpoints para recibir clubes y jugadores con su valor actual añadidos.
+- Añadida Página de Detalles de Club.
+- Añadida Barra de Búsqueda.
+- Añadida Tabla de Traspasos al Índice.
 
+# Cambiado (Changed)
+- Refactorizado componente Home para hacerlo más compacto y divisible.
 
 ## [Version 0.3.0] - 2025-11-26
 #  Agregado (Added)

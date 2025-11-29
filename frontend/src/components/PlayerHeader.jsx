@@ -3,7 +3,7 @@
  */
 // eslint-disable-next-line no-unused-vars
 import React from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import {config} from "../config/apiConfig";
 import {formatNationalities, formatDate} from "../utils/format";
 import {
@@ -73,7 +73,7 @@ const PlayerHeader = ({player}) => {
           <strong>Posición:</strong> {position}
         </Typography>
 
-        <Typography>
+        <Typography component="div">
           <Stack 
             component={Link} 
             to={`/equipo/${club.id}`}

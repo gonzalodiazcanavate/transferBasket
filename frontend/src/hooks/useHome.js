@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import {useMediaQuery, useTheme} from "@mui/material";
-import { getFullPlayers } from "../services/playersApi";
-import { getClubsWithValue } from "../services/clubsApi";
+import {getFullPlayers} from "../services/playersApi";
+import {getClubsWithValue} from "../services/clubsApi";
 import {getTransfers} from "../services/transfersApi";
 
 export const useHome = (totalSlides = 3) => {

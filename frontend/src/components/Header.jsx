@@ -4,9 +4,9 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import {Link} from "react-router-dom";
-import {AppBar, Box, Button, TextField, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
 import logo from "../assets/Transferbasket.jpeg";
-import SearchIcon from "@mui/icons-material/Search";
+import SearchBar from "../components/SearchBar";
 
 const Header = () => {
 
@@ -95,23 +95,9 @@ const Header = () => {
             flexWrap: "wrap",
           }}
         >
-          <TextField
-            size="small"
-            variant="outlined"
-            placeholder="Buscar jugador o equipo..."
-            InputProps={{
-              endAdornment: <SearchIcon fontSize="small" sx={{color: "text.secondary"}} />,
-            }}
-            sx={{
-              backgroundColor: "rgba(255,255,255,0.95)",
-              borderRadius: 1,
-              width: {xs: 140, sm: 180},
-              "& .MuiInputBase-input": {
-                py: 0.75,
-                fontSize: "0.875rem",
-              },
-            }}
-          />
+          {/* Barra de búsqueda */}
+          <SearchBar />
+
           <Button
             variant="outlined"
             sx={{

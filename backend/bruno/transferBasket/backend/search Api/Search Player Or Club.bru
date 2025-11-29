@@ -1,0 +1,20 @@
+meta {
+  name: Search Player Or Club
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{backendServer}}/search?q=Real
+  body: none
+  auth: inherit
+}
+
+params:query {
+  q: Real
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
