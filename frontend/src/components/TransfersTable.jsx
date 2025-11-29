@@ -5,9 +5,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {config} from "../config/apiConfig";
+import {useMediaQuery, useTheme} from "@mui/material";
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
-  Paper, Box, Stack, Typography
+  Paper, Avatar, Box, Stack, Typography
 } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -24,15 +25,31 @@ const TransfersTable = ({transfers}) => {
   // Identificar el primer club propietario (para detectar vueltas de cesión)
   const firstLoan = transfers.find(t => t.type === "cesion");
 
+  // Para MediaQuerys
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+
+
   return (
     <TableContainer component={Paper} sx={{mt: 4}}>
       <Table>
         <TableHead>
           <TableRow >
-            <TableCell sx={{textAlign: {md: "center"}}}><strong>Origen</strong></TableCell>
-            <TableCell sx={{textAlign: {md: "center"}}}><strong>Fecha</strong></TableCell>
-            <TableCell sx={{textAlign: {md: "center"}}}><strong>Valor</strong></TableCell>
-            <TableCell sx={{textAlign: {md: "center"}}}><strong>Destino</strong></TableCell>
+            <TableCell sx={{fontSize: `${isMdUp ? "1rem" : "0.85rem"}`, textAlign: {md: "center"}}}>
+              <strong>Origen</strong>
+            </TableCell>
+            <TableCell sx={{fontSize: `${isMdUp ? "1rem" : "0.85rem"}`, textAlign: {md: "center"}}}>
+              <strong>Fecha</strong>
+            </TableCell>
+            <TableCell sx={{fontSize: `${isMdUp ? "1rem" : "0.85rem"}`, textAlign: {md: "center"}}}>
+              <strong>Valor</strong>
+            </TableCell>
+            <TableCell sx={{fontSize: `${isMdUp ? "1rem" : "0.85rem"}`, textAlign: {md: "center"}}}>
+              <strong>Jugador</strong>
+            </TableCell>
+            <TableCell sx={{fontSize: `${isMdUp ? "1rem" : "0.85rem"}`, textAlign: {md: "center"}}}>
+              <strong>Destino</strong>
+            </TableCell>
           </TableRow>
         </TableHead>
 
@@ -78,12 +95,18 @@ const TransfersTable = ({transfers}) => {
                 </TableCell>
 
                 {/* FECHA */}
-                <TableCell sx={{textAlign: {md: "center"}}}>{formatDate(t.date)}</TableCell>
+                <TableCell sx={{textAlign: {md: "center"}}}>
+                  {isMdUp ? formatDate(t.date) : new Date(t.date).getFullYear()}
+                </TableCell>
 
                 {/* VALOR + FLECHA */}
                 <TableCell>
                   <Stack direction="column" alignItems="center">
-                    <Typography variant="body2" sx={{textTransform: "capitalize"}}>
+                    <Typography variant="body2" sx={{
+                      fontSize: `${isMdUp ? "1rem" : "0.85rem"}`,
+                      textAlign: {md: "center"},
+                      textTransform: "capitalize"
+                    }}>
                       {isReturnLoan ? "Vuelta de Cesión" : t.type}
                     </Typography>
 
@@ -106,9 +129,33 @@ const TransfersTable = ({transfers}) => {
                       />
                     )}
 
-                    <Typography variant="body2" sx={{mt: 0.5}}>
+                    <Typography variant="body2" sx={{fontSize: `${isMdUp ? "1rem" : "0.85rem"}`, textAlign: {md: "center"}, mt: 0.5}}>
                       {formatValue(t.value)}
                     </Typography>
+                  </Stack>
+                </TableCell>
+
+                {/* JUGADOR */}
+                <TableCell>
+                  <Stack 
+                    component={Link} 
+                    to={`/jugador/${t.player.id}`}
+                    direction="column" 
+                    spacing={1} 
+                    alignItems="center" 
+                  >
+                    {/* ICONO JUGADOR */}
+                    <Avatar
+                      src={
+                        t.player?.image_url
+                          ? `${BACKEND}/players/${t.player?.image_url}`
+                          : `${BACKEND}/default-player.png`
+                      }
+                      sx={{width: 32, height: 32}}
+                    />
+                    {/* NOMBRE JUGADOR */}
+                    <Typography sx={{display: {xs: "none", md: "inherit"}}}>{t.player?.name}</Typography>
+                    <Typography sx={{display: {xs: "none", md: "inherit"}}}>{t.player?.second_name}</Typography>
                   </Stack>
                 </TableCell>
 

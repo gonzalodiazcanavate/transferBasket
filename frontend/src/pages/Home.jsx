@@ -1,6 +1,7 @@
 /**
  * @file Índice/Home de transferbasket
  */
+
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from "react";
 import TablaJugadores from "../pages/TablaJugadores";
