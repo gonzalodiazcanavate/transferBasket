@@ -34,6 +34,12 @@ export const getClubWithTotalValue = async (id) => {
             select: { value: true }
           }
         }
+      },
+      league: {
+        select: {
+          name: true,
+          image_url: true,
+        }
       }
     }
   });

@@ -6,8 +6,9 @@ import prisma from "../config/db.js";
 // Trae todos los traspasos ordenados por valor
 export const getAllTransfers = () => 
   prisma.transfers.findMany({
+    where: {type: "traspaso"},
     orderBy: [
-      { value: "asc"}, 
+      {value: "asc"}, 
       {date: "asc" }
     ], // ordenado por mayor valor y orden cronológico ascendente
     include: {
@@ -50,7 +51,7 @@ export const getClubTransfersById = (club_id) =>
         { destiny_id: club_id }
       ]
     },
-    orderBy: { date: "desc" }, // orden cronológico descendente
+    orderBy: { date: "asc" }, // orden cronológico ascendente
     include: {
       origin: true,  // club de origen
       destiny: true, // club destino
