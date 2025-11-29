@@ -4,6 +4,7 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 ## [Próxima Versión] - Añadir nuevos cambios ##
 #  Agregado (Added)
 - Endpoints para recibir clubes y jugadores con su valor actual añadidos.
+- Añadida Página de Detalles de Club.
 
 # Cambiado (Changed)
 
@@ -21,9 +22,11 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 - Pestaña de detalles de jugadores añadida.
 - Endpoints relativos a traspasos añadidos.
 - Índice de la página añadido.
+- Migración de la base de datos para añadir la propiedad image_url a clubs, players, leagues y countries.
 
 # Cambiado (Changed)
 - Lógica del componente Login.jsx externalizada al hook useLogin.js para una mejor legibilidad.
+- Insert de la base de datos.
 
 
 ## [Version 0.2.0] - 2025-11-10
