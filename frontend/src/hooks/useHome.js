@@ -1,14 +1,48 @@
 import {useState, useEffect} from "react";
 import {useMediaQuery, useTheme} from "@mui/material";
+import { getFullPlayers } from "../services/playersApi";
+import { getClubsWithValue } from "../services/clubsApi";
+import {getTransfers} from "../services/transfersApi";
 
 export const useHome = (totalSlides = 3) => {
   const [value, setValue] = useState(0);
+  const [players, setPlayers] = useState(null);
+  const [clubs, setClubs] = useState(null);
+  const [transfers, setTransfers] = useState(null);
+  const [loading, setLoading] = useState(null);
   const [activeSlide, setActiveSlide] = useState(0);
   const [direction, setDirection] = useState("next");
   const [isHovered, setIsHovered] = useState(false);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  // UseEffect que fetche traspasos, jugadores y clubs.
+  useEffect(() => {
+    const fetchAll = async () => {
+      try {
+        setLoading(true);
+  
+        const [playersRes, clubsRes, transfersRes] =
+            await Promise.all([
+              getFullPlayers(),
+              getClubsWithValue(),
+              getTransfers(),
+            ]);
+  
+        setPlayers(playersRes);
+        setClubs(clubsRes);
+        setTransfers(transfersRes);
+  
+      } catch (error) {
+        console.error("Error cargando datos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchAll();
+  }, []);
 
   // Tabs
   const handleChange = (event, newValue) => {
@@ -68,6 +102,10 @@ export const useHome = (totalSlides = 3) => {
 
   return {
     value,
+    loading,
+    players,
+    clubs,
+    transfers,
     activeSlide,
     direction,
     isHovered,

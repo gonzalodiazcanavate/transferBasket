@@ -11,6 +11,7 @@ export const getAllTransfers = () =>
       {value: "asc"}, 
       {date: "asc" }
     ], // ordenado por mayor valor y orden cronológico ascendente
+    take: 10, // Solo los 10 primeros
     include: {
       origin: true,  // club de origen (puede ser null)
       destiny: true, // club destino
@@ -52,6 +53,7 @@ export const getClubTransfersById = (club_id) =>
       ]
     },
     orderBy: { date: "asc" }, // orden cronológico ascendente
+    take: 10, // Solo los 10 primeros
     include: {
       origin: true,  // club de origen
       destiny: true, // club destino

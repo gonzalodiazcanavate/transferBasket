@@ -139,7 +139,7 @@ const TransfersTable = ({transfers}) => {
                 <TableCell>
                   <Stack 
                     component={Link} 
-                    to={`/jugador/${t.player.id}`}
+                    to={`/jugador/${t?.player_id}`}
                     direction="column" 
                     spacing={1} 
                     alignItems="center" 
