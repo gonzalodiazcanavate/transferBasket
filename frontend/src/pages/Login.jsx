@@ -3,8 +3,8 @@
  */
 // eslint-disable-next-line no-unused-vars
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
 import {Container, Box, Typography, TextField, Card, Button} from "@mui/material";
+import SuccessModal from "../components/SuccessModal";
 import useLogin from "../hooks/useLogin";
 
 const Login = () => {
@@ -14,6 +14,7 @@ const Login = () => {
     error,
     errors,
     isRegistered,
+    showSuccessModal,
     setIsRegistered,
     handleLoginChange,
     handleRegisterChange,
@@ -22,74 +23,79 @@ const Login = () => {
   } = useLogin();
 
   return (
-    <Container
-      component="main"
-      maxWidth="xs"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      {isRegistered ? (
-        <Card elevation={10} sx={{p: 4, width: "100%", mt: 8, borderRadius: 3, borderColor: "#1F29E1"}}>
-          <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", gap: 3}}>
-            <Typography variant="h4" component="h4">
+    <>
+      {/* --- MODAL DE REGISTRO EXITOSO --- */}
+      {showSuccessModal && <SuccessModal />}
+
+      <Container
+        component="main"
+        maxWidth="xs"
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {isRegistered ? (
+          <Card elevation={10} sx={{p: 4, width: "100%", mt: 8, borderRadius: 3, borderColor: "#1F29E1"}}>
+            <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", gap: 3}}>
+              <Typography variant="h4" component="h4">
               Iniciar Sesión
-            </Typography>
-            <Box component="form" onSubmit={handleLoginSubmit} sx={{display: "flex", flexDirection: "column", gap: 2}}>
-              <TextField id="username" type="text" label="Nombre de Usuario o email" onChange={handleLoginChange} value={loginData.username} />
-              <TextField id="password" type="password" label="Contraseña" onChange={handleLoginChange} value={loginData.password} />
-              <Button type="submit" fullWidth variant="contained" sx={{mt: 3, mb: 2, py: 1.5, borderRadius: 2}}>
+              </Typography>
+              <Box component="form" onSubmit={handleLoginSubmit} sx={{display: "flex", flexDirection: "column", gap: 2}}>
+                <TextField id="username" type="text" label="Nombre de Usuario o email" onChange={handleLoginChange} value={loginData.username} />
+                <TextField id="password" type="password" label="Contraseña" onChange={handleLoginChange} value={loginData.password} />
+                <Button type="submit" fullWidth variant="contained" sx={{mt: 3, mb: 2, py: 1.5, borderRadius: 2}}>
                 Entrar
-              </Button>
-            </Box>
-            <Typography>
+                </Button>
+              </Box>
+              <Typography>
               ¿No tienes una cuenta?{" "}
-              <Button onClick={() => setIsRegistered(false)}>Regístrate aquí</Button>
-            </Typography>
-          </Box>
-          <Typography color="error" variant="body1">
-            {error ?? ""}
-          </Typography>
-        </Card>
-      ) : (
-        <Card elevation={10} sx={{p: 4, width: "100%", mt: 8, borderRadius: 3, borderColor: "#1F29E1"}}>
-          <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", gap: 3}}>
-            <Typography variant="h4" component="h4">
-              Registrarse
-            </Typography>
-            <Box component="form" onSubmit={handleRegisterSubmit} sx={{display: "flex", flexDirection: "column", gap: 2}}>
-              <TextField id="username" type="text" label="Nombre de Usuario" onChange={handleRegisterChange} value={registerData.username} />
-              <TextField id="email" type="text" label="Correo electrónico" onChange={handleRegisterChange} value={registerData.email} />
-              <TextField id="password" type="password" label="Contraseña" onChange={handleRegisterChange} value={registerData.password} />
-              <Button type="submit" fullWidth variant="contained" sx={{mt: 3, mb: 2, py: 1.5, borderRadius: 2}}>
-                Registrar
-              </Button>
+                <Button onClick={() => setIsRegistered(false)}>Regístrate aquí</Button>
+              </Typography>
             </Box>
-            <Typography>
+            <Typography color="error" variant="body1">
+              {error ?? ""}
+            </Typography>
+          </Card>
+        ) : (
+          <Card elevation={10} sx={{p: 4, width: "100%", mt: 8, borderRadius: 3, borderColor: "#1F29E1"}}>
+            <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", gap: 3}}>
+              <Typography variant="h4" component="h4">
+              Registrarse
+              </Typography>
+              <Box component="form" onSubmit={handleRegisterSubmit} sx={{display: "flex", flexDirection: "column", gap: 2}}>
+                <TextField id="username" type="text" label="Nombre de Usuario" onChange={handleRegisterChange} value={registerData.username} />
+                <TextField id="email" type="text" label="Correo electrónico" onChange={handleRegisterChange} value={registerData.email} />
+                <TextField id="password" type="password" label="Contraseña" onChange={handleRegisterChange} value={registerData.password} />
+                <Button type="submit" fullWidth variant="contained" sx={{mt: 3, mb: 2, py: 1.5, borderRadius: 2}}>
+                Registrar
+                </Button>
+              </Box>
+              <Typography>
               ¿Ya estás registrado?{" "}
-              <Button onClick={() => setIsRegistered(true)}>Inicia sesión aquí</Button>
+                <Button onClick={() => setIsRegistered(true)}>Inicia sesión aquí</Button>
+              </Typography>
+            </Box>
+            <Typography color="error" variant="body1">
+              {error ?? ""}
             </Typography>
-          </Box>
-          <Typography color="error" variant="body1">
-            {error ?? ""}
-          </Typography>
-        </Card>
-      )}
-      {/* --- ERRORES --- */}
-      {errors.length > 0 && (
-        <Box sx={{mt: 2}}>
-          {errors.map((errMsg, i) => (
-            <Typography key={i} color="error" variant="body1">
+          </Card>
+        )}
+        {/* --- ERRORES --- */}
+        {errors.length > 0 && (
+          <Box sx={{mt: 2}}>
+            {errors.map((errMsg, i) => (
+              <Typography key={i} color="error" variant="body1">
               • {errMsg}
-            </Typography>
-          ))}
-        </Box>
-      )}
-    </Container>
+              </Typography>
+            ))}
+          </Box>
+        )}
+      </Container>
+    </>
   );
 };
 
