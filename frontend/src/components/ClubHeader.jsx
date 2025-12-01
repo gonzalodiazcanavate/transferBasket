@@ -44,7 +44,7 @@ const ClubHeader = ({club}) => {
       {/* --- Imagen club --- */}
       <CardMedia
         component="img"
-        image={`${BACKEND}/clubs/${image_url}`}
+        image={image_url ? `${BACKEND}/clubs/${image_url}` : `${BACKEND}/default.png`}
         alt={name}
         sx={{
           width: {xs: "100%", sm: 160},

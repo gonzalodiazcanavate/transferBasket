@@ -101,7 +101,7 @@ const HigherLower = ({initialPlayer}) => {
             <CardMedia
               component="img"
               height="80"
-              src={`${BACKEND}/players/${current.image_url}`}
+              src={current.image_url ?`${BACKEND}/players/${current.image_url}` : `${BACKEND}/default.png`}
               alt={current.name}
             />
             <CardContent>
@@ -130,7 +130,7 @@ const HigherLower = ({initialPlayer}) => {
             <CardMedia
               component="img"
               height="80"
-              src={`${BACKEND}/players/${opponent.image_url}`}
+              src={opponent.image_url ? `${BACKEND}/players/${opponent.image_url}` : `${BACKEND}/default.png`}
               alt={opponent.name}
             />
             <CardContent>
