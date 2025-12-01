@@ -26,6 +26,9 @@ const HigherLower = ({initialPlayer}) => {
     score,
     gameOver,
     victory,
+    successAnimation,
+    errorAnimation,
+    animation,
     handleChoose,
     resetGame
   } = useHigherLower(initialPlayer);
@@ -91,10 +94,15 @@ const HigherLower = ({initialPlayer}) => {
             width: "100%",
             maxWidth: 280,
             transition: "transform 0.2s ease, box-shadow 0.2s ease",
+            // Efecto de expansión al pasar el ratón por encima
             "&:hover": {
               transform: "scale(1.03)",
               boxShadow: 6,
             },
+            // Animación de acierto
+            ...(animation?.side === "left" && animation.type === "success" && successAnimation),
+            // Animación de error
+            ...(animation?.side === "left" && animation.type === "error" && errorAnimation),
           }}
         >
           <CardActionArea onClick={() => handleChoose("left")}>
@@ -120,10 +128,15 @@ const HigherLower = ({initialPlayer}) => {
             width: "100%",
             maxWidth: 280,
             transition: "transform 0.2s ease, box-shadow 0.2s ease",
+            // Efecto de expansión al pasar el ratón por encima
             "&:hover": {
               transform: "scale(1.03)",
               boxShadow: 6,
             },
+            // Animación de acierto
+            ...(animation?.side === "right" && animation.type === "success" && successAnimation),
+            // Animación de error
+            ...(animation?.side === "right" && animation.type === "error" && errorAnimation),
           }}
         >
           <CardActionArea onClick={() => handleChoose("right")}>

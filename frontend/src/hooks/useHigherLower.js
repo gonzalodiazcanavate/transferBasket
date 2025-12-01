@@ -10,9 +10,29 @@ export const useHigherLower = (initialPlayer) => {
   const [opponent, setOpponent] = useState(null);
   const [score, setScore] = useState(0);
   const [usedIds, setUsedIds] = useState([initialPlayer.id]);
+  const [animation, setAnimation] = useState(null); 
 
   const [gameOver, setGameOver] = useState(false);
   const [victory, setVictory] = useState(false);
+
+  // Animaciones de acierto/fallo
+  const successAnimation = {
+    animation: "pulseGreen 0.5s ease forwards",
+    "@keyframes pulseGreen": {
+      "0%": {boxShadow: "0 0 0px rgba(0,255,0,0)"},
+      "50%": {boxShadow: "0 0 30px 12px rgba(0,255,0,0.6)"},
+      "100%": {boxShadow: "0 0 0px rgba(0,255,0,0)"},
+    }
+  };
+
+  const errorAnimation = {
+    animation: "pulseRed 0.5s ease forwards",
+    "@keyframes pulseRed": {
+      "0%": {boxShadow: "0 0 0px rgba(255,0,0,0)"},
+      "50%": {boxShadow: "0 0 30px 12px rgba(255,0,0,0.6)"},
+      "100%": {boxShadow: "0 0 0px rgba(255,0,0,0)"},
+    }
+  };
 
   // Cargar jugadores del mismo club que el jugador inicial
   useEffect(() => {
@@ -51,19 +71,31 @@ export const useHigherLower = (initialPlayer) => {
     const other = choice === "left" ? opponentValue : currentValue;
 
     if (chosen >= other) {
+      // Activamos animación de acierto
+      setAnimation({side: choice, type: "success"});
+
       //  Si acertamos el jugador seleccionado pasa a ser current y seleccionamos un nuevo oponent
-      const winner = chosen === currentValue ? current : opponent;
+      setTimeout(() => {
+        const winner = chosen === currentValue ? current : opponent;
+        setScore(prev => prev + 100);
+        setCurrent(winner);
 
-      setScore((prev) => prev + 100);
-      setCurrent(winner);
+        const newUsed = [...usedIds, opponent.id];
+        setUsedIds(newUsed);
 
-      const newUsed = [...usedIds, opponent.id];
-      setUsedIds(newUsed);
+        pickOpponent(players, newUsed);
 
-      pickOpponent(players, newUsed);
+        setAnimation(null);
+      }, 700); // duración animación
     } else {
+      
+      // Activamos animación de fallo
+      setAnimation({side: choice, type: "error"});
       // En caso de fallo se acaba el juego
-      setGameOver(true);
+      setTimeout(() => {
+        setGameOver(true);
+        setAnimation(null);
+      }, 700); // esperar animación
     }
   };
 
@@ -83,6 +115,9 @@ export const useHigherLower = (initialPlayer) => {
     score,
     gameOver,
     victory,
+    successAnimation,
+    errorAnimation,
+    animation,
     handleChoose,
     resetGame
   };
