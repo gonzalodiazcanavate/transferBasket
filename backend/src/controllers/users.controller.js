@@ -4,7 +4,7 @@
 import {config} from "../config/config.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import {getUserByUsername, getUserByUsernameOrEmail, createUser} from "../repositories/users.repository.js";
+import {getUserById, getUserByUsername, getUserByUsernameOrEmail, createUser} from "../repositories/users.repository.js";
 import {validateInput} from "../utils/validation.js";
 import {sanitizeUser} from "../utils/sanitaze.js";
 
@@ -25,7 +25,7 @@ export const login = async (req, res) => {
     // Comprobamos que existe el usuario en la base de datos y que tiene esa contraseña.
     const user = await getUserByUsername(username);
     if(!user) return res.status(500).json({error: "Error obteniendo usuario: No existe un usuario con ese nombre."});
-    if(!bcrypt.compareSync(password, user.password)) res.status(500).json({ error: "Error obteniendo usuario: Contraseña incorrecta."});
+    if(!bcrypt.compareSync(password, user.password)) return res.status(500).json({ error: "Error obteniendo usuario: Contraseña incorrecta."});
 
     // Implementamos jwt
     const token = jwt.sign({id: user.id, username: user.username}, config.JWTSecret, {expiresIn: config.jwtExpiresIn}
@@ -77,4 +77,20 @@ export const register = async(req, res) => {
 export const logout = (req, res) => {
   res.clearCookie("auth_token");
   res.status(200).json({ message: "Sesión cerrada correctamente." });
+};
+
+// Comprueba que el token coincide con el usuario
+export const isMe = async (req, res) => {
+  try {
+    const token = req.cookies.auth_token;
+    if (!token) return res.status(401).json({ auth: false });
+
+    const decoded = jwt.verify(token, config.JWTSecret);
+
+    const user = await getUserById(decoded.id);
+
+    res.json({ auth: true, user });
+  } catch (err) {
+    return res.status(401).json({ auth: false });
+  }
 };

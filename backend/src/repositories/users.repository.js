@@ -3,6 +3,11 @@
  */
 import prisma from "../config/db.js";
 
+// Devuelve un usuario por id
+export const getUserById = (id) => prisma.users.findUnique({
+  where: { id: id },
+  select: { id: true, username: true, email:true, image_url: true }
+});
 // Devuelve el primer usuario cuyo username o email coincida con el de un registro de la tabla users
 export const getUserByUsername = (value) => prisma.users.findFirst({
   where: {
