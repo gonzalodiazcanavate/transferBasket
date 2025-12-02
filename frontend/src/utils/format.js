@@ -15,7 +15,7 @@ export const formatDate = (dateStr) => new Date(dateStr).toLocaleDateString("es-
  * @returns {String} Devuelve las nacionalidades del jugador unidas por un /
  */
 export const formatNationalities = (nationalities) => {
-  if (!nationalities || nationalities.length === 0) return "";
+  if (!nationalities || nationalities.length === 0) return "N/A";
 
   return nationalities.join("/");
 }
@@ -25,4 +25,4 @@ export const formatNationalities = (nationalities) => {
  * @param {Number} value Valor de un jugador o traspaso
  * @returns {String} Devuelve "-" si el valor es 0 o el valor con el símbolo del euro en caso contrario.
  */
-export const formatValue = (value) => value === 0 ? "—" : value.toLocaleString("es-ES") + " €";
+export const formatValue = (value) => !value ? "—" : value.toLocaleString("es-ES") + " €";

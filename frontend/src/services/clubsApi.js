@@ -21,7 +21,7 @@ export async function getClub(id) {
   if (!res.ok) {
     const error = await res.json();
     throw new Error(error);
-  } 
+  }  
 
   return res.json();
 }

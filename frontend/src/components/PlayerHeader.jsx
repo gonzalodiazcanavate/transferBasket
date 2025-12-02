@@ -66,7 +66,7 @@ const PlayerHeader = ({player}) => {
           <Chip label={`${age} años`} />
           <Chip label={`Nacido: ${formatDate(birth_date)}`} />
           <Chip label={`Altura: ${height}`} />
-          <Chip label={`Nacionalidad: ${nationalities.length ? formatNationalities(nationalities) : "Desconocida"}`} />
+          <Chip label={`Nacionalidad: ${formatNationalities(nationalities)}`} />
         </Stack>
 
         <Typography sx={{mt: 2}}>

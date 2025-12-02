@@ -115,6 +115,8 @@ export const getPlayersFull = async (req, res) => {
   try {
     const players = await getAllPlayersFull();
     const playersDto = players.map(sanitizePlayer);
+    // Ordenmaos por value
+    playersDto.sort((a, b) => (b.value || 0) - (a.value || 0));
     res.json(playersDto);
   } catch (error) {
     console.log(error);

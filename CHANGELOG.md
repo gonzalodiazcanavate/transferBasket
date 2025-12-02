@@ -3,18 +3,30 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 
 ## [Próxima Versión] - Añadir nuevos cambios ##
 #  Agregado (Added)
-- Página de traspasos añadida.
-- Hook para fetch condicionales añadido.
-- Añadidos más traspasos, clubes y ligas en insert_V1.sql.
-- Añadidas más imagenes para clubes y ligas extranjeras.
+- Página de jugadores.
+- Página de clubes.
+
 # Cambiado (Changed)
+- Tabla de clubes modificada para que se muestre correctamente en móvil.
+- Tabla de jugadores modificada para que se muestre correctamente en móvil.
+- Endpoint de clubsWithTotalValue ahora devuelve también las ligas de los mismos.
 
 # Obsoleto (Deprecated)
 
 # Eliminado (Removed)
 
 # Corregido (Fixed)
-## [Versión 0.5.0] - 2025-12-02 ##
+
+## [Versión 0.6.0] - 2025-12-03 ##
+#  Agregado (Added)
+- Página de traspasos añadida.
+- Hook para fetch condicionales añadido.
+- Añadidos más traspasos, clubes y ligas en insert_V1.sql.
+- Añadidas más imagenes para clubes y ligas extranjeras.
+- Tabla de jugadores añadida.
+- Tabla de clubes añadida.
+
+## [Versión 0.5.0] - 2025-12-01 ##
 #  Agregado (Added)
 - Modal de registro éxitoso.
 - Endpoint para obtener usuario a partie del auth_token.
