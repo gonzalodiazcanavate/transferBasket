@@ -29,7 +29,7 @@ const PlayerCard = ({player}) => {
       <CardActionArea component={Link} to={`/jugador/${player.id}`}>
         <CardMedia
           component="img"
-          src={`${BACKEND}/players/${player.image_url}`}
+          src={player.image_url ? `${BACKEND}/players/${player.image_url}` : `${BACKEND}/default.png`}
           alt={player.name}
           sx={{
             height: {xs: 200, md: "auto"},
