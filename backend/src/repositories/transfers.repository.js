@@ -8,7 +8,7 @@ export const getAllTransfers = () =>
   prisma.transfers.findMany({
     where: {type: "traspaso"},
     orderBy: [
-      {value: "asc"}, 
+      {value: "desc"}, 
       {date: "asc" }
     ], // ordenado por mayor valor y orden cronológico ascendente
     take: 10, // Solo los 10 primeros

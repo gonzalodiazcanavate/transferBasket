@@ -610,7 +610,7 @@ WHERE c.name = 'Real Madrid'
 -- ================================================================
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 350000, '2022-07-01'
+SELECT p.id, 1350000, '2022-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'ASVEL Lyon-Villeurbanne'
@@ -618,7 +618,7 @@ WHERE c.name = 'ASVEL Lyon-Villeurbanne'
   AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 420000, '2023-07-01'
+SELECT p.id, 1420000, '2023-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'ASVEL Lyon-Villeurbanne'
@@ -626,7 +626,7 @@ WHERE c.name = 'ASVEL Lyon-Villeurbanne'
   AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 510000, '2024-07-01'
+SELECT p.id, 1510000, '2024-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'ASVEL Lyon-Villeurbanne'
@@ -639,7 +639,7 @@ WHERE c.name = 'ASVEL Lyon-Villeurbanne'
 -- ================================================================
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 700000, '2022-07-01'
+SELECT p.id, 1700000, '2022-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'Monaco Basket'
@@ -647,7 +647,7 @@ WHERE c.name = 'Monaco Basket'
   AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 850000, '2023-07-01'
+SELECT p.id, 1850000, '2023-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'Monaco Basket'

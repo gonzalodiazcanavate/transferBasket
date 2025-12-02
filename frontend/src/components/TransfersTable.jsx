@@ -163,7 +163,7 @@ const TransfersTable = ({transfers, max=10}) => {
                 </TableCell>
 
                 {/* CLUB DESTINO */}
-                <TableCell  sx={{textAlign: "right", pr: {xs: 0, md: 20}}}>
+                <TableCell  sx={{textAlign: "left", pl: {xs: 0, md: 20}}}>
                   <Stack 
                     component={Link} 
                     to={`/equipo/${visualDestiny.id}`}

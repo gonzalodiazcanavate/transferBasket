@@ -1732,7 +1732,7 @@ WHERE c.name = 'Real Madrid'
 -- ================================================================
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 350000, '2022-07-01'
+SELECT p.id, 1350000, '2022-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'ASVEL Lyon-Villeurbanne'
@@ -1740,7 +1740,7 @@ WHERE c.name = 'ASVEL Lyon-Villeurbanne'
   AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 420000, '2023-07-01'
+SELECT p.id, 1420000, '2023-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'ASVEL Lyon-Villeurbanne'
@@ -1748,7 +1748,7 @@ WHERE c.name = 'ASVEL Lyon-Villeurbanne'
   AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 510000, '2024-07-01'
+SELECT p.id, 1510000, '2024-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'ASVEL Lyon-Villeurbanne'
@@ -1761,7 +1761,7 @@ WHERE c.name = 'ASVEL Lyon-Villeurbanne'
 -- ================================================================
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 700000, '2022-07-01'
+SELECT p.id, 1700000, '2022-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'Monaco Basket'
@@ -1769,7 +1769,7 @@ WHERE c.name = 'Monaco Basket'
   AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 850000, '2023-07-01'
+SELECT p.id, 1850000, '2023-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'Monaco Basket'
@@ -1790,7 +1790,7 @@ WHERE c.name = 'Monaco Basket'
 -- ================================================================
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 280000, '2022-07-01'
+SELECT p.id, 1280000, '2022-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'SIG Strasbourg'
@@ -1798,7 +1798,7 @@ WHERE c.name = 'SIG Strasbourg'
   AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 340000, '2023-07-01'
+SELECT p.id, 1340000, '2023-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'SIG Strasbourg'
@@ -1806,7 +1806,7 @@ WHERE c.name = 'SIG Strasbourg'
   AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 410000, '2024-07-01'
+SELECT p.id, 1410000, '2024-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'SIG Strasbourg'
@@ -1819,7 +1819,7 @@ WHERE c.name = 'SIG Strasbourg'
 -- ================================================================
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 500000, '2022-07-01'
+SELECT p.id, 1500000, '2022-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'Bayern Munich'
@@ -1827,7 +1827,7 @@ WHERE c.name = 'Bayern Munich'
   AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 650000, '2023-07-01'
+SELECT p.id, 1650000, '2023-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'Bayern Munich'
@@ -1835,7 +1835,7 @@ WHERE c.name = 'Bayern Munich'
   AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
 
 INSERT INTO "values" (player_id, value, date)
-SELECT p.id, 820000, '2024-07-01'
+SELECT p.id, 1820000, '2024-07-01'
 FROM players p
 JOIN clubs c ON c.id = p.club_id
 WHERE c.name = 'Bayern Munich'
@@ -2374,3 +2374,128 @@ WHERE p.name = 'Walter'
       AND t.date = '2019-06-30'
       AND t.destiny_id = (SELECT id FROM clubs WHERE name = 'Real Madrid')
   );
+
+-- ================================================================
+-- TRASPASOS HACIA LOS NUEVOS CLUBES (Francia + Alemania)
+-- ================================================================
+
+
+-- 1) ANTOINE DIARRA → ASVEL Lyon-Villeurbanne
+-- Origen: BAXI Manresa
+INSERT INTO transfers (value, date, type, origin_id, destiny_id, player_id)
+SELECT
+  250000,
+  '2022-08-10',
+  'traspaso',
+  (SELECT id FROM clubs WHERE name = 'BAXI Manresa'),
+  (SELECT id FROM clubs WHERE name = 'ASVEL Lyon-Villeurbanne'),
+  p.id
+FROM players p
+WHERE p.name = 'Antoine' AND p.second_name = 'Diarra'
+  AND NOT EXISTS (
+    SELECT 1 FROM transfers t
+    WHERE t.player_id = p.id
+      AND t.date = '2022-08-10'
+      AND t.destiny_id = (SELECT id FROM clubs WHERE name = 'ASVEL Lyon-Villeurbanne')
+  );
+
+
+-- 2) LUCAS MONTCLAIR → Monaco Basket
+-- Origen: Casademont Zaragoza
+INSERT INTO transfers (value, date, type, origin_id, destiny_id, player_id)
+SELECT
+  600000,
+  '2023-07-18',
+  'traspaso',
+  (SELECT id FROM clubs WHERE name = 'Casademont Zaragoza'),
+  (SELECT id FROM clubs WHERE name = 'Monaco Basket'),
+  p.id
+FROM players p
+WHERE p.name = 'Lucas' AND p.second_name = 'Montclair'
+  AND NOT EXISTS (
+    SELECT 1 FROM transfers t
+    WHERE t.player_id = p.id
+      AND t.date = '2023-07-18'
+      AND t.destiny_id = (SELECT id FROM clubs WHERE name = 'Monaco Basket')
+  );
+
+
+-- 3) MATHIEU KELLER → SIG Strasbourg
+-- Origen: C. B. Gran Canaria
+INSERT INTO transfers (value, date, type, origin_id, destiny_id, player_id)
+SELECT
+  180000,
+  '2022-09-01',
+  'traspaso',
+  (SELECT id FROM clubs WHERE name = 'C. B. Gran Canaria'),
+  (SELECT id FROM clubs WHERE name = 'SIG Strasbourg'),
+  p.id
+FROM players p
+WHERE p.name = 'Mathieu' AND p.second_name = 'Keller'
+  AND NOT EXISTS (
+    SELECT 1 FROM transfers t
+    WHERE t.player_id = p.id
+      AND t.date = '2022-09-01'
+      AND t.destiny_id = (SELECT id FROM clubs WHERE name = 'SIG Strasbourg')
+  );
+
+
+-- 4) JOHANN REUTER → Bayern Munich
+-- Origen: Força Lleida
+INSERT INTO transfers (value, date, type, origin_id, destiny_id, player_id)
+SELECT
+  320000,
+  '2023-06-25',
+  'traspaso',
+  (SELECT id FROM clubs WHERE name = 'Força Lleida'),
+  (SELECT id FROM clubs WHERE name = 'Bayern Munich'),
+  p.id
+FROM players p
+WHERE p.name = 'Johann' AND p.second_name = 'Reuter'
+  AND NOT EXISTS (
+    SELECT 1 FROM transfers t
+    WHERE t.player_id = p.id
+      AND t.date = '2023-06-25'
+      AND t.destiny_id = (SELECT id FROM clubs WHERE name = 'Bayern Munich')
+  );
+
+
+-- 5) FELIX WAGNER → Alba Berlin
+-- Origen: F. C. Barcelona
+INSERT INTO transfers (value, date, type, origin_id, destiny_id, player_id)
+SELECT
+  400000,
+  '2023-08-03',
+  'traspaso',
+  (SELECT id FROM clubs WHERE name = 'F. C. Barcelona'),
+  (SELECT id FROM clubs WHERE name = 'Alba Berlin'),
+  p.id
+FROM players p
+WHERE p.name = 'Felix' AND p.second_name = 'Wagner'
+  AND NOT EXISTS (
+    SELECT 1 FROM transfers t
+    WHERE t.player_id = p.id
+      AND t.date = '2023-08-03'
+      AND t.destiny_id = (SELECT id FROM clubs WHERE name = 'Alba Berlin')
+  );
+
+
+-- 6) MARCEL HOFFMANN → Telekom Baskets Bonn
+-- Origen: UCAM Murcia
+INSERT INTO transfers (value, date, type, origin_id, destiny_id, player_id)
+SELECT
+  530000,
+  '2024-07-12',
+  'traspaso',
+  (SELECT id FROM clubs WHERE name = 'UCAM Murcia'),
+  (SELECT id FROM clubs WHERE name = 'Telekom Baskets Bonn'),
+  p.id
+FROM players p
+WHERE p.name = 'Marcel' AND p.second_name = 'Hoffmann'
+  AND NOT EXISTS (
+    SELECT 1 FROM transfers t
+    WHERE t.player_id = p.id
+      AND t.date = '2024-07-12'
+      AND t.destiny_id = (SELECT id FROM clubs WHERE name = 'Telekom Baskets Bonn')
+  );
+
