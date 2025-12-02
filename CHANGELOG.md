@@ -5,6 +5,8 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 #  Agregado (Added)
 - Página de traspasos añadida.
 - Hook para fetch condicionales añadido.
+- Añadidos más traspasos, clubes y ligas en insert_V1.sql.
+- Añadidas más imagenes para clubes y ligas extranjeras.
 # Cambiado (Changed)
 
 # Obsoleto (Deprecated)

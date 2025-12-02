@@ -34,16 +34,51 @@ ON CONFLICT (name) DO NOTHING;
 -- ================================================================
 -- LIGA (Liga Endesa)
 -- ================================================================
-INSERT INTO leagues (country_id, name)
+INSERT INTO leagues (country_id, name, image_url)
 SELECT
   c.id,
-  'Liga Endesa'
+  'Liga Endesa',
+  '1-ligaEndesa.png'
 FROM countries c
 WHERE c.name = 'España'
   AND NOT EXISTS (
     SELECT 1
     FROM leagues l
     WHERE l.name = 'Liga Endesa'
+      AND l.country_id = c.id
+  );
+
+-- ================================================================
+-- LIGA FRANCESA (LNB Pro A)
+-- ================================================================
+INSERT INTO leagues (country_id, name, image_url)
+SELECT
+  c.id,
+  'LNB Pro A',
+  '2-ligaFrancesa.png'
+FROM countries c
+WHERE c.name = 'Francia'
+  AND NOT EXISTS (
+    SELECT 1
+    FROM leagues l
+    WHERE l.name = 'LNB Pro A'
+      AND l.country_id = c.id
+  );
+
+-- ================================================================
+-- LIGA ALEMANA (BBL)
+-- ================================================================
+INSERT INTO leagues (country_id, name, image_url)
+SELECT
+  c.id,
+  'Basketball Bundesliga',
+  '3-ligaAlemana.png'
+FROM countries c
+WHERE c.name = 'Alemania'
+  AND NOT EXISTS (
+    SELECT 1
+    FROM leagues l
+    WHERE l.name = 'Basketball Bundesliga'
       AND l.country_id = c.id
   );
 
@@ -270,6 +305,85 @@ SELECT
   (SELECT id FROM leagues WHERE name = 'Liga Endesa'),
   '18-MorabancAndorra.png'
 WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'MoraBanc Andorra');
+
+-- ================================================================
+-- CLUBES LIGA FRANCESA
+-- ================================================================
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'ASVEL Lyon-Villeurbanne',
+  'Astroballe',
+  'Villeurbanne',
+  5560,
+  '1948-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'LNB Pro A'),
+  'F1-ASVEL.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'ASVEL Lyon-Villeurbanne');
+
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'Monaco Basket',
+  'Salle Gaston Médecin',
+  'Mónaco',
+  4700,
+  '1924-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'LNB Pro A'),
+  'F2-Monaco.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'Monaco Basket');
+
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'SIG Strasbourg',
+  'Rhenus Sport',
+  'Estrasburgo',
+  6200,
+  '1928-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'LNB Pro A'),
+  'F3-Strasbourg.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'SIG Strasbourg');
+
+-- ================================================================
+-- CLUBES LIGA ALEMANA
+-- ================================================================
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'Bayern Munich',
+  'Audi Dome',
+  'Múnich',
+  6700,
+  '1946-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'Basketball Bundesliga'),
+  'G1-BayernMunich.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'Bayern Munich');
+
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'Alba Berlin',
+  'Mercedes-Benz Arena',
+  'Berlín',
+  14500,
+  '1991-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'Basketball Bundesliga'),
+  'G2-AlbaBerlin.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'Alba Berlin');
+
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'Telekom Baskets Bonn',
+  'Telekom Dome',
+  'Bonn',
+  6000,
+  '1992-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'Basketball Bundesliga'),
+  'G3-Bonn.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'Telekom Baskets Bonn');
+
 
 -- ================================================================
 -- JUGADORES LIGA ENDESA 2025-26 (EJEMPLOS COMPLETOS)
@@ -948,6 +1062,64 @@ VALUES
     LIMIT 1),
    (SELECT id FROM countries WHERE name = 'Cabo Verde'));
 
+     -- ================================================================
+-- JUGADORES LIGAS FRANCESA Y ALEMANA (1 por club)
+-- ================================================================
+
+INSERT INTO players (
+  club_id, selection_id, name, second_name, age, is_captain, weight,
+  is_international, birth_date, position, pp, birth_place, health, height,
+  rp, ap, sp, shot_pct, threes_pct, fp, image_url
+) VALUES
+  -------------------------------------------------------------
+  -- ASVEL Lyon-Villeurbanne
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'ASVEL Lyon-Villeurbanne'),
+   NULL, 'Antoine', 'Diarra', 27, FALSE, 92.50, TRUE, '1998-05-14', 'Ala_Pivót',
+   11.20, 'Lyon, Francia', 'Sano', 2.02, 6.4, 2.1, 0.9, 52.30, 36.10, 15.4,
+   null),
+
+  -------------------------------------------------------------
+  -- Monaco Basket
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'Monaco Basket'),
+   NULL, 'Lucas', 'Montclair', 29, TRUE, 88.10, TRUE, '1996-03-11', 'Escolta',
+   14.80, 'Niza, Francia', 'Sano', 1.96, 3.5, 4.8, 1.4, 47.80, 39.50, 18.7,
+   null),
+
+  -------------------------------------------------------------
+  -- SIG Strasbourg
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'SIG Strasbourg'),
+   NULL, 'Mathieu', 'Keller', 24, FALSE, 81.75, FALSE, '2001-07-22', 'Base',
+   9.40, 'Estrasburgo, Francia', 'Sano', 1.88, 2.9, 5.6, 1.1, 45.60, 34.20, 13.2,
+   null),
+
+  -------------------------------------------------------------
+  -- Bayern Munich
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'Bayern Munich'),
+   NULL, 'Johann', 'Reuter', 28, FALSE, 101.20, TRUE, '1997-01-19', 'Pivót',
+   12.30, 'Múnich, Alemania', 'Sano', 2.12, 7.8, 1.9, 0.6, 59.40, 28.00, 17.1,
+   null),
+
+  -------------------------------------------------------------
+  -- Alba Berlin
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'Alba Berlin'),
+   NULL, 'Felix', 'Wagner', 26, FALSE, 86.30, TRUE, '1999-09-30', 'Alero',
+   10.90, 'Berlín, Alemania', 'Sano', 2.00, 4.1, 2.7, 1.3, 48.10, 37.80, 14.6,
+   null),
+
+  -------------------------------------------------------------
+  -- Telekom Baskets Bonn
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'Telekom Baskets Bonn'),
+   NULL, 'Marcel', 'Hoffmann', 30, TRUE, 90.40, TRUE, '1995-11-08', 'Escolta',
+   16.20, 'Bonn, Alemania', 'Sano', 1.94, 3.2, 3.8, 1.5, 49.70, 41.20, 20.3,
+   null);
+
+
 -- ================================================================
 -- HISTORIAL DE VALORES JUGADORES REAL MADRID
 -- Tabla: "values" (player_id, value, date)
@@ -1549,6 +1721,185 @@ WHERE c.name = 'Real Madrid'
     SELECT 1 FROM "values" v
     WHERE v.player_id = p.id AND v.date = '2024-07-01'
   );
+
+-- ================================================================
+-- HISTORIAL DE VALORES — JUGADORES FRANCIA Y ALEMANIA
+-- ================================================================
+
+
+-- ================================================================
+-- 1) ANTOINE DIARRA (ASVEL Lyon-Villeurbanne)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 350000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'ASVEL Lyon-Villeurbanne'
+  AND p.name = 'Antoine' AND p.second_name = 'Diarra'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 420000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'ASVEL Lyon-Villeurbanne'
+  AND p.name = 'Antoine' AND p.second_name = 'Diarra'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 510000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'ASVEL Lyon-Villeurbanne'
+  AND p.name = 'Antoine' AND p.second_name = 'Diarra'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+
+
+-- ================================================================
+-- 2) LUCAS MONTCLAIR (Monaco Basket)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 700000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Monaco Basket'
+  AND p.name = 'Lucas' AND p.second_name = 'Montclair'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 850000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Monaco Basket'
+  AND p.name = 'Lucas' AND p.second_name = 'Montclair'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 1020000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Monaco Basket'
+  AND p.name = 'Lucas' AND p.second_name = 'Montclair'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+
+
+-- ================================================================
+-- 3) MATHIEU KELLER (SIG Strasbourg)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 280000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'SIG Strasbourg'
+  AND p.name = 'Mathieu' AND p.second_name = 'Keller'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 340000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'SIG Strasbourg'
+  AND p.name = 'Mathieu' AND p.second_name = 'Keller'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 410000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'SIG Strasbourg'
+  AND p.name = 'Mathieu' AND p.second_name = 'Keller'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+
+
+-- ================================================================
+-- 4) JOHANN REUTER (Bayern Munich)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 500000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Bayern Munich'
+  AND p.name = 'Johann' AND p.second_name = 'Reuter'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 650000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Bayern Munich'
+  AND p.name = 'Johann' AND p.second_name = 'Reuter'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 820000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Bayern Munich'
+  AND p.name = 'Johann' AND p.second_name = 'Reuter'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+
+
+-- ================================================================
+-- 5) FELIX WAGNER (Alba Berlin)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 360000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Alba Berlin'
+  AND p.name = 'Felix' AND p.second_name = 'Wagner'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 430000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Alba Berlin'
+  AND p.name = 'Felix' AND p.second_name = 'Wagner'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 520000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Alba Berlin'
+  AND p.name = 'Felix' AND p.second_name = 'Wagner'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+
+
+-- ================================================================
+-- 6) MARCEL HOFFMANN (Telekom Baskets Bonn)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 620000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Telekom Baskets Bonn'
+  AND p.name = 'Marcel' AND p.second_name = 'Hoffmann'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 780000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Telekom Baskets Bonn'
+  AND p.name = 'Marcel' AND p.second_name = 'Hoffmann'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 960000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Telekom Baskets Bonn'
+  AND p.name = 'Marcel' AND p.second_name = 'Hoffmann'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+
 
 
   -- =========================================================
