@@ -114,7 +114,12 @@ const TablaEquipos = ({ clubs = null }) => {
                   <Box sx={{display: "flex", alignItems: "center", justifyContent: "center", gap: 1}}>
                     <Box
                       component="img"
-                      src={`${BACKEND}/leagues/1-ligaEndesa.png`}
+                      src={(() => {
+                        if (equipo.league.id === 1) return `${BACKEND}/leagues/1-ligaEndesa.png`;
+                        if (equipo.league.id === 2) return `${BACKEND}/leagues/2-ligaFrancesa.png`;
+                        if (equipo.league.id === 3) return `${BACKEND}/leagues/3-ligaAlemana.png`;
+                        return `${BACKEND}/default.png`;
+                      })()}
                       alt={equipo.league.name}
                       sx={{width: 30, height: 30, objectFit: "contain"}}
                     />
