@@ -3,14 +3,18 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 
 ## [Próxima Versión] - Añadir nuevos cambios ##
 #  Agregado (Added)
-
+- Modal de registro éxitoso.
+- Endpoint para obtnener usuario a partie del auth_token.
+- Menú de usuario añadido.
 # Cambiado (Changed)
-
+- Migración añadida para incluir el campo id en users.
+- Fallbacks de imagenes añadidos en tablas y headers. 
 # Obsoleto (Deprecated)
 
 # Eliminado (Removed)
 
 # Corregido (Fixed)
+- Funcionalidad del endpoint de logout corregida.
 
 ## [Versión 0.4.0] - 2025-11-29
 #  Agregado (Added)
