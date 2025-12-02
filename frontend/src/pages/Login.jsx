@@ -6,6 +6,7 @@ import React, {useState} from "react";
 import {Container, Box, Typography, TextField, Card, Button} from "@mui/material";
 import SuccessModal from "../components/SuccessModal";
 import useLogin from "../hooks/useLogin";
+import {Link} from "react-router-dom";
 
 const Login = () => {
   const {
@@ -55,6 +56,9 @@ const Login = () => {
               ¿No tienes una cuenta?{" "}
                 <Button onClick={() => setIsRegistered(false)}>Regístrate aquí</Button>
               </Typography>
+              <Typography component={Link} to="/" color="#1976d2">
+                Ir a la la página
+              </Typography>
             </Box>
             <Typography color="error" variant="body1">
               {error ?? ""}
@@ -77,6 +81,9 @@ const Login = () => {
               <Typography>
               ¿Ya estás registrado?{" "}
                 <Button onClick={() => setIsRegistered(true)}>Inicia sesión aquí</Button>
+              </Typography>
+              <Typography component={Link} to="/" color="#1976d2">
+                Ir a la página
               </Typography>
             </Box>
             <Typography color="error" variant="body1">
