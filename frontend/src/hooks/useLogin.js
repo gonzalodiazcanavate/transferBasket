@@ -1,3 +1,7 @@
+/**
+ * @file Hook personalizado que maneja la lógica del componente login.
+ */
+// eslint-disable-next-line no-unused-vars
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {loginUser, register} from "../services/usersApi";
@@ -8,6 +12,7 @@ const useLogin = () => {
   const [registerData, setRegisterData] = useState({username: "", email: "", password: ""});
   const [error, setError] = useState("");
   const [errors, setErrors] = useState([]);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [isRegistered, setIsRegistered] = useState(true);
   const navigate = useNavigate();
 
@@ -32,7 +37,9 @@ const useLogin = () => {
     ) 
       newErrors.push("El email o nombre de usuario no es válido.");
     if (!validateInput(loginData.password)) 
-      newErrors.push("La contraseña no es válida.");
+      newErrors.push(
+        "La contraseña no es válida. Debe incluir al menos 8 carácteres, incluyendo minúsculas, mayúsculas, números y carácteres especiales."
+      );
   
     // Si hay errores, detenemos el proceso
     if (newErrors.length > 0) {
@@ -59,7 +66,9 @@ const useLogin = () => {
     if (!validateInput(registerData.email, /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)) 
       newErrors.push("El email de usuario no es válido.");
     if (!validateInput(registerData.password)) 
-      newErrors.push("La contraseña no es válida.");
+      newErrors.push(
+        "La contraseña no es válida. Debe incluir al menos 8 carácteres, incluyendo minúsculas, mayúsculas, números y carácteres especiales."
+      );
   
     // Si hay errores, detenemos el proceso
     if (newErrors.length > 0) {
@@ -72,6 +81,14 @@ const useLogin = () => {
         registerData.email,
         registerData.password
       );
+      // Activamos el modal
+      setShowSuccessModal(true);
+
+      // Esperamos 2 segundos y luego pasamos al login
+      setTimeout(() => {
+        setShowSuccessModal(false);
+        setIsRegistered(true);
+      }, 2000);
     } catch (err) {
       setError(err.message);
     }
@@ -88,6 +105,7 @@ const useLogin = () => {
     setErrors,
     isRegistered,
     setIsRegistered,
+    showSuccessModal,
     navigate,
     handleLoginChange,
     handleRegisterChange,

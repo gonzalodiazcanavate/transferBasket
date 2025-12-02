@@ -599,3 +599,182 @@ WHERE c.name = 'Real Madrid'
     SELECT 1 FROM "values" v
     WHERE v.player_id = p.id AND v.date = '2024-07-01'
   );
+
+-- ================================================================
+-- HISTORIAL DE VALORES — JUGADORES FRANCIA Y ALEMANIA
+-- ================================================================
+
+
+-- ================================================================
+-- 1) ANTOINE DIARRA (ASVEL Lyon-Villeurbanne)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 350000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'ASVEL Lyon-Villeurbanne'
+  AND p.name = 'Antoine' AND p.second_name = 'Diarra'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 420000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'ASVEL Lyon-Villeurbanne'
+  AND p.name = 'Antoine' AND p.second_name = 'Diarra'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 510000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'ASVEL Lyon-Villeurbanne'
+  AND p.name = 'Antoine' AND p.second_name = 'Diarra'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+
+
+-- ================================================================
+-- 2) LUCAS MONTCLAIR (Monaco Basket)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 700000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Monaco Basket'
+  AND p.name = 'Lucas' AND p.second_name = 'Montclair'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 850000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Monaco Basket'
+  AND p.name = 'Lucas' AND p.second_name = 'Montclair'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 1020000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Monaco Basket'
+  AND p.name = 'Lucas' AND p.second_name = 'Montclair'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+
+
+-- ================================================================
+-- 3) MATHIEU KELLER (SIG Strasbourg)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 280000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'SIG Strasbourg'
+  AND p.name = 'Mathieu' AND p.second_name = 'Keller'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 340000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'SIG Strasbourg'
+  AND p.name = 'Mathieu' AND p.second_name = 'Keller'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 410000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'SIG Strasbourg'
+  AND p.name = 'Mathieu' AND p.second_name = 'Keller'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+
+
+-- ================================================================
+-- 4) JOHANN REUTER (Bayern Munich)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 500000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Bayern Munich'
+  AND p.name = 'Johann' AND p.second_name = 'Reuter'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 650000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Bayern Munich'
+  AND p.name = 'Johann' AND p.second_name = 'Reuter'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 820000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Bayern Munich'
+  AND p.name = 'Johann' AND p.second_name = 'Reuter'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+
+
+-- ================================================================
+-- 5) FELIX WAGNER (Alba Berlin)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 360000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Alba Berlin'
+  AND p.name = 'Felix' AND p.second_name = 'Wagner'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 430000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Alba Berlin'
+  AND p.name = 'Felix' AND p.second_name = 'Wagner'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 520000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Alba Berlin'
+  AND p.name = 'Felix' AND p.second_name = 'Wagner'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+
+
+-- ================================================================
+-- 6) MARCEL HOFFMANN (Telekom Baskets Bonn)
+-- ================================================================
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 620000, '2022-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Telekom Baskets Bonn'
+  AND p.name = 'Marcel' AND p.second_name = 'Hoffmann'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2022-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 780000, '2023-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Telekom Baskets Bonn'
+  AND p.name = 'Marcel' AND p.second_name = 'Hoffmann'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2023-07-01');
+
+INSERT INTO "values" (player_id, value, date)
+SELECT p.id, 960000, '2024-07-01'
+FROM players p
+JOIN clubs c ON c.id = p.club_id
+WHERE c.name = 'Telekom Baskets Bonn'
+  AND p.name = 'Marcel' AND p.second_name = 'Hoffmann'
+  AND NOT EXISTS (SELECT 1 FROM "values" v WHERE v.player_id = p.id AND v.date = '2024-07-01');
+

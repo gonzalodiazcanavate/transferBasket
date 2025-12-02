@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react";
 import {useMediaQuery, useTheme} from "@mui/material";
-import { getFullPlayers } from "../services/playersApi";
-import { getClubsWithValue } from "../services/clubsApi";
+import {getFullPlayers} from "../services/playersApi";
+import {getClubsWithValue} from "../services/clubsApi";
 import {getTransfers} from "../services/transfersApi";
 
 export const useHome = (totalSlides = 3) => {
@@ -104,10 +104,10 @@ export const useHome = (totalSlides = 3) => {
     },
     {
       id: 2,
-      title: "Transferencias",
+      title: "Traspasos",
       subtitle: "Historial de traspasos, valores y movimientos recientes.",
-      buttonText: "Explorar Transferencias",
-      link: "/transferencias",
+      buttonText: "Explorar Traspasos",
+      link: "/traspasos",
       bgImage: "https://www.currentaffairs.org/hubfs/Imported_Blog_Media/stonks-1024x646-1.jpg",
     },
   ]

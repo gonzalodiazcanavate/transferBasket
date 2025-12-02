@@ -4,11 +4,15 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import {Link} from "react-router-dom";
-import {AppBar, Box, Button, TextField, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
 import logo from "../assets/Transferbasket.jpeg";
-import SearchIcon from "@mui/icons-material/Search";
+import SearchBar from "../components/SearchBar.jsx";
+import UserMenu from "../components/UserMenu.jsx";
+import useAuth from "../hooks/useAuth.js";
 
 const Header = () => {
+
+  const {user, loading} = useAuth();
 
   return (
     <AppBar
@@ -82,8 +86,8 @@ const Header = () => {
           <Button color="inherit" component={Link} to="/equipos" sx={{fontWeight: 500}}>
               Equipos
           </Button>
-          <Button color="inherit" component={Link} to="/transferencias" sx={{fontWeight: 500}}>
-              Transferencias
+          <Button color="inherit" component={Link} to="/traspasos" sx={{fontWeight: 500}}>
+              Traspasos
           </Button>
         </Box>
 
@@ -95,39 +99,29 @@ const Header = () => {
             flexWrap: "wrap",
           }}
         >
-          <TextField
-            size="small"
-            variant="outlined"
-            placeholder="Buscar jugador o equipo..."
-            InputProps={{
-              endAdornment: <SearchIcon fontSize="small" sx={{color: "text.secondary"}} />,
-            }}
-            sx={{
-              backgroundColor: "rgba(255,255,255,0.95)",
-              borderRadius: 1,
-              width: {xs: 140, sm: 180},
-              "& .MuiInputBase-input": {
-                py: 0.75,
-                fontSize: "0.875rem",
-              },
-            }}
-          />
-          <Button
-            variant="outlined"
-            sx={{
-              borderColor: "rgba(255,255,255,0.7)",
-              color: "white",
-              fontWeight: 600,
-              "&:hover": {
-                backgroundColor: "rgba(255,255,255,0.1)",
-                borderColor: "white",
-              },
-            }}
-            component={Link}
-            to="/login"
-          >
+          {/* Barra de búsqueda */}
+          <SearchBar />
+
+          {loading ? null : user ? (
+            <UserMenu user={user} />
+          ) : (
+            <Button
+              variant="outlined"
+              sx={{
+                borderColor: "rgba(255,255,255,0.7)",
+                color: "white",
+                fontWeight: 600,
+                "&:hover": {
+                  backgroundColor: "rgba(255,255,255,0.1)",
+                  borderColor: "white",
+                },
+              }}
+              component={Link}
+              to="/login"
+            >
               Iniciar sesión
-          </Button>
+            </Button>
+          )}
         </Box>
       </Toolbar>
     </AppBar>

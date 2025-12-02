@@ -40,7 +40,7 @@ const PlayerDetails = () => {
   return (
     <>
       <Header />
-      <Container maxWidth="lg" sx={{pb: 5, mt: {xs: 25, md: 10}, backgroundColor: "#F5F5F5", borderRadius: "8px"}}>
+      <Container maxWidth="lg" sx={{pb: 5, mt: {xs: 20, md: 10}, backgroundColor: "#F5F5F5", borderRadius: "8px"}}>
         <Box sx={{mt: 2, pt: 3}}>
           {/* Header con foto + info básica */}
           <PlayerHeader player={player} />
@@ -57,16 +57,16 @@ const PlayerDetails = () => {
           >
             {/* Valores del jugador */}
             <Box sx={{flex: 1, minWidth: 0}}>
-              <ValuesSalariesChart values={values} title='Historial de Valores'/>
+              <ValuesSalariesChart values={values} title='Valores'/>
             </Box>
             {/* Salarios del jugador */}
             <Box sx={{flex: 1, minWidth: 0}}>
-              <ValuesSalariesChart values={salaries} title='Historial de Salarios'/>
+              <ValuesSalariesChart values={salaries} title='Salarios'/>
             </Box>
           </Box>
           {/* Historial de traspasos del jugador */}
           <Box my={5}>
-            <Typography variant="h5">Historial de Traspasos</Typography>
+            <Typography variant="h5"><strong>Historial de Traspasos</strong></Typography>
             <TransfersTable transfers={transfers} />
           </Box>
           

@@ -70,7 +70,7 @@ const TransfersTable = ({transfers}) => {
               <TableRow key={t.id}>
 
                 {/*CLUB ORIGEN */}
-                <TableCell>
+                <TableCell sx={{textAlign: "center"}}>
                   <Stack 
                     component={Link} 
                     to={`/equipo/${visualOrigin.id}`}
@@ -95,12 +95,12 @@ const TransfersTable = ({transfers}) => {
                 </TableCell>
 
                 {/* FECHA */}
-                <TableCell sx={{textAlign: {md: "center"}}}>
+                <TableCell sx={{textAlign: "center"}}>
                   {isMdUp ? formatDate(t.date) : new Date(t.date).getFullYear()}
                 </TableCell>
 
                 {/* VALOR + FLECHA */}
-                <TableCell>
+                <TableCell sx={{textAlign: "center"}}>
                   <Stack direction="column" alignItems="center">
                     <Typography variant="body2" sx={{
                       fontSize: `${isMdUp ? "1rem" : "0.85rem"}`,
@@ -136,7 +136,7 @@ const TransfersTable = ({transfers}) => {
                 </TableCell>
 
                 {/* JUGADOR */}
-                <TableCell>
+                <TableCell sx={{textAlign: "center"}}>
                   <Stack 
                     component={Link} 
                     to={`/jugador/${t?.player_id}`}
@@ -149,7 +149,7 @@ const TransfersTable = ({transfers}) => {
                       src={
                         t.player?.image_url
                           ? `${BACKEND}/players/${t.player?.image_url}`
-                          : `${BACKEND}/default-player.png`
+                          : `${BACKEND}/default.png`
                       }
                       sx={{width: 32, height: 32}}
                     />
@@ -160,7 +160,7 @@ const TransfersTable = ({transfers}) => {
                 </TableCell>
 
                 {/* CLUB DESTINO */}
-                <TableCell>
+                <TableCell  sx={{textAlign: "center"}}>
                   <Stack 
                     component={Link} 
                     to={`/equipo/${visualDestiny.id}`}
@@ -174,7 +174,7 @@ const TransfersTable = ({transfers}) => {
                       src={
                         visualOrigin?.image_url
                           ? `${BACKEND}/clubs/${visualDestiny.image_url}`
-                          : `${BACKEND}/default-club.png`
+                          : `${BACKEND}/default.png`
                       }
                       alt={visualDestiny?.name}
                       sx={{width: 32, height: 32, objectFit: "contain"}}
