@@ -88,7 +88,7 @@ const ClubsTable = ({clubs, max=10}) => {
                   direction="row"
                   spacing={1}
                   alignItems="center"
-                  sx={{display: "inline-flex", pl: {xs: 0, md: 20, lg: 30, xl: 40}}}>
+                  sx={{display: "inline-flex", pl: {xs: 0, md: 20, lg: 30}}}>
                   {/* ICONO LIGA */}
                   <Box
                     component="img"

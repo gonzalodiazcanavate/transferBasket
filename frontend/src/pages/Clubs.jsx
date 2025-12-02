@@ -65,7 +65,7 @@ const Clubs = () => {
                 mx: "auto",
               }}
             >
-              Revisa los movimientos más relevantes de las últimas jornadas del mercado.
+              Revisa información actualizada de los clubes más relevantes de la actualidad.
             </Typography>
 
             {/* Separador decorativo */}

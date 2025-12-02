@@ -73,7 +73,7 @@ const TransfersTable = ({transfers, max=10}) => {
               <TableRow key={t.id}>
 
                 {/*CLUB ORIGEN */}
-                <TableCell sx={{textAlign: "center"}}>
+                <TableCell sx={{textAlign: "left", pl: {xs: 0, md: 15}}}>
                   <Stack 
                     component={Link} 
                     to={`/equipo/${visualOrigin.id}`}
@@ -163,7 +163,7 @@ const TransfersTable = ({transfers, max=10}) => {
                 </TableCell>
 
                 {/* CLUB DESTINO */}
-                <TableCell  sx={{textAlign: "center"}}>
+                <TableCell  sx={{textAlign: "right", pr: {xs: 0, md: 20}}}>
                   <Stack 
                     component={Link} 
                     to={`/equipo/${visualDestiny.id}`}

@@ -97,8 +97,8 @@ const PlayersTable = ({players, max=10}) => {
                   to={`/equipo/${player.club.id}`}
                   direction="row" 
                   spacing={1} 
-                  alignItems="center" 
-                  sx={{display: "inline-flex", pl: {xs: 0, md: 20, lg: 40}}}>
+                  alignItems="left" 
+                  sx={{display: "inline-flex", pl: {xs: 0, md: 20, lg: 30}}}>
                   {/* ICONO CLUB */}
                   <Box
                     component="img"

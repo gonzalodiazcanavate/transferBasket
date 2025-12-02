@@ -14,12 +14,12 @@ import {
 } from "@mui/material";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import Header from "../components/Header";
-import TransfersTable from "../components/TransfersTable";
+import PlayersTable from "../components/PlayersTable";
 import Footer from "../components/Footer";
 import {useData} from "../hooks/useData";
 
-const TransfersPage = () => {
-  const {transfers, loading} = useData("Transfers");
+const Players = () => {
+  const {players, loading} = useData("Players");
 
   return (
     <>
@@ -55,15 +55,7 @@ const TransfersPage = () => {
               sx={{fontSize: 40, color: "#001f45", mb: 1}}
             />
 
-            <Typography
-              variant="h4"
-              sx={{
-                fontWeight: "700",
-                mb: 1,
-              }}
-            >
-              Traspasos destacados
-            </Typography>
+            <Typography variant="h4" sx={{mb: 1}}><strong>Jugadores destacados</strong></Typography>
 
             <Typography
               variant="body1"
@@ -73,7 +65,7 @@ const TransfersPage = () => {
                 mx: "auto",
               }}
             >
-              Revisa los movimientos más relevantes de las últimas jornadas del mercado.
+              Revisa información actualizada de los jugadores más relevantes de la actualidad.
             </Typography>
 
             {/* Separador decorativo */}
@@ -112,8 +104,8 @@ const TransfersPage = () => {
                   <CircularProgress size={42} thickness={4} />
                 </Box>
               ) : (
-                /* TRASPASOS */
-                <TransfersTable transfers={transfers} />
+                /* JUGADORES */
+                <PlayersTable players={players} max={15}/>
               )}
             </CardContent>
           </Card>
@@ -125,4 +117,4 @@ const TransfersPage = () => {
   );
 };
 
-export default TransfersPage;
+export default Players;
