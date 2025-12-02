@@ -53,8 +53,9 @@ export async function getCurrentUser() {
 export async function logout() {
   const res = await fetch(`${API_URL}/logout`, {
     method: "GET",
+    credentials: "include",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
   });
 

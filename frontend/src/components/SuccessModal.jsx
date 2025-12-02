@@ -1,3 +1,7 @@
+/**
+ * @file Modal que informa al usuario de un registro éxitoso
+ */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import {Box, Typography} from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";

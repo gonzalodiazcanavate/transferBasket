@@ -8,6 +8,14 @@ import {getUserById, getUserByUsername, getUserByUsernameOrEmail, createUser} fr
 import {validateInput} from "../utils/validation.js";
 import {sanitizeUser} from "../utils/sanitaze.js";
 
+// OPciones de cookie
+const COOKIE_OPTIONS = {
+  httpOnly: true,
+  secure: false,
+  sameSite: "lax",
+  path: "/",
+};
+
 // Recibe una request con los datos de un usuario y comprueba si existe un usuario con esos datos. En caso afirmativo, retorna un jwt.
 export const login = async (req, res) => {
   try {
@@ -33,9 +41,7 @@ export const login = async (req, res) => {
 
     // Enviamos el token en una cookie segura
     res.cookie("auth_token", token, {
-      httpOnly: true,         // no accesible desde JS
-      secure: false,          // En producción será true (HTTPS)
-      sameSite: "lax",        // protege de CSRF básico
+      ...COOKIE_OPTIONS,
       maxAge: 1000 * 60 * 60 * 2, // 2 horas
     });
 
