@@ -13,29 +13,34 @@ const ValuesSalariesChart = ({isAnimationActive = true, values, title}) => {
   console.log(data)
   return (
     <Box sx={{display: "flex", flexDirection: "column", gap: 3}}>
-      <Typography variant="h6">{title}</Typography>
-      <AreaChart
-        style={{width: "100%", maxWidth: "700px", maxHeight: "70vh", aspectRatio: 1.618}}
-        responsive
-        data={data}
-        margin={{top: 10, right: 0, left: 0, bottom: 0}}
-      >
-        <CartesianGrid strokeDasharray="33" />
-        <XAxis dataKey="date"  width="auto"/>
-        <YAxis width="auto" />
-        <Tooltip />
-        <Area
-          type="linear"
-          dataKey="value"
-          stroke="#8884d8"
-          strokeWidth={2}
-          dot={{r: 4}}
-          activeDot={{r: 8}}
-          fillOpacity={0.5}
-          fill="#8884d8"
-          isAnimationActive={isAnimationActive}
-        />
-      </AreaChart>
+      <Typography variant="h6">{`Historial de ${title}`}</Typography>
+      {values.length ? (
+        <AreaChart
+          style={{width: "100%", maxWidth: "700px", maxHeight: "70vh", aspectRatio: 1.618}}
+          responsive
+          data={data}
+          margin={{top: 10, right: 0, left: 0, bottom: 0}}
+        >
+          <CartesianGrid strokeDasharray="33" />
+          <XAxis dataKey="date"  width="auto"/>
+          <YAxis width="auto" />
+          <Tooltip />
+          <Area
+            type="linear"
+            dataKey="value"
+            stroke="#8884d8"
+            strokeWidth={2}
+            dot={{r: 4}}
+            activeDot={{r: 8}}
+            fillOpacity={0.5}
+            fill="#8884d8"
+            isAnimationActive={isAnimationActive}
+          />
+        </AreaChart>
+      ) : (
+        <Typography>No hay información de {title} para este jugador</Typography>
+      )}
+      
     </Box>
     
   );

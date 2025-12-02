@@ -49,8 +49,6 @@ const ClubDetails = () => {
             <Typography variant="h5"><strong>Historial de Traspasos</strong></Typography>
             <TransfersTable transfers={transfers} />
           </Box>
-          
-          {/* <HigherLower initialPlayer={player} /> */}
         </Box>
       </Container>
       <Footer/>

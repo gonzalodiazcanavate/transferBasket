@@ -6,9 +6,13 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
 import logo from "../assets/Transferbasket.jpeg";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/SearchBar.jsx";
+import UserMenu from "../components/UserMenu.jsx";
+import useAuth from "../hooks/useAuth.js";
 
 const Header = () => {
+
+  const {user, loading} = useAuth();
 
   return (
     <AppBar
@@ -98,22 +102,26 @@ const Header = () => {
           {/* Barra de búsqueda */}
           <SearchBar />
 
-          <Button
-            variant="outlined"
-            sx={{
-              borderColor: "rgba(255,255,255,0.7)",
-              color: "white",
-              fontWeight: 600,
-              "&:hover": {
-                backgroundColor: "rgba(255,255,255,0.1)",
-                borderColor: "white",
-              },
-            }}
-            component={Link}
-            to="/login"
-          >
+          {loading ? null : user ? (
+            <UserMenu user={user} />
+          ) : (
+            <Button
+              variant="outlined"
+              sx={{
+                borderColor: "rgba(255,255,255,0.7)",
+                color: "white",
+                fontWeight: 600,
+                "&:hover": {
+                  backgroundColor: "rgba(255,255,255,0.1)",
+                  borderColor: "white",
+                },
+              }}
+              component={Link}
+              to="/login"
+            >
               Iniciar sesión
-          </Button>
+            </Button>
+          )}
         </Box>
       </Toolbar>
     </AppBar>

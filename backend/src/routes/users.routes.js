@@ -1,7 +1,9 @@
 import {Router} from "express";
-import {login, logout, register} from "../controllers/users.controller.js"
+import {login, logout, register, isMe} from "../controllers/users.controller.js"
 
 const router = Router();
+// IsMe
+router.get("/me", isMe);
 // Login
 router.post("/login", login);
 // Registro
