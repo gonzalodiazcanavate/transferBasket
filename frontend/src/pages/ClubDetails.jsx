@@ -38,7 +38,7 @@ const ClubDetails = () => {
   return (
     <>
       <Header />
-      <Container maxWidth="lg" sx={{pb: 5, mt: {xs: 25, md: 10}, backgroundColor: "#F5F5F5", borderRadius: "8px"}}>
+      <Container maxWidth="lg" sx={{pb: 5, mt: {xs: 20, md: 10}, backgroundColor: "#F5F5F5", borderRadius: "8px"}}>
         <Box sx={{mt: 2, pt: 3}}>
           {/* Header con foto + info básica */}
           <ClubHeader club={club}/>
