@@ -64,22 +64,18 @@ export const getClubWithTotalValue = async (id) => {
 
 // Devolvemos todos los clubes con el valor total de sus jugadores
 export const getAllClubsWithTotalValue = async () => {
-  const result = await prisma.$queryRaw`
-    SELECT
-      c.*,
-      COALESCE(SUM(v.value), 0) AS total_value
-    FROM clubs c
-    LEFT JOIN players p ON p.club_id = c.id
-    LEFT JOIN (
-      -- Último value por jugador
-      SELECT DISTINCT ON (player_id) player_id, value
-      FROM values
-      ORDER BY player_id, date DESC
-    ) v ON v.player_id = p.id
-    GROUP BY c.id
-    ORDER BY c.id;
-  `;
+  const clubs = await prisma.clubs.findMany({
+    include: {
+      league: {
+        select: {
+          id: true,
+          name: true,
+          image_url: true
+        }
+      }
+    }
+  });
 
-  return convertBigInt(result);
+  return clubs;
 };
 

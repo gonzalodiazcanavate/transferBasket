@@ -5,6 +5,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from "react";
 import TablaJugadores from "../pages/TablaJugadores";
+import TablaEquipos from "../pages/TablaEquipos";
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import HomeSlider from "../components/HomeSlider";
@@ -78,13 +79,9 @@ const Home = () => {
               </Box>
             ) :
               <>
-                {value === 0 && <TablaJugadores />}
+                {value === 0 && <TablaJugadores players={players} />}
 
-                {value === 1 && (
-                  <Typography variant="h6" color="text.secondary">
-                    Próximamente: listado detallado de equipos, plantillas y valores.
-                  </Typography>
-                )}
+                {value === 1 && <TablaEquipos clubs={clubs} />}
 
                 {value === 2 && (
                   <Box>
