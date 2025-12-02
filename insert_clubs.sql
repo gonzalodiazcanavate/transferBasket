@@ -34,16 +34,51 @@ ON CONFLICT (name) DO NOTHING;
 -- ================================================================
 -- LIGA (Liga Endesa)
 -- ================================================================
-INSERT INTO leagues (country_id, name)
+INSERT INTO leagues (country_id, name, image_url)
 SELECT
   c.id,
-  'Liga Endesa'
+  'Liga Endesa',
+  '1-ligaEndesa.png'
 FROM countries c
 WHERE c.name = 'España'
   AND NOT EXISTS (
     SELECT 1
     FROM leagues l
     WHERE l.name = 'Liga Endesa'
+      AND l.country_id = c.id
+  );
+
+-- ================================================================
+-- LIGA FRANCESA (LNB Pro A)
+-- ================================================================
+INSERT INTO leagues (country_id, name, image_url)
+SELECT
+  c.id,
+  'LNB Pro A',
+  '2-ligaFrancesa.png'
+FROM countries c
+WHERE c.name = 'Francia'
+  AND NOT EXISTS (
+    SELECT 1
+    FROM leagues l
+    WHERE l.name = 'LNB Pro A'
+      AND l.country_id = c.id
+  );
+
+-- ================================================================
+-- LIGA ALEMANA (BBL)
+-- ================================================================
+INSERT INTO leagues (country_id, name, image_url)
+SELECT
+  c.id,
+  'Basketball Bundesliga',
+  '3-ligaAlemana.png'
+FROM countries c
+WHERE c.name = 'Alemania'
+  AND NOT EXISTS (
+    SELECT 1
+    FROM leagues l
+    WHERE l.name = 'Basketball Bundesliga'
       AND l.country_id = c.id
   );
 
@@ -270,3 +305,81 @@ SELECT
   (SELECT id FROM leagues WHERE name = 'Liga Endesa'),
   '18-MorabancAndorra.png'
 WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'MoraBanc Andorra');
+
+-- ================================================================
+-- CLUBES LIGA FRANCESA
+-- ================================================================
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'ASVEL Lyon-Villeurbanne',
+  'Astroballe',
+  'Villeurbanne',
+  5560,
+  '1948-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'LNB Pro A'),
+  'F1-ASVEL.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'ASVEL Lyon-Villeurbanne');
+
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'Monaco Basket',
+  'Salle Gaston Médecin',
+  'Mónaco',
+  4700,
+  '1924-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'LNB Pro A'),
+  'F2-Monaco.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'Monaco Basket');
+
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'SIG Strasbourg',
+  'Rhenus Sport',
+  'Estrasburgo',
+  6200,
+  '1928-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'LNB Pro A'),
+  'F3-Strasbourg.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'SIG Strasbourg');
+
+-- ================================================================
+-- CLUBES LIGA ALEMANA
+-- ================================================================
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'Bayern Munich',
+  'Audi Dome',
+  'Múnich',
+  6700,
+  '1946-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'Basketball Bundesliga'),
+  'G1-BayernMunich.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'Bayern Munich');
+
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'Alba Berlin',
+  'Mercedes-Benz Arena',
+  'Berlín',
+  14500,
+  '1991-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'Basketball Bundesliga'),
+  'G2-AlbaBerlin.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'Alba Berlin');
+
+INSERT INTO clubs (name, pitch, city, capacity, start_date, titles, league_id, image_url)
+SELECT
+  'Telekom Baskets Bonn',
+  'Telekom Dome',
+  'Bonn',
+  6000,
+  '1992-01-01',
+  0,
+  (SELECT id FROM leagues WHERE name = 'Basketball Bundesliga'),
+  'G3-Bonn.png'
+WHERE NOT EXISTS (SELECT 1 FROM clubs WHERE name = 'Telekom Baskets Bonn');

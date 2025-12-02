@@ -591,3 +591,60 @@ INSERT INTO players (
   ((SELECT id FROM clubs WHERE name = 'MoraBanc Andorra'),
    NULL, 'Moussa', 'Diagne', 31, FALSE, 110.00, FALSE, '1994-01-01', 'Pivót',
    0.00, 'Desconocido', 'Sano', 2.11, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00);
+
+   -- ================================================================
+-- JUGADORES LIGAS FRANCESA Y ALEMANA (1 por club)
+-- ================================================================
+
+INSERT INTO players (
+  club_id, selection_id, name, second_name, age, is_captain, weight,
+  is_international, birth_date, position, pp, birth_place, health, height,
+  rp, ap, sp, shot_pct, threes_pct, fp, image_url
+) VALUES
+  -------------------------------------------------------------
+  -- ASVEL Lyon-Villeurbanne
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'ASVEL Lyon-Villeurbanne'),
+   NULL, 'Antoine', 'Diarra', 27, FALSE, 92.50, TRUE, '1998-05-14', 'Ala_Pivót',
+   11.20, 'Lyon, Francia', 'Sano', 2.02, 6.4, 2.1, 0.9, 52.30, 36.10, 15.4,
+   null),
+
+  -------------------------------------------------------------
+  -- Monaco Basket
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'Monaco Basket'),
+   NULL, 'Lucas', 'Montclair', 29, TRUE, 88.10, TRUE, '1996-03-11', 'Escolta',
+   14.80, 'Niza, Francia', 'Sano', 1.96, 3.5, 4.8, 1.4, 47.80, 39.50, 18.7,
+   null),
+
+  -------------------------------------------------------------
+  -- SIG Strasbourg
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'SIG Strasbourg'),
+   NULL, 'Mathieu', 'Keller', 24, FALSE, 81.75, FALSE, '2001-07-22', 'Base',
+   9.40, 'Estrasburgo, Francia', 'Sano', 1.88, 2.9, 5.6, 1.1, 45.60, 34.20, 13.2,
+   null),
+
+  -------------------------------------------------------------
+  -- Bayern Munich
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'Bayern Munich'),
+   NULL, 'Johann', 'Reuter', 28, FALSE, 101.20, TRUE, '1997-01-19', 'Pivót',
+   12.30, 'Múnich, Alemania', 'Sano', 2.12, 7.8, 1.9, 0.6, 59.40, 28.00, 17.1,
+   null),
+
+  -------------------------------------------------------------
+  -- Alba Berlin
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'Alba Berlin'),
+   NULL, 'Felix', 'Wagner', 26, FALSE, 86.30, TRUE, '1999-09-30', 'Alero',
+   10.90, 'Berlín, Alemania', 'Sano', 2.00, 4.1, 2.7, 1.3, 48.10, 37.80, 14.6,
+   null),
+
+  -------------------------------------------------------------
+  -- Telekom Baskets Bonn
+  -------------------------------------------------------------
+  ((SELECT id FROM clubs WHERE name = 'Telekom Baskets Bonn'),
+   NULL, 'Marcel', 'Hoffmann', 30, TRUE, 90.40, TRUE, '1995-11-08', 'Escolta',
+   16.20, 'Bonn, Alemania', 'Sano', 1.94, 3.2, 3.8, 1.5, 49.70, 41.20, 20.3,
+   null);

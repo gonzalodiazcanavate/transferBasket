@@ -92,10 +92,10 @@ export const useHome = (totalSlides = 3) => {
     },
     {
       id: 2,
-      title: "Transferencias",
+      title: "Traspasos",
       subtitle: "Historial de traspasos, valores y movimientos recientes.",
-      buttonText: "Explorar Transferencias",
-      link: "/transferencias",
+      buttonText: "Explorar Traspasos",
+      link: "/traspasos",
       bgImage: "https://www.currentaffairs.org/hubfs/Imported_Blog_Media/stonks-1024x646-1.jpg",
     },
   ]

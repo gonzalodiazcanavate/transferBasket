@@ -86,8 +86,8 @@ const Header = () => {
           <Button color="inherit" component={Link} to="/equipos" sx={{fontWeight: 500}}>
               Equipos
           </Button>
-          <Button color="inherit" component={Link} to="/transferencias" sx={{fontWeight: 500}}>
-              Transferencias
+          <Button color="inherit" component={Link} to="/traspasos" sx={{fontWeight: 500}}>
+              Traspasos
           </Button>
         </Box>
 
