@@ -17,13 +17,16 @@ import {formatDate, formatValue} from "../utils/format";
 // Ruta a imagen del jugador
 const BACKEND = config.assetsUrl;
 
-const TransfersTable = ({transfers}) => {
+const TransfersTable = ({transfers, max=10}) => {
   if (!transfers || transfers.length === 0) {
     return <Typography>No hay transferencias registradas.</Typography>;
   }
 
+  // Certificamos que el número de traspasos no sobrepase el máximo deseado
+  const transfersLimited = transfers.length > max ? transfers.slice(0, max) : transfers;
+
   // Identificar el primer club propietario (para detectar vueltas de cesión)
-  const firstLoan = transfers.find(t => t.type === "cesion");
+  const firstLoan = transfersLimited.find(t => t.type === "cesion");
 
   // Para MediaQuerys
   const theme = useTheme();
@@ -54,7 +57,7 @@ const TransfersTable = ({transfers}) => {
         </TableHead>
 
         <TableBody>
-          {transfers.map((t) => {
+          {transfersLimited.map((t) => {
 
             // Detectar retorno de cesión
             const isReturnLoan =
@@ -84,7 +87,7 @@ const TransfersTable = ({transfers}) => {
                       src={
                         visualOrigin?.image_url
                           ? `${BACKEND}/clubs/${visualOrigin.image_url}`
-                          : `${BACKEND}/default-club.png`
+                          : `${BACKEND}/default.png`
                       }
                       alt={visualOrigin?.name}
                       sx={{width: 32, height: 32, objectFit: "contain"}}

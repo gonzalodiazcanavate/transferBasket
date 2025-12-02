@@ -30,20 +30,8 @@ export const useHome = (totalSlides = 3) => {
               getTransfers(),
             ]);
   
-        // Calcular total_value para cada club basado en los jugadores
-        const clubsWithValue = clubsRes.map(club => {
-          const totalValue = playersRes
-            .filter(player => player.club?.id === club.id)
-            .reduce((sum, player) => sum + (player.value ?? 0), 0);
-          
-          return {
-            ...club,
-            total_value: totalValue
-          };
-        });
-  
         setPlayers(playersRes);
-        setClubs(clubsWithValue);
+        setClubs(clubsRes);
         setTransfers(transfersRes);
   
       } catch (error) {

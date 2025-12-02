@@ -4,11 +4,11 @@
 
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from "react";
-import TablaJugadores from "../pages/TablaJugadores";
-import TablaEquipos from "../pages/TablaEquipos";
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import HomeSlider from "../components/HomeSlider";
+import PlayersTable from "../components/PlayersTable";
+import ClubsTable from "../components/ClubsTable";
 import TransfersTable from "../components/TransfersTable";
 import {
   Typography,
@@ -67,7 +67,7 @@ const Home = () => {
           >
             <Tab label="Jugadores" />
             <Tab label="Equipos" />
-            <Tab label="Transferencias" />
+            <Tab label="Traspasos" />
           </Tabs>
 
           <Box sx={{p: {xs: 2, md: 4}}}>
@@ -79,9 +79,24 @@ const Home = () => {
               </Box>
             ) :
               <>
-                {value === 0 && <TablaJugadores players={players} />}
+                {value === 0 && (
+                  <Box>
+                    <Typography variant="h5" color="text.primary" my={2}>
+                      <strong>Jugadores Destacados:</strong>
+                    </Typography>
+                    <PlayersTable players={players} />
+                  </Box>
+                  
+                )}
 
-                {value === 1 && <TablaEquipos clubs={clubs} />}
+                {value === 1 && (
+                  <Box>
+                    <Typography variant="h5" color="text.primary" my={2}>
+                      <strong>Clubes Destacados:</strong>
+                    </Typography>
+                    <ClubsTable clubs={clubs} />
+                  </Box>
+                )}
 
                 {value === 2 && (
                   <Box>

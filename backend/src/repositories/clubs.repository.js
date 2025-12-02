@@ -2,7 +2,7 @@
  * @file Repositorio de clubs.
  */
 import prisma from "../config/db.js";
-import { convertBigInt } from "../utils/sanitaze.js";
+import {convertBigInt} from "../utils/sanitaze.js";
 
 // Trae todos los clubs de la base de datos.
 export const getAllClubs = () => prisma.clubs.findMany();
@@ -64,18 +64,28 @@ export const getClubWithTotalValue = async (id) => {
 
 // Devolvemos todos los clubes con el valor total de sus jugadores
 export const getAllClubsWithTotalValue = async () => {
-  const clubs = await prisma.clubs.findMany({
-    include: {
-      league: {
-        select: {
-          id: true,
-          name: true,
-          image_url: true
-        }
-      }
-    }
-  });
+  const result = await prisma.$queryRaw`
+    SELECT
+      c.*,
+      COALESCE(SUM(v.value), 0) AS total_value,
+      json_build_object(
+        'id', l.id,
+        'name', l.name,
+        'image_url', l.image_url
+      ) AS league
+    FROM clubs c
+    JOIN leagues l ON l.id = c.league_id
+    LEFT JOIN players p ON p.club_id = c.id
+    LEFT JOIN (
+      -- Último value por jugador
+      SELECT DISTINCT ON (player_id) player_id, value
+      FROM values
+      ORDER BY player_id, date DESC
+    ) v ON v.player_id = p.id
+    GROUP BY c.id, l.id
+    ORDER BY total_value DESC;
+  `;
 
-  return clubs;
+  return convertBigInt(result);
 };
 
