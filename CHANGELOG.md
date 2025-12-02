@@ -3,15 +3,24 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 
 ## [Próxima Versión] - Añadir nuevos cambios ##
 #  Agregado (Added)
-- Modal de registro éxitoso.
-- Endpoint para obtnener usuario a partie del auth_token.
-- Menú de usuario añadido.
+- Página de traspasos añadida.
+- Hook para fetch condicionales añadido.
 # Cambiado (Changed)
-- Migración añadida para incluir el campo id en users.
-- Fallbacks de imagenes añadidos en tablas y headers. 
+
 # Obsoleto (Deprecated)
 
 # Eliminado (Removed)
+
+# Corregido (Fixed)
+## [Versión 0.5.0] - 2025-12-02 ##
+#  Agregado (Added)
+- Modal de registro éxitoso.
+- Endpoint para obtener usuario a partie del auth_token.
+- Menú de usuario añadido.
+
+# Cambiado (Changed)
+- Migración añadida para incluir el campo id en users.
+- Fallbacks de imagenes añadidos en tablas y headers. 
 
 # Corregido (Fixed)
 - Funcionalidad del endpoint de logout corregida.
