@@ -18,7 +18,7 @@ import TransfersTable from "../components/TransfersTable";
 import Footer from "../components/Footer";
 import {useData} from "../hooks/useData";
 
-const Transfers = () => {
+const TransfersPage = () => {
   const {transfers, loading} = useData("Transfers");
 
   return (
@@ -55,7 +55,15 @@ const Transfers = () => {
               sx={{fontSize: 40, color: "#001f45", mb: 1}}
             />
 
-            <Typography variant="h4" sx={{mb: 1}}><strong>Traspasos destacados</strong></Typography>
+            <Typography
+              variant="h4"
+              sx={{
+                fontWeight: "700",
+                mb: 1,
+              }}
+            >
+              Traspasos destacados
+            </Typography>
 
             <Typography
               variant="body1"
@@ -117,4 +125,4 @@ const Transfers = () => {
   );
 };
 
-export default Transfers;
+export default TransfersPage;

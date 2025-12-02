@@ -1,5 +1,5 @@
 /**
- * @file Página de traspasos de jugadores
+ * @file Página de Clubs
  */
 // eslint-disable-next-line no-unused-vars
 import React from "react";
@@ -14,12 +14,12 @@ import {
 } from "@mui/material";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import Header from "../components/Header";
-import TransfersTable from "../components/TransfersTable";
+import ClubsTable from "../components/ClubsTable";
 import Footer from "../components/Footer";
 import {useData} from "../hooks/useData";
 
-const Transfers = () => {
-  const {transfers, loading} = useData("Transfers");
+const Clubs = () => {
+  const {clubs, loading} = useData("Clubs");
 
   return (
     <>
@@ -55,7 +55,7 @@ const Transfers = () => {
               sx={{fontSize: 40, color: "#001f45", mb: 1}}
             />
 
-            <Typography variant="h4" sx={{mb: 1}}><strong>Traspasos destacados</strong></Typography>
+            <Typography variant="h4" sx={{mb: 1}}><strong>Clubes destacados</strong></Typography>
 
             <Typography
               variant="body1"
@@ -104,17 +104,16 @@ const Transfers = () => {
                   <CircularProgress size={42} thickness={4} />
                 </Box>
               ) : (
-                /* TRASPASOS */
-                <TransfersTable transfers={transfers} />
+                /* Clubs */
+                <ClubsTable clubs={clubs} max={15}/>
               )}
             </CardContent>
           </Card>
         </Container>
       </Box>
-
       <Footer />
     </>
   );
 };
 
-export default Transfers;
+export default Clubs;
