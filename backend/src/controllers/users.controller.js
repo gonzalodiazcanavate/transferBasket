@@ -36,7 +36,7 @@ export const login = async (req, res) => {
     if(!bcrypt.compareSync(password, user.password)) return res.status(500).json({ error: "Error obteniendo usuario: Contraseña incorrecta."});
 
     // Implementamos jwt
-    const token = jwt.sign({id: user.id, username: user.username}, config.JWTSecret, {expiresIn: config.jwtExpiresIn}
+    const token = jwt.sign({id: user.id, username: user.username}, config.jwtSecret, {expiresIn: config.jwtExpiresIn}
     );
 
     // Enviamos el token en una cookie segura
@@ -91,7 +91,7 @@ export const isMe = async (req, res) => {
     const token = req.cookies.auth_token;
     if (!token) return res.status(401).json({ auth: false });
 
-    const decoded = jwt.verify(token, config.JWTSecret);
+    const decoded = jwt.verify(token, config.jwtSecret);
 
     const user = await getUserById(decoded.id);
 

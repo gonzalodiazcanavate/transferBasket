@@ -3,11 +3,15 @@ import path from "path";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
+import { config } from "./config/config.js";
 import routes from "./routes/index.js";
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true, }));
+app.use(cors({
+  origin: config.frontendOrigin,
+  credentials: true, 
+}));
 app.use(express.json());
 app.use(cookieParser());
 
