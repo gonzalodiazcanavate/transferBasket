@@ -1,4 +1,14 @@
 services:
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend.dockerfile
+    container_name: frontend
+    restart: always
+    ports:
+      - "3000:80" # 3000 externo → 80 interno (Nginx)
+    depends_on:
+      - backend
   backend:
     build:
       context: .
