@@ -1,0 +1,137 @@
+version: "3.9"
+
+services:
+  ###########################################
+  #  TRAEFIK – Reverse proxy + SSL
+  ###########################################
+  traefik:
+    image: traefik:v3.1
+    container_name: traefik
+    restart: always
+    command:
+      # Dashboard (opcional)
+      - "--api.dashboard=true"
+
+      # Entradas HTTP/HTTPS
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+
+      # Redirección automática HTTP → HTTPS
+      - "--entrypoints.web.http.redirections.entryPoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entryPoint.scheme=https"
+
+      # Proveedor Docker
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+
+      # Let's Encrypt automático
+      - "--certificatesresolvers.myresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.myresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.myresolver.acme.email=${LETSENCRYPT_EMAIL}"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+
+    ports:
+      - "80:80"
+      - "443:443"
+
+    volumes:
+      - "./traefik/letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+    networks:
+      - traefik_network
+      - internal
+
+  ###########################################
+  #  FRONTEND – Nginx → /
+  ###########################################
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend.dockerfile
+    container_name: frontend
+    restart: always
+
+    labels:
+      - "traefik.enable=true"
+
+      # Ruteo principal del dominio
+      - "traefik.http.routers.frontend.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=myresolver"
+
+      # Todos los paths por defecto van al frontend
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
+
+    networks:
+      - internal
+      - traefik_network
+
+  ###########################################
+  #  BACKEND – Node.js → /api y /assets
+  ###########################################
+  backend:
+    build:
+      context: .
+      dockerfile: backend.dockerfile
+    container_name: backend
+    restart: always
+
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: "postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
+      JWT_SECRET: "${JWT_SECRET}"
+      SALT_ROUNDS: 12
+      FRONTEND_ORIGIN: "https://${DOMAIN}"
+
+    labels:
+      - "traefik.enable=true"
+
+      # API
+      - "traefik.http.routers.backend_api.rule=Host(`${DOMAIN}`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.backend_api.entrypoints=websecure"
+      - "traefik.http.routers.backend_api.tls.certresolver=myresolver"
+      - "traefik.http.services.backend_api.loadbalancer.server.port=4000"
+
+      # Assets del backend
+      - "traefik.http.routers.backend_assets.rule=Host(`${DOMAIN}`) && PathPrefix(`/assets`)"
+      - "traefik.http.routers.backend_assets.entrypoints=websecure"
+      - "traefik.http.routers.backend_assets.tls.certresolver=myresolver"
+      - "traefik.http.services.backend_assets.loadbalancer.server.port=4000"
+
+    networks:
+      - internal
+      - traefik_network
+
+    depends_on:
+      - db
+
+  ###########################################
+  #  POSTGRES – Producción
+  ###########################################
+  db:
+    image: postgres:latest
+    container_name: db
+    restart: always
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - internal
+
+###########################################
+#  VOLUMES / NETWORKS
+###########################################
+volumes:
+  postgres_data:
+
+networks:
+  traefik_network:
+  internal:

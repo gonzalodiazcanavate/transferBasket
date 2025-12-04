@@ -1,8 +1,20 @@
 ### Historial de Cambios ###
 Todos los cambios notables del proyecto se documentarán en este archivo.
 
-## [Próxima Versión] - Añadir nuevos cambios ##
+# [Próxima Versión] - Próximos Cambios ##
 #  Agregado (Added)
+
+# Cambiado (Changed)
+
+# Obsoleto (Deprecated)
+
+# Eliminado (Removed)
+
+# Corregido (Fixed)
+
+## [Versión 0.7.0] - 2025-12-04 ##
+#  Agregado (Added)
+- Agregadas builds y configuraciones de producción.
 - Página de jugadores.
 - Página de clubes.
 
@@ -10,12 +22,6 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 - Tabla de clubes modificada para que se muestre correctamente en móvil.
 - Tabla de jugadores modificada para que se muestre correctamente en móvil.
 - Endpoint de clubsWithTotalValue ahora devuelve también las ligas de los mismos.
-
-# Obsoleto (Deprecated)
-
-# Eliminado (Removed)
-
-# Corregido (Fixed)
 
 ## [Versión 0.6.0] - 2025-12-03 ##
 #  Agregado (Added)

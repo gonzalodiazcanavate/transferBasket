@@ -1,8 +1,8 @@
 {
   "name": "frontend",
   "private": true,
-  "version": "0.0.0",
-  "description": "Lista de dependedencias del backend de transferBasket",
+  "version": "1.0.0",
+  "description": "Lista de dependedencias del frontend de transferBasket",
   "type": "module",
   "scripts": {
     "dev": "vite",
