@@ -25,6 +25,6 @@ app.use("/api", routes);
 const assetsPath = path.join(process.cwd(), "src", "assets");
 
 // Servir archivos estáticos
-app.use("/assets", express.static(assetsPath));
+app.use("/backend-assets", express.static(assetsPath));
 
 export default app;
