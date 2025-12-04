@@ -6,11 +6,25 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 
 # Cambiado (Changed)
 
+# Corregido (Fixed)
+
 # Obsoleto (Deprecated)
 
 # Eliminado (Removed)
 
-# Corregido (Fixed)
+# [Version 1.0.0] - 2025-12-05 ##
+#  Agregado (Added)
+- Docker compose de producción.
+- Docker compose de producción local.
+- Configuración nginx.conf para vps
+- Configuración frontend/nginx.conf para dockerfile del frontend.
+- Creados dockerfiles del backend y el frontend.
+
+# Cambiado (Changed)
+- Dependencia del Backend, morgan, cambiada a dependencia de producción.
+
+# Eliminado (Removed)
+- Eliminado componente Navigation.tsx
 
 ## [Versión 0.7.0] - 2025-12-04 ##
 #  Agregado (Added)
