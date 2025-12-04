@@ -8,8 +8,8 @@ WORKDIR /app
 # Copiar solo los archivos del backend
 COPY backend/package*.json ./
 
-# Instalar dependencias (solo produccion)
-RUN npm install --production
+# Instalar dependencias
+RUN npm install
 
 # Copiar backend completo
 COPY backend ./
