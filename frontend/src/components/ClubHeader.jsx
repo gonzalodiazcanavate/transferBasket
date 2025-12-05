@@ -59,10 +59,10 @@ const ClubHeader = ({club}) => {
         <Typography variant="h5" fontWeight="bold">{name}</Typography>
 
         <Stack direction="row" spacing={1} sx={{mt: 1, flexWrap: "wrap"}}>
-          <Chip label={`Fundación: ${formatDate(start_date)}`} />
-          <Chip label={`Estadio: ${pitch}`} />
-          <Chip label={`Capacidad: ${capacity}`} />
-          <Chip label={`Ciudad: ${city}`} />
+          <Chip label={`Fundación: ${formatDate(start_date)}`} sx={{my: {xs: 2, md: 0}}} />
+          <Chip label={`Estadio: ${pitch}`} sx={{my: {xs: 2, md: 0}}} />
+          <Chip label={`Capacidad: ${capacity}`} sx={{my: {xs: 2, md: 0}}} />
+          <Chip label={`Ciudad: ${city}`} sx={{my: {xs: 2, md: 0}}} />
         </Stack>
 
         <Stack direction="row" mt={2} spacing={2} alignItems="center">
