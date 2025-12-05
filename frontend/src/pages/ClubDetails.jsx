@@ -19,7 +19,7 @@ const ClubDetails = () => {
 
   if (loading) {
     return (
-      <Box sx={{display: "flex", justifyContent: "center", mt: 5}}>
+      <Box sx={{display: "flex", justifyContent: "center", mt: 15}}>
         <CircularProgress />
       </Box>
     );
@@ -28,7 +28,7 @@ const ClubDetails = () => {
   if (!club) {
     return (
       <Container>
-        <Box sx={{mt: 5, textAlign: "center"}}>
+        <Box sx={{mt: 15, textAlign: "center"}}>
           No se encontró el club.
         </Box>
       </Container>
@@ -38,7 +38,7 @@ const ClubDetails = () => {
   return (
     <>
       <Header />
-      <Container maxWidth="lg" sx={{pb: 5, mt: {xs: 20, md: 10}, backgroundColor: "#F5F5F5", borderRadius: "8px"}}>
+      <Container maxWidth="lg" sx={{pb: 5, mt: {xs: 25, sm: 20, md: 10}, backgroundColor: "#F5F5F5", borderRadius: "8px"}}>
         <Box sx={{mt: 2, pt: 3}}>
           {/* Header con foto + info básica */}
           <ClubHeader club={club}/>
