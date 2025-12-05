@@ -9,7 +9,7 @@ WORKDIR /app
 COPY frontend/package*.json ./
 
 # Instalamos dependencias
-RUN npm install --production
+RUN npm install
 
 # Copiamos todo el frontend
 COPY frontend .

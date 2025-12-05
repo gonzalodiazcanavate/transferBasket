@@ -39,7 +39,7 @@ const Home = () => {
         sx={{
           backgroundColor: "#f8fbff",
           minHeight: "100vh",
-          marginTop: "64px",
+          mt: {xs: 20, md: 10}
         }}
       >
         {/* Contenedor de slides */}
