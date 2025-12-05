@@ -39,7 +39,7 @@ const Home = () => {
         sx={{
           backgroundColor: "#f8fbff",
           minHeight: "100vh",
-          mt: {xs: 22, sm: 18, md: 10}
+          mt: {xs: 18, sm: 10, md: 10, lg: 5, xl: 8}
         }}
       >
         {/* Contenedor de slides */}
@@ -81,7 +81,8 @@ const Home = () => {
               <>
                 {value === 0 && (
                   <Box>
-                    <Typography variant="h5" color="text.primary" my={2}>
+                    <Typography variant="h3" color="text.primary" my={2} 
+                      sx={{fontSize: isMobile ? "1.3rem" : "1.5rem"}}>
                       <strong>Jugadores Destacados:</strong>
                     </Typography>
                     <PlayersTable players={players} />
@@ -91,7 +92,8 @@ const Home = () => {
 
                 {value === 1 && (
                   <Box>
-                    <Typography variant="h5" color="text.primary" my={2}>
+                    <Typography variant="h3" color="text.primary" my={2} 
+                      sx={{fontSize: isMobile ? "1.3rem" : "1.5rem"}}>
                       <strong>Clubes Destacados:</strong>
                     </Typography>
                     <ClubsTable clubs={clubs} />
@@ -100,7 +102,8 @@ const Home = () => {
 
                 {value === 2 && (
                   <Box>
-                    <Typography variant="h5" color="text.primary" my={2}>
+                    <Typography variant="h3" color="text.primary" my={2} 
+                      sx={{fontSize: isMobile ? "1.3rem" : "1.5rem"}}>
                       <strong>Traspasos Destacados:</strong>
                     </Typography>
                     <TransfersTable transfers={transfers} />

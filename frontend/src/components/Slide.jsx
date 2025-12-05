@@ -32,21 +32,23 @@ const Slide = ({slide, isActive, translateX, isMobile}) => {
     >
       <Box sx={{maxWidth: 800, px: 2, textAlign: "center"}}>
         <Typography
-          variant={isMobile ? "h4" : "h2"}
+          variant="h1"
           sx={{
             fontFamily: "'Anton', sans-serif",
+            fontSize: isMobile ? "1.5rem" : "3.75rem",
+            fontWeight: 800,
             textTransform: "uppercase",
             mb: 2,
           }}
         >
-          Bienvenido a TransferBasket
+          <strong>Bienvenido a TransferBasket</strong>
         </Typography>
 
-        <Typography variant="h5" sx={{mb: 2, fontWeight: 600}}>
+        <Typography variant="h2" sx={{mb: 2, fontWeight: 600, fontSize: isMobile ? "1.2rem" : "1.5rem"}}>
           {slide.title}
         </Typography>
 
-        <Typography variant="h6" sx={{mb: 3, fontWeight: 300}}>
+        <Typography variant="h4" sx={{mb: 3, fontWeight: 300, fontSize: isMobile ? "1rem" : "1.3rem",}}>
           {slide.subtitle}
         </Typography>
 

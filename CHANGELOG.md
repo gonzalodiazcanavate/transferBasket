@@ -9,6 +9,7 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 
 # Corregido (Fixed)
 - Arreglada build de desarrollo.
+
 # Obsoleto (Deprecated)
 
 # Eliminado (Removed)

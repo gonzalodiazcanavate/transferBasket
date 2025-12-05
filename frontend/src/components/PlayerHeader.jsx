@@ -63,10 +63,10 @@ const PlayerHeader = ({player}) => {
         </Typography>
 
         <Stack direction="row" spacing={1} sx={{mt: 1, flexWrap: "wrap"}}>
-          <Chip label={`${age} años`} />
-          <Chip label={`Nacido: ${formatDate(birth_date)}`} />
-          <Chip label={`Altura: ${height}`} />
-          <Chip label={`Nacionalidad: ${formatNationalities(nationalities)}`} />
+          <Chip label={`${age} años`} sx={{my: {xs: 2, md: 0}}}/>
+          <Chip label={`Nacido: ${formatDate(birth_date)}`} sx={{my: {xs: 2, md: 0}}} />
+          <Chip label={`Altura: ${height}`} sx={{my: {xs: 2, md: 0}}} />
+          <Chip label={`Nacionalidad: ${formatNationalities(nationalities)}`} sx={{my: {xs: 2, md: 0}}} />
         </Stack>
 
         <Typography sx={{mt: 2}}>
