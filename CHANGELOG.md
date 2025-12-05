@@ -5,9 +5,10 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 #  Agregado (Added)
 
 # Cambiado (Changed)
+- Mejorada interfaz móvil
 
 # Corregido (Fixed)
-
+- Arreglada build de desarrollo.
 # Obsoleto (Deprecated)
 
 # Eliminado (Removed)

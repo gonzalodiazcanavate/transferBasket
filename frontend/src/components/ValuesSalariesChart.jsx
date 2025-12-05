@@ -10,7 +10,7 @@ import {Box, Typography} from "@mui/material";
 
 const ValuesSalariesChart = ({isAnimationActive = true, values, title}) => {
   const data = values ? createPayload(values) : [{date: "", value: 0}]
-  console.log(data)
+
   return (
     <Box sx={{display: "flex", flexDirection: "column", gap: 3}}>
       <Typography variant="h6">{`Historial de ${title}`}</Typography>

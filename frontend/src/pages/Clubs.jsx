@@ -31,7 +31,8 @@ const Clubs = () => {
         sx={{
           minHeight: "100vh",
           background: "linear-gradient(180deg, #f7f9fc 0%, #ffffff 100%)",
-          pt: {xs: 18, md: 12},
+          mt: {xs: 10, sm: 5},
+          pt: {xs: 18, md: 10},
           pb: 8,
           animation: "fadeIn 0.6s ease",
           "@keyframes fadeIn": {

@@ -12,5 +12,5 @@ export async function searchPlayerOrClub(query) {
     throw new Error(error);
   } 
 
-  return res.json();
+  return res.json(); 
 }
