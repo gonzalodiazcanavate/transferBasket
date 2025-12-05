@@ -1,4 +1,4 @@
-#### transferBasket ###
+# transferBasket #
 
 Proyecto de fin del grado de Desarrollo de Aplicaciones Web. Web de consulta de datos sobre el mundo del baloncesto al estilo transfermarkt.
 
@@ -22,7 +22,7 @@ La aplicación cuenta a día de hoy con los siguientes features:
 
 La aplicación cuenta con varios modos de despligue según los objetivos del usuario:
 
-# Despliegue de desarrollo #
+### Despliegue de desarrollo ###
 
 Esta opción es la recomendada para interesados en seguir desarrollando esta aplicación por la inmediatez con la que se muestran los cambios que vamos añadiendo a la aplicación. Para desplegar en modo dev debemos seguir los siguientes pasos:
 
@@ -36,7 +36,7 @@ Esta opción es la recomendada para interesados en seguir desarrollando esta apl
 
 Para esta configuración, basta con retocar los .env del backend y del frontend, el .env de la raíz del proyecto no es necesario, en el docker-compose hay información relevante de la base de datos.
 
-# Despliegue de producción local #
+### Despliegue de producción local ###
 
 Esta opción es la recomendada para probar el entorno de producción en local, incluso podría usarse el nginx.conf que hay en la raíz del proyecto para verdaderamente simular el entorno de producción. Los pasos a seguir para este despliegue son los siguientes:
 
@@ -48,7 +48,7 @@ Esta opción es la recomendada para probar el entorno de producción en local, i
 
 Esta opción no es muy conveniente para desarrollo pues requiere de buildear constantemente para que se reflejen los cambios.
 
-# Despliegue de producción en VPS #
+### Despliegue de producción en VPS ###
 
 Esta opción está pensada para el despliegue final de la aplicación en un VPS:
 
