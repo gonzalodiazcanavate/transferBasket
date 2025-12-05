@@ -6,6 +6,7 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 
 # Cambiado (Changed)
 - Mejorada interfaz móvil
+- Favicon y título añadidos
 
 # Corregido (Fixed)
 - Arreglada build de desarrollo.
@@ -13,8 +14,25 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 # Obsoleto (Deprecated)
 
 # Eliminado (Removed)
+- Favicon de Vite eliminado
 
-# [Version 1.0.0] - 2025-12-05 ##
+# [Versión 1.0.1] - 2025-12-05 ##
+#  Agregado (Added)
+- Información en el readme.
+
+# Cambiado (Changed)
+- Mejorada interfaz móvil
+- Favicon y título añadidos
+
+# Corregido (Fixed)
+- Arreglada build de desarrollo.
+
+# Obsoleto (Deprecated)
+
+# Eliminado (Removed)
+- Favicon de Vite eliminado
+
+# [Version 1.0.0] - 2025-12-0 ##
 #  Agregado (Added)
 - Docker compose de producción.
 - Docker compose de producción local.
