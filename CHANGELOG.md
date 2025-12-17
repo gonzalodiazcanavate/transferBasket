@@ -16,7 +16,7 @@ Todos los cambios notables del proyecto se documentarán en este archivo.
 ### Eliminado (Removed)
 - Favicon de Vite eliminado
 
-# [Versión 1.0.1] - 2025-12-05 ##
+## [Versión 1.0.1] - 2025-12-05 ##
 ###  Agregado (Added)
 - Información en el readme.
 
